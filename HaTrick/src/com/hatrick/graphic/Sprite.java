@@ -26,7 +26,7 @@ public abstract class Sprite {
 	private float _x;
 	private float _y;
 	private float _rotation;//This is the rotation of movement.
-	private float _graphic_rotation;//This is the rotation of graphic.
+	private float _graphicRotation;//This is the rotation of graphic.
 	private float _scale;
 	private float _alpha;
 	private boolean _directional;
@@ -45,7 +45,7 @@ public abstract class Sprite {
 		_x = 0;
 		_y = 0;
 		_rotation = 0;
-		_graphic_rotation = 0;
+		_graphicRotation = 0;
 		_scale = 1.0f;
 		_alpha = 1.0f;
 		_directional = false;
@@ -64,7 +64,7 @@ public abstract class Sprite {
 		this._x = sprt._x;
 		this._y = sprt._y;
 		this._rotation = sprt._rotation;
-		this._graphic_rotation = sprt._graphic_rotation;
+		this._graphicRotation = sprt._graphicRotation;
 		this._scale = sprt._scale;
 		this._alpha = sprt._alpha;
 		this._directional = sprt._directional;
@@ -136,10 +136,10 @@ public abstract class Sprite {
 
 			Image next_frame = _currentAnimation.getImage((1+_currentAnimation.getFrame())%_currentAnimation.getFrameCount());
 			next_frame.setAlpha(_alpha);
-			next_frame.setRotation(_graphic_rotation);
+			next_frame.setRotation(_graphicRotation);
 			Image current_frame = _currentAnimation.getCurrentFrame();
 			current_frame.setAlpha(_alpha);
-			current_frame.setRotation(_graphic_rotation);
+			current_frame.setRotation(_graphicRotation);
 			
 			_currentAnimation.draw((int)(_x-current_frame.getCenterOfRotationX()*_scale),(int)(_y-current_frame.getCenterOfRotationY()*_scale), current_frame.getWidth()*_scale, current_frame.getHeight()*_scale);
 			
@@ -157,7 +157,7 @@ public abstract class Sprite {
 				_currentImg = _imgs.get(DIRECTION_NONE);
 			}
 			_currentImg.setAlpha(_alpha);
-			_currentImg.setRotation(_graphic_rotation);
+			_currentImg.setRotation(_graphicRotation);
 			_currentImg.draw((int)(_x-_currentImg.getCenterOfRotationX()*_scale),(int)(_y-_currentImg.getCenterOfRotationY()*_scale), _currentImg.getWidth()*_scale, _currentImg.getHeight()*_scale);
 		}
 	}
@@ -232,19 +232,19 @@ public abstract class Sprite {
 	 * @return
 	 */
 	public float getGraphicRotation() {
-		return _graphic_rotation;
+		return _graphicRotation;
 	}
 	/**Set the rotation of graph.
 	 * @param _rotation
 	 */
-	public void setGraphicRotation(float _graphic_rotation) {
-		this._graphic_rotation = _graphic_rotation;
+	public void setGraphicRotation(float _graphicRotation) {
+		this._graphicRotation = _graphicRotation;
 	}
 	/**Rotate the graph.
 	 * @param deg
 	 */
 	public void rotateGraph(float deg){
-		this._graphic_rotation = (_graphic_rotation+deg)%360;
+		this._graphicRotation = (_graphicRotation+deg)%360;
 	}
 	public float getScale() {
 		return _scale;
