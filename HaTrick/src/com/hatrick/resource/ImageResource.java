@@ -186,7 +186,36 @@ public class ImageResource {
 	
 			}
 		};
-		
 	}
+		
+		public static class elements {
+			public static HashMap<Integer,ImageInfo[]> stand = new HashMap<Integer,ImageInfo[]>(){
+				/**
+				 * 
+				 */
+				private static final long serialVersionUID = 78863533991560002L;
+
+				{
+					put(Avatar.ASSASSIN1A,new ImageInfo[]{new ImageInfo("res/game/graphic/elements/brick1a.png",Sprite.DIRECTION_DOWN,32,0,16,32,32,32)
+					,new ImageInfo("res/game/graphic/elements/brick1a.png",Sprite.DIRECTION_LEFT,32,32,16,32,32,32)
+					,new ImageInfo("res/game/graphic/elements/brick1a.png",Sprite.DIRECTION_RIGHT,32,64,16,32,32,32)
+					,new ImageInfo("res/game/graphic/elements/brick1a.png",Sprite.DIRECTION_UP,32,96,16,32,32,32)});
+					put(Avatar.ASSASSIN1B,new ImageInfo[]{new ImageInfo("res/game/graphic/elements/brick1b.png",Sprite.DIRECTION_DOWN,32,0,16,32,32,32)
+					,new ImageInfo("res/game/graphic/elements/brick1b.png",Sprite.DIRECTION_LEFT,32,32,16,32,32,32)
+					,new ImageInfo("res/game/graphic/elements/brick1b.png",Sprite.DIRECTION_RIGHT,32,64,16,32,32,32)
+					,new ImageInfo("res/game/graphic/elements/brick1b.png",Sprite.DIRECTION_UP,32,96,16,32,32,32)});
+					put(Avatar.ASSASSIN2A,new ImageInfo[]{new ImageInfo("res/game/graphic/elements/flower1a.png",Sprite.DIRECTION_DOWN,32,0,16,32,32,32)
+					,new ImageInfo("res/game/graphic/elements/flower1a.png",Sprite.DIRECTION_LEFT,32,32,16,32,32,32)
+					,new ImageInfo("res/game/graphic/elements/flower1a.png",Sprite.DIRECTION_RIGHT,32,64,16,32,32,32)
+					,new ImageInfo("res/game/graphic/elements/flower1a.png",Sprite.DIRECTION_UP,32,96,16,32,32,32)});
+					put(Avatar.ASSASSIN3A,new ImageInfo[]{new ImageInfo("res/game/graphic/elements/flower1b.png",Sprite.DIRECTION_DOWN,32,0,16,32,32,32)
+					,new ImageInfo("res/game/graphic/elements/flower1b.png",Sprite.DIRECTION_LEFT,32,32,16,32,32,32)
+					,new ImageInfo("res/game/graphic/elements/flower1b.png",Sprite.DIRECTION_RIGHT,32,64,16,32,32,32)
+					,new ImageInfo("res/game/graphic/elements/flower1b.png",Sprite.DIRECTION_UP,32,96,16,32,32,32)});
+		
+				}
+			};
+		
+		}
 
 }
