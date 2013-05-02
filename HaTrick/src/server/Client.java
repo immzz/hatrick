@@ -4,10 +4,10 @@ import java.net.*;
 import java.sql.Time;
 import java.util.*;
 
-class checkTimerTask extends TimerTask{
-	client client;
+class CheckTimerTask extends TimerTask{
+	Client client;
 	OutputStream toServer;
-	public checkTimerTask(client client, OutputStream toServer) {
+	public CheckTimerTask(Client client, OutputStream toServer) {
 		// TODO Auto-generated constructor stub
 		this.client=client;
 		this.toServer=toServer;
@@ -24,9 +24,9 @@ class checkTimerTask extends TimerTask{
 	}
 	
 }
-class heartTimerTask extends TimerTask{
-	client client;
-	public heartTimerTask(client client) {
+class HeartTimerTask extends TimerTask{
+	Client client;
+	public HeartTimerTask(Client client) {
 		// TODO Auto-generated constructor stub
 		this.client=client;
 	}
@@ -48,14 +48,14 @@ class heartTimerTask extends TimerTask{
 	}
 	
 }
-public class client {
+public class Client {
 
 	/**
 	 * @param args
 	 */
 	 OutputStream toServer;
 	 InputStream fromServer;
-	public client(){
+	public Client(){
 		try{
 			//create a socket to connect to the server
 			Socket socket=new Socket("localhost",8003);
@@ -63,8 +63,8 @@ public class client {
 			toServer=socket.getOutputStream();
 			//create an input stream to receive data from the server
 			fromServer=socket.getInputStream();
-			checkTimerTask checktimertask=new checkTimerTask(this,toServer);
-			heartTimerTask hearttimertask=new heartTimerTask(this);
+			CheckTimerTask checktimertask=new CheckTimerTask(this,toServer);
+			HeartTimerTask hearttimertask=new HeartTimerTask(this);
 			Timer checktimer=new Timer();
 			Timer hearttimer=new Timer();
 			checktimer.schedule(checktimertask, new Date(), 1000);
@@ -90,7 +90,7 @@ public class client {
  		}
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		new client();
+		new Client();
 	}
 
 }
