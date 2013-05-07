@@ -11,6 +11,89 @@ import org.newdawn.slick.SpriteSheet;
 
 public abstract class Sprite {
 	
+	/* Avatars */
+	public static final int CRUSADER1A = 6;
+	public static final int CRUSADER1B = 7;
+	public static final int DAEMON2A = 8;
+	public static final int WITCH3A = 9;
+	public static final int MUMMY4A = 10;
+	public static final int COLLABO1A = 11;
+	public static final int COLLABO1B = 12;
+	public static final int DANCER1A = 13;
+	public static final int DANCER1B = 14;
+	public static final int GUNSLINGER1A = 17;
+	public static final int GUNSLINGER1B = 18;
+	public static final int KNIGHT1A = 19;
+	public static final int KNIGHT1B = 20;
+	public static final int KNIGHT2A = 21;
+	public static final int KNIGHT2B = 22;
+	public static final int KNIGHT3A = 23;
+	public static final int KNIGHT3B = 24;
+	public static final int KNIGHT4A = 25;
+	public static final int KNIGHT5A = 26;
+	public static final int MAGICIAN1A = 27;
+	public static final int MAGICIAN2A = 28;
+	public static final int MAGICIAN3A = 29;
+	public static final int MAGICIAN3B = 30;
+	public static final int MAGICIAN4A = 31;
+	public static final int MAGICIAN4B = 32;
+	public static final int MAGICIAN5A = 33;
+	public static final int MAGICIAN5B = 34;
+	public static final int MAGICIAN6A = 35;
+	public static final int MAGICIAN6B = 36;
+	public static final int MONK1A = 37;
+	public static final int MONK1B = 38;
+	public static final int PRIEST1A = 39;
+	public static final int PRIEST1B = 40;
+	public static final int PRIEST2A = 41;
+	public static final int PRIEST2B = 42;
+	public static final int PRIEST3A = 43;
+	public static final int ASSASSIN1A = 44;
+	public static final int ASSASSIN1B = 45;
+	public static final int ASSASSIN2A = 46;
+	public static final int ASSASSIN3A = 47;
+	public static final int ASSASSIN3B = 48;
+	public static final int ASSASSIN4A = 49;
+	/* Elements */
+	public static final int SNOW_DUCK_1 = 10000;/* 2¡Á1 */
+	public static final int SNOW_DUCK_2 = 10001;/* 2¡Á1 */
+	public static final int SNOW_DUCK_3 = 10002;/* 2¡Á1 */
+	public static final int SNOW_ICEBLOCK_1 = 10003;/* 1¡Á1 */
+	public static final int SNOW_ICEBLOCK_2 = 10004;/* 1¡Á1 */
+	public static final int SNOW_ICEBLOCK_3 = 10005;/* 1¡Á1 */
+	public static final int SNOW_ICEBLOCK_4 = 10006;/* 1¡Á1 */
+	public static final int SNOW_CAGE = 10007;/* 1¡Á1 */
+	//public static final int SNOW_STATUE_1 = 10008;/* 2¡Á4 */
+	public static final int SNOW_STATUE_2 = 10009;/* 2¡Á4 */
+	public static final int SNOW_PLANT = 10010;/* 2¡Á1 */
+	public static final int SNOW_GRASS_1 = 10011;/* 1¡Á1 */
+	public static final int SNOW_GRASS_2 = 10012;/* 1¡Á1 */
+	public static final int SNOW_FLOOR_1 = 10013;/* 1¡Á1 */
+	public static final int SNOW_FLOOR_2 = 10014;/* 1¡Á1 */
+	public static final int SNOW_FLOOR_3 = 10015;/* 1¡Á1 */
+	public static final int SNOW_FLOOR_4 = 10016;/* 1¡Á1 */
+	public static final int SNOW_FLOOR_5 = 10017;/* 1¡Á1 */
+	public static final int SNOW_FLOOR_6 = 10018;/* 1¡Á1 */
+	public static final int SNOW_FLOOR_7 = 10019;/* 1¡Á1 */
+	public static final int SNOW_FLOOR_8 = 10020;/* 1¡Á1 */
+	public static final int SNOW_ROAD_CURVE_1 = 10021;/* 2¡Á2 */
+	public static final int SNOW_ROAD_CURVE_2 = 10022;/* 2¡Á2 */
+	public static final int SNOW_ROAD_CURVE_3 = 10023;/* 2¡Á2 */
+	public static final int SNOW_ROAD_CURVE_4 = 10024;/* 2¡Á2 */
+	public static final int SNOW_ROAD_CURVE_5 = 10025;/* 2¡Á2 */
+	public static final int SNOW_ROAD_CURVE_6 = 10026;/* 2¡Á2 */
+	public static final int SNOW_ROAD_CURVE_7 = 10027;/* 2¡Á2 */
+	public static final int SNOW_ROAD_CURVE_8 = 10028;/* 2¡Á2 */
+	//public static final int SNOW_ROAD_HOR_1 = 10029;
+	public static final int SNOW_ROAD_HOR_2 = 10030;/* 1¡Á1 */
+	//public static final int SNOW_ROAD_HOR_3 = 10031;
+	public static final int SNOW_ROAD_HOR_4 = 10032;/* 1¡Á1 */
+	//public static final int SNOW_ROAD_VER_1 = 10032;
+	public static final int SNOW_ROAD_VER_2 = 10033;/* 1¡Á1 */
+	//public static final int SNOW_ROAD_VER_3 = 10034;
+	public static final int SNOW_ROAD_VER_4 = 10035;/* 1¡Á1 */
+	
+	
 	public static final int DIRECTION_NONE = 100;
 	public static final int DIRECTION_UP = 3;
 	public static final int DIRECTION_DOWN = 0;
@@ -34,6 +117,8 @@ public abstract class Sprite {
 	private boolean _acting;
 	private int _action;//Action that the sprite is performing
 	private int _nextAction;
+	private int m_width;
+	private int m_height;
 	
 	private HashMap<Integer,Image> _imgs;//arrange by direction
 	private HashMap<Integer,Animation> _actions;//arrange by key
@@ -90,6 +175,9 @@ public abstract class Sprite {
 		}
 		img.setCenterOfRotation(img_info.getCenterOffsetX(), img_info.getCenterOffsetY());
 		_imgs.put(img_info.getDirection(), img);
+		if(_currentImg == null) _currentImg = img;
+		m_width = img_info.getMWidth();
+		m_height = img_info.getMHeight();
 	}
 	
 	public void addAnimation(int action_type,AnimationInfo ani_info){
@@ -210,6 +298,21 @@ public abstract class Sprite {
 		this._x = _x;
 		this._y = _y;
 	}
+	/** Set the topleft corner to the given position
+	 * @param _x
+	 * @param _y
+	 */
+	public void setGraphicPosition(float _x,float _y){
+		if(_acting){
+			Image current_frame = _currentAnimation.getCurrentFrame();
+			this._x = _x + current_frame.getCenterOfRotationX()*_scale;
+			this._y = _y + current_frame.getCenterOfRotationY()*_scale;
+		}else{
+			this._x = _x + _currentImg.getCenterOfRotationX()*_scale;
+			this._y = _y + _currentImg.getCenterOfRotationY()*_scale;
+		}
+		
+	}
 	/** Get the rotation of movement.
 	 * @return
 	 */
@@ -312,5 +415,21 @@ public abstract class Sprite {
 	 * @param g
 	 */
 	public abstract void moveTo(float f,float g);
+
+	public void setMWidth(int m_width) {
+		this.m_width = m_width;
+	}
+
+	public int getMHeight() {
+		return m_height;
+	}
+
+	public void setMHeight(int m_height) {
+		this.m_height = m_height;
+	}
+
+	public int getMWidth() {
+		return m_width;
+	}
 	
 }

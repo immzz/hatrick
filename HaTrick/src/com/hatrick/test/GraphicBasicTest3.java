@@ -11,9 +11,9 @@ import org.newdawn.slick.SlickException;
 
 import com.hatrick.graphic.*;
 
-public class GraphicBasicTest2 extends BasicGame {
+public class GraphicBasicTest3 extends BasicGame {
 
-	public GraphicBasicTest2(String title) {
+	public GraphicBasicTest3(String title) {
 		super(title);
 		// TODO Auto-generated constructor stub
 	}
@@ -27,20 +27,17 @@ public class GraphicBasicTest2 extends BasicGame {
 	@Override
 	public void init(GameContainer arg0) throws SlickException {
 		// TODO Auto-generated method stub
-		Element ele_0 = new Element(0,Element.SNOW_CAGE);
+		//Element ele_0 = new Element(0,Element.SNOW_CAGE);
 		//Element ele_1 = new Element(1,Element.BRICK1B);
 		//Element ele_2 = new Element(2,Element.FLOWER1A);
 		//Element ele_3 = new Element(3,Element.FLOWER1B);
 
-		ele_0.setPosition(160, 80);
+		//ele_0.setPosition(160, 80);
 		//ele_1.setPosition(320, 200);
 		//ele_2.setPosition(160, 320);
 		//ele_3.setPosition(500, 440);
 		
-		Stage.add(ele_0);
-		//Stage.add(ele_1);
-		//Stage.add(ele_2);
-		//Stage.add(ele_3);
+		Stage.loadMap(Map.SNOW);
 	}
 
 	@Override
@@ -85,7 +82,7 @@ public class GraphicBasicTest2 extends BasicGame {
 
 	public static void main(String [] args){
 		try {
-			AppGameContainer g = new AppGameContainer(new GraphicBasicTest2(
+			AppGameContainer g = new AppGameContainer(new GraphicBasicTest3(
 					"Graphic basic test."), 800, 600, false);
 			Stage.setContainer(g);
 			g.setFullscreen(false);

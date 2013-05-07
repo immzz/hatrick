@@ -17,37 +17,70 @@ public class Stage {
 	private static HashMap<Integer,Sprite> elements = new HashMap<Integer,Sprite>();
 	private static AppGameContainer container = null;
 	private static final int FPS_MAX = 30;
-	
+	private static com.hatrick.graphic.Map map;
+
 	public Stage(AppGameContainer container){
 		setContainer(container);
 	}
-	
+
 	public static void setContainer(AppGameContainer agc){
 		container = agc;
 	}
-	
+
 	public static void add(Sprite sprt){
 		elements.put(sprt.getId(), sprt);
 	}
-	
+
 	public static void remove(int id){
 		elements.remove(id);
 	}
 	public static Sprite get(int id){
 		return elements.get(id);
 	}
+
+	public static void loadMap(int id){
+		map = new com.hatrick.graphic.Map(id);
+		short floor[][] = map.getFloor();
+		short assets[][] = map.getAssets();
+		int width = map.getWidth();
+		int height = map.getHeight();
+		boolean flags[][] = new boolean[height][width];
+		for(int i = 0;i<height;i++){
+			for(int j=0;j<width;j++){
+				flags[i][j] = false;
+			}
+		}
+		for(int i = 0;i<height;i++){
+			for(int j=0;j<width;j++){
+				if(flags[i][j]) continue;
+				if(floor[i][j] == 0) continue;
+				Element ele = new Element(Sprite.getNextClientSpriteId(),floor[i][j]);
+				ele.setGraphicPosition((j+ele.getMWidth())*70 - ele.getWidth(), (i+ele.getMHeight())*70 - ele.getHeight());
+				add(ele);
+				System.out.println(ele.getX()+","+ele.getY());
+				System.out.println(ele.getWidth()+","+ele.getHeight());
+				System.out.println(ele.getMWidth()+","+ele.getMHeight());
+				for(int l=i;l<i+ele.getMHeight();l++){
+					for(int m=j;m<j+ele.getMWidth();m++){
+						flags[l][m] = true;
+					}
+				}
+
+			}
+		}
+	}
 	public static void display(){
 		//Display the elements in order of their depth.
 		List<Map.Entry<Integer, Sprite>> sprites =
-			    new ArrayList<Map.Entry<Integer, Sprite>>(elements.entrySet());
+				new ArrayList<Map.Entry<Integer, Sprite>>(elements.entrySet());
 
 		Collections.sort(sprites, new Comparator<Map.Entry<Integer, Sprite>>() {   
-		    public int compare(Map.Entry<Integer, Sprite> o1, Map.Entry<Integer, Sprite> o2) {      
-		        //return (o2.getValue() - o1.getValue()); 
-		        return (int) (o1.getValue().getY() - o2.getValue().getY());
-		    }
-		}); 
-		
+			public int compare(Map.Entry<Integer, Sprite> o1, Map.Entry<Integer, Sprite> o2) {      
+				//return (o2.getValue() - o1.getValue()); 
+				return (int) (o1.getValue().getY() - o2.getValue().getY());
+			}
+		});
+
 		for(Entry<Integer, Sprite> sprt_entry : sprites){
 			sprt_entry.getValue().draw();
 		}
@@ -56,7 +89,7 @@ public class Stage {
 	public static int getFPS() {
 		return container.getFPS();
 	}
-	
+
 	public static int getCurrentDuration(){
 		return 1000/getFPS();
 	}
