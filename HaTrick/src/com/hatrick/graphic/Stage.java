@@ -18,7 +18,9 @@ public class Stage {
 	private static AppGameContainer container = null;
 	private static final int FPS_MAX = 30;
 	private static com.hatrick.graphic.Map map;
-
+	
+	public static int depth = 0;
+	
 	public Stage(AppGameContainer container){
 		setContainer(container);
 	}
@@ -26,9 +28,26 @@ public class Stage {
 	public static void setContainer(AppGameContainer agc){
 		container = agc;
 	}
-
+	
+	/*when create a sprite, init it's depth for display*/
+	public static void initDepth(Sprite sprt) {
+		sprt.setDepth(depth);
+		depth++;
+	}
+	
+	/*switch depth of two sprite when necessary*/
+	public static void switchDepth(Sprite sprt1,Sprite sprt2) {
+		int depth1,depth2;
+		depth1 = sprt1.getDepth();
+		depth2 = sprt2.getDepth();
+		sprt1.setDepth(depth2);
+		sprt2.setDepth(depth1);
+	}
+	
+	//把物体加入到舞台
 	public static void add(Sprite sprt){
 		elements.put(sprt.getId(), sprt);
+		initDepth(sprt);
 	}
 
 	public static void remove(int id){
@@ -57,6 +76,7 @@ public class Stage {
 				Element ele = new Element(Sprite.getNextClientSpriteId(),floor[i][j]);
 				ele.setGraphicPosition((j+ele.getMWidth())*70 - ele.getWidth(), (i+ele.getMHeight())*70 - ele.getHeight());
 				add(ele);
+				System.out.println("Depth:"+ele.getDepth());
 				System.out.println(ele.getX()+","+ele.getY());
 				System.out.println(ele.getWidth()+","+ele.getHeight());
 				System.out.println(ele.getMWidth()+","+ele.getMHeight());
@@ -77,7 +97,7 @@ public class Stage {
 		Collections.sort(sprites, new Comparator<Map.Entry<Integer, Sprite>>() {   
 			public int compare(Map.Entry<Integer, Sprite> o1, Map.Entry<Integer, Sprite> o2) {      
 				//return (o2.getValue() - o1.getValue()); 
-				return (int) (o1.getValue().getY() - o2.getValue().getY());
+				return (int) (o2.getValue().getDepth() - o1.getValue().getDepth());
 			}
 		});
 

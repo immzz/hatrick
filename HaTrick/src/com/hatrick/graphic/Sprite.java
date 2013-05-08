@@ -55,43 +55,43 @@ public abstract class Sprite {
 	public static final int ASSASSIN3B = 48;
 	public static final int ASSASSIN4A = 49;
 	/* Elements */
-	public static final int SNOW_DUCK_1 = 10000;/* 2¡Á1 */
-	public static final int SNOW_DUCK_2 = 10001;/* 2¡Á1 */
-	public static final int SNOW_DUCK_3 = 10002;/* 2¡Á1 */
-	public static final int SNOW_ICEBLOCK_1 = 10003;/* 1¡Á1 */
-	public static final int SNOW_ICEBLOCK_2 = 10004;/* 1¡Á1 */
-	public static final int SNOW_ICEBLOCK_3 = 10005;/* 1¡Á1 */
-	public static final int SNOW_ICEBLOCK_4 = 10006;/* 1¡Á1 */
-	public static final int SNOW_CAGE = 10007;/* 1¡Á1 */
-	//public static final int SNOW_STATUE_1 = 10008;/* 2¡Á4 */
-	public static final int SNOW_STATUE_2 = 10009;/* 2¡Á4 */
-	public static final int SNOW_PLANT = 10010;/* 2¡Á1 */
-	public static final int SNOW_GRASS_1 = 10011;/* 1¡Á1 */
-	public static final int SNOW_GRASS_2 = 10012;/* 1¡Á1 */
-	public static final int SNOW_FLOOR_1 = 10013;/* 1¡Á1 */
-	public static final int SNOW_FLOOR_2 = 10014;/* 1¡Á1 */
-	public static final int SNOW_FLOOR_3 = 10015;/* 1¡Á1 */
-	public static final int SNOW_FLOOR_4 = 10016;/* 1¡Á1 */
-	public static final int SNOW_FLOOR_5 = 10017;/* 1¡Á1 */
-	public static final int SNOW_FLOOR_6 = 10018;/* 1¡Á1 */
-	public static final int SNOW_FLOOR_7 = 10019;/* 1¡Á1 */
-	public static final int SNOW_FLOOR_8 = 10020;/* 1¡Á1 */
-	public static final int SNOW_ROAD_CURVE_1 = 10021;/* 2¡Á2 */
-	public static final int SNOW_ROAD_CURVE_2 = 10022;/* 2¡Á2 */
-	public static final int SNOW_ROAD_CURVE_3 = 10023;/* 2¡Á2 */
-	public static final int SNOW_ROAD_CURVE_4 = 10024;/* 2¡Á2 */
-	public static final int SNOW_ROAD_CURVE_5 = 10025;/* 2¡Á2 */
-	public static final int SNOW_ROAD_CURVE_6 = 10026;/* 2¡Á2 */
-	public static final int SNOW_ROAD_CURVE_7 = 10027;/* 2¡Á2 */
-	public static final int SNOW_ROAD_CURVE_8 = 10028;/* 2¡Á2 */
+	public static final int SNOW_DUCK_1 = 10000;/* 2ï¿½ï¿½1 */
+	public static final int SNOW_DUCK_2 = 10001;/* 2ï¿½ï¿½1 */
+	public static final int SNOW_DUCK_3 = 10002;/* 2ï¿½ï¿½1 */
+	public static final int SNOW_ICEBLOCK_1 = 10003;/* 1ï¿½ï¿½1 */
+	public static final int SNOW_ICEBLOCK_2 = 10004;/* 1ï¿½ï¿½1 */
+	public static final int SNOW_ICEBLOCK_3 = 10005;/* 1ï¿½ï¿½1 */
+	public static final int SNOW_ICEBLOCK_4 = 10006;/* 1ï¿½ï¿½1 */
+	public static final int SNOW_CAGE = 10007;/* 1ï¿½ï¿½1 */
+	//public static final int SNOW_STATUE_1 = 10008;/* 2ï¿½ï¿½4 */
+	public static final int SNOW_STATUE_2 = 10009;/* 2ï¿½ï¿½4 */
+	public static final int SNOW_PLANT = 10010;/* 2ï¿½ï¿½1 */
+	public static final int SNOW_GRASS_1 = 10011;/* 1ï¿½ï¿½1 */
+	public static final int SNOW_GRASS_2 = 10012;/* 1ï¿½ï¿½1 */
+	public static final int SNOW_FLOOR_1 = 10013;/* 1ï¿½ï¿½1 */
+	public static final int SNOW_FLOOR_2 = 10014;/* 1ï¿½ï¿½1 */
+	public static final int SNOW_FLOOR_3 = 10015;/* 1ï¿½ï¿½1 */
+	public static final int SNOW_FLOOR_4 = 10016;/* 1ï¿½ï¿½1 */
+	public static final int SNOW_FLOOR_5 = 10017;/* 1ï¿½ï¿½1 */
+	public static final int SNOW_FLOOR_6 = 10018;/* 1ï¿½ï¿½1 */
+	public static final int SNOW_FLOOR_7 = 10019;/* 1ï¿½ï¿½1 */
+	public static final int SNOW_FLOOR_8 = 10020;/* 1ï¿½ï¿½1 */
+	public static final int SNOW_ROAD_CURVE_1 = 10021;/* 2ï¿½ï¿½2 */
+	public static final int SNOW_ROAD_CURVE_2 = 10022;/* 2ï¿½ï¿½2 */
+	public static final int SNOW_ROAD_CURVE_3 = 10023;/* 2ï¿½ï¿½2 */
+	public static final int SNOW_ROAD_CURVE_4 = 10024;/* 2ï¿½ï¿½2 */
+	public static final int SNOW_ROAD_CURVE_5 = 10025;/* 2ï¿½ï¿½2 */
+	public static final int SNOW_ROAD_CURVE_6 = 10026;/* 2ï¿½ï¿½2 */
+	public static final int SNOW_ROAD_CURVE_7 = 10027;/* 2ï¿½ï¿½2 */
+	public static final int SNOW_ROAD_CURVE_8 = 10028;/* 2ï¿½ï¿½2 */
 	//public static final int SNOW_ROAD_HOR_1 = 10029;
-	public static final int SNOW_ROAD_HOR_2 = 10030;/* 1¡Á1 */
+	public static final int SNOW_ROAD_HOR_2 = 10030;/* 1ï¿½ï¿½1 */
 	//public static final int SNOW_ROAD_HOR_3 = 10031;
-	public static final int SNOW_ROAD_HOR_4 = 10032;/* 1¡Á1 */
+	public static final int SNOW_ROAD_HOR_4 = 10032;/* 1ï¿½ï¿½1 */
 	//public static final int SNOW_ROAD_VER_1 = 10032;
-	public static final int SNOW_ROAD_VER_2 = 10033;/* 1¡Á1 */
+	public static final int SNOW_ROAD_VER_2 = 10033;/* 1ï¿½ï¿½1 */
 	//public static final int SNOW_ROAD_VER_3 = 10034;
-	public static final int SNOW_ROAD_VER_4 = 10035;/* 1¡Á1 */
+	public static final int SNOW_ROAD_VER_4 = 10035;/* 1ï¿½ï¿½1 */
 	
 	
 	public static final int DIRECTION_NONE = 100;
@@ -117,6 +117,7 @@ public abstract class Sprite {
 	private boolean _acting;
 	private int _action;//Action that the sprite is performing
 	private int _nextAction;
+	private int _depth; //sprite's depth to control display, less deeper,later display  
 	private int m_width;
 	private int m_height;
 	
@@ -229,6 +230,7 @@ public abstract class Sprite {
 			current_frame.setAlpha(_alpha);
 			current_frame.setRotation(_graphicRotation);
 			
+			/*drawå‚æ•°æ˜¯ç›¸å¯¹äºèˆå°å·¦ä¸Šè§’ï¼Œxï¼Œyæ˜¯ç›¸å¯¹ä¸åœ°å›¾å·¦ä¸Šè§’ï¼Œæ¢æˆcameraè§†è§’*/
 			_currentAnimation.draw((int)(_x-current_frame.getCenterOfRotationX()*_scale),(int)(_y-current_frame.getCenterOfRotationY()*_scale), current_frame.getWidth()*_scale, current_frame.getHeight()*_scale);
 			
 			//Check if this animation is finished and if so switch to the next animation
@@ -432,4 +434,11 @@ public abstract class Sprite {
 		return m_width;
 	}
 	
+	public void setDepth(int depth) {
+		this._depth = depth;
+	}
+	
+	public int getDepth() {
+		return this._depth;
+	}
 }

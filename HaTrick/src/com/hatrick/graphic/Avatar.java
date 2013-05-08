@@ -2,6 +2,7 @@ package com.hatrick.graphic;
 
 import com.hatrick.resource.AnimationResource;
 import com.hatrick.resource.ImageResource;
+import com.hatrick.graphic.AnimationInfo;
 
 public class Avatar extends Sprite{
 	
