@@ -14,4 +14,5 @@ public class Hero {
 	Item[] bag = new Item[10];
 	int strength;
 	int power;
+	
 }

@@ -45,4 +45,6 @@ public class Operation {		// holding is not using !!!
 	public void shoot() {
 		shooting = true;
 	}
+	
+	public void 
 }

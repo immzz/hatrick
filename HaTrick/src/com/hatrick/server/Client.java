@@ -1,21 +1,26 @@
 package com.hatrick.server;
+
 import java.io.*;
 import java.net.*;
 import java.sql.Time;
 import java.util.*;
 
-class CheckTimerTask extends TimerTask{
+class CheckTimerTask extends TimerTask {
 	Client client;
 	OutputStream toServer;
-	public CheckTimerTask(Client client, OutputStream toServer) {
+	ObjectOutputStream toServerObj;
+
+	public CheckTimerTask(Client client, OutputStream toServer)
+			throws IOException {
 		// TODO Auto-generated constructor stub
-		this.client=client;
-		this.toServer=toServer;
+		this.client = client;
+		this.toServer = toServer;
+		this.toServerObj = new ObjectOutputStream(toServerObj);
 	}
 
 	@Override
 	public void run() {
-		if(client.is_connected(toServer)==false){
+		if (client.is_connected(toServer) == false) {
 			System.out.printf("Server is closed\n");
 			System.exit(0);
 		}
@@ -24,23 +29,22 @@ class CheckTimerTask extends TimerTask{
 	}
 
 }
-class HeartTimerTask extends TimerTask{
+
+class HeartTimerTask extends TimerTask {
 	Client client;
+
 	public HeartTimerTask(Client client) {
 		// TODO Auto-generated constructor stub
-		this.client=client;
+		this.client = client;
 	}
 
 	@Override
 	public void run() {
-		try {
-			if(client.is_connected(client.toServer)==true){
-			byte b[]=new byte[20];
-			client.toServer.write(b,0,20);
-			}
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+		if (client.is_connected(client.toServer) == true) {
+			// byte b[]=new byte[20];
+			Message obj = new Message(Message.TYPE_HEART_BEAT,
+					System.currentTimeMillis(), null);
+			client.sendMessage(obj);
 		}
 
 		// TODO Auto-generated method stub
@@ -48,49 +52,122 @@ class HeartTimerTask extends TimerTask{
 	}
 
 }
+
 public class Client {
 
 	/**
 	 * @param args
 	 */
-	 OutputStream toServer;
-	 InputStream fromServer;
-	public Client(){
-		try{
-			//create a socket to connect to the server
-			Socket socket=new Socket("localhost",8003);
-			//create an output stream to send data to the server
-			toServer=socket.getOutputStream();
-			//create an input stream to receive data from the server
-			fromServer=socket.getInputStream();
-			CheckTimerTask checktimertask=new CheckTimerTask(this,toServer);
-			HeartTimerTask hearttimertask=new HeartTimerTask(this);
-			Timer checktimer=new Timer();
-			Timer hearttimer=new Timer();
+	static OutputStream toServer;
+	static InputStream fromServer;
+
+	public Client() {
+		try {
+
+			// create a socket to connect to the server
+			Socket socket = new Socket("localhost", 8003);
+			// create an output stream to send data to the server
+			toServer = socket.getOutputStream();
+			// create an input stream to receive data from the server
+			fromServer = socket.getInputStream();
+
+			HandleRecv handlerecv = new HandleRecv();
+			Thread recvthread = new Thread(handlerecv);
+			recvthread.start();
+
+			// timer are used for heart beat
+			CheckTimerTask checktimertask = new CheckTimerTask(this, toServer);
+			HeartTimerTask hearttimertask = new HeartTimerTask(this);
+			Timer checktimer = new Timer();
+			Timer hearttimer = new Timer();
 			checktimer.schedule(checktimertask, new Date(), 1000);
 			hearttimer.schedule(hearttimertask, new Date(), 200);
 
-
-		}
-		catch(IOException ex){
+		} catch (IOException ex) {
 			ex.printStackTrace();
 		}
 	}
-	boolean is_connected(OutputStream temp){//judge whether a connection is true
- 		try{
- 			byte b[]=new byte[20];
-			temp.write(b,0,20);
- 			temp.flush();
- 			}
- 			catch(Exception ex){
- 				ex.printStackTrace();
- 				return false;
- 			}
- 			return true;
- 		}
+
+	public static void sendMessage(Serializable obj) {
+		try {
+			ByteArrayOutputStream baos = new ByteArrayOutputStream(); // 构造一个字节输出流
+			ObjectOutputStream oos = new ObjectOutputStream(baos); // 构造一个类输出流
+			// oos.writeObject(list); //写这个对象
+			oos.writeObject(obj); // 写这个对象
+			byte[] buf = baos.toByteArray(); // 从这个地层字节流中把传输的数组给一个新的数组
+			oos.flush();
+			toServer.write(buf, 0, buf.length);
+		} catch (Exception e) {
+
+		}
+	}
+
+	public static Serializable recvMessage() {
+		byte[] buf = new byte[4096];
+		try {
+			fromServer.read(buf, 0, buf.length);
+		} catch (IOException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		ByteArrayInputStream bais = new ByteArrayInputStream(buf);
+		ObjectInputStream ois;
+		Message msg = null;
+		try {
+			ois = new ObjectInputStream(bais);
+			msg = (Message) ois.readObject();
+
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return msg;
+	}
+
+	protected class HandleRecv implements Runnable {
+		@Override
+		public void run() {
+			// TODO Auto-generated method stub
+			while (true) {
+				Serializable obj = recvMessage();
+				Message msg = ( Message ) obj;
+				/******************************* 调用接口提交收到的信息 ********************************/
+				// handleMessage( (Message) obj );
+				System.out.println("recv a message type:"+msg.get_type());
+				/*****************************************************************************/
+			}
+		}
+
+	}
+
+	boolean is_connected(OutputStream temp) {// judge whether a connection is
+												// true
+		try {
+			Message obj = new Message(Message.TYPE_HEART_BEAT,
+					System.currentTimeMillis(), null);
+			this.sendMessage(obj);
+		} catch (Exception ex) {
+			ex.printStackTrace();
+			return false;
+		}
+		return true;
+	}
+
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		new Client();
+		Client client = new Client();
+		
+		Message msg = new Message ( Message.TYPE_HERO, null, null);
+		client.sendMessage(msg);
+		
+		int i=0;
+		do{
+			
+			i++;
+		} while ( i < 3 );
 	}
 
 }

@@ -32,7 +32,7 @@ public class Avatar extends Sprite{
 		AnimationInfo [] ani_infos = AnimationResource.avatars.walk.get(type);
 		for(int i=0;i<ani_infos.length;i++){
 			AnimationInfo info = ani_infos[i];
-			addAnimation(ACTION_WALK+i,info);
+			addAnimation(ACsTION_WALK+i,info);
 			//Adjust the duration
 			for(int j=0;j<this.getAnimation(i).getFrameCount();j++){
 				this.getAnimation(i).setDuration(j, Stage.getMinDuration()*2);
