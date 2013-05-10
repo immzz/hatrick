@@ -39,6 +39,10 @@ public class GraphicBasicTest2 extends BasicGame {
 		//ele_3.setPosition(500, 440);
 		
 		Stage.add(ele_0);
+		Client client=new Client();
+		
+		client.auto_send_random();
+		
 		//Stage.add(ele_1);
 		//Stage.add(ele_2);
 		//Stage.add(ele_3);
@@ -94,7 +98,7 @@ public class GraphicBasicTest2 extends BasicGame {
 			g.setTargetFrameRate(Stage.getMaxFPS());
 			g.start();
 			
-			Client client=new Client();
+			
 			
 		} catch (SlickException e) {
 			// TODO Auto-generated catch block

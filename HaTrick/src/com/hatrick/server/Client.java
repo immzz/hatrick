@@ -5,17 +5,19 @@ import java.net.*;
 import java.sql.Time;
 import java.util.*;
 
+
+
 class CheckTimerTask extends TimerTask {
 	Client client;
 	OutputStream toServer;
-	ObjectOutputStream toServerObj;
+	//ObjectOutputStream toServerObj;
 
 	public CheckTimerTask(Client client, OutputStream toServer)
 			throws IOException {
 		// TODO Auto-generated constructor stub
 		this.client = client;
 		this.toServer = toServer;
-		this.toServerObj = new ObjectOutputStream(toServerObj);
+		//this.toServerObj = new ObjectOutputStream(toServerObj);
 	}
 
 	@Override
@@ -44,7 +46,12 @@ class HeartTimerTask extends TimerTask {
 			// byte b[]=new byte[20];
 			Message obj = new Message(Message.TYPE_HEART_BEAT,
 					System.currentTimeMillis(), null);
-			client.sendMessage(obj);
+			try {
+				client.sendMessage(obj);
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				//e.printStackTrace();
+			}
 		}
 
 		// TODO Auto-generated method stub
@@ -88,8 +95,10 @@ public class Client {
 		}
 	}
 
-	public static void sendMessage(Serializable obj) {
-		try {
+	public static void sendMessage(Serializable obj) throws Exception {
+		
+			Message msg = ( Message )obj;
+			msg.set_time(System.currentTimeMillis());
 			ByteArrayOutputStream baos = new ByteArrayOutputStream(); // 构造一个字节输出流
 			ObjectOutputStream oos = new ObjectOutputStream(baos); // 构造一个类输出流
 			// oos.writeObject(list); //写这个对象
@@ -97,9 +106,7 @@ public class Client {
 			byte[] buf = baos.toByteArray(); // 从这个地层字节流中把传输的数组给一个新的数组
 			oos.flush();
 			toServer.write(buf, 0, buf.length);
-		} catch (Exception e) {
-
-		}
+		
 	}
 
 	public static Serializable recvMessage() {
@@ -108,7 +115,7 @@ public class Client {
 			fromServer.read(buf, 0, buf.length);
 		} catch (IOException e1) {
 			// TODO Auto-generated catch block
-			e1.printStackTrace();
+			//e1.printStackTrace();
 		}
 		ByteArrayInputStream bais = new ByteArrayInputStream(buf);
 		ObjectInputStream ois;
@@ -119,10 +126,10 @@ public class Client {
 
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
+			//e.printStackTrace();
 		} catch (ClassNotFoundException e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
+			//e.printStackTrace();
 		}
 		return msg;
 	}
@@ -132,12 +139,17 @@ public class Client {
 		public void run() {
 			// TODO Auto-generated method stub
 			while (true) {
+				try{
 				Serializable obj = recvMessage();
 				Message msg = ( Message ) obj;
 				/******************************* 调用接口提交收到的信息 ********************************/
 				// handleMessage( (Message) obj );
 				System.out.println("recv a message type:"+msg.get_type());
 				/*****************************************************************************/
+				}
+				catch(Exception e){
+					
+				}
 			}
 		}
 
@@ -150,7 +162,7 @@ public class Client {
 					System.currentTimeMillis(), null);
 			this.sendMessage(obj);
 		} catch (Exception ex) {
-			ex.printStackTrace();
+			//ex.printStackTrace();
 			return false;
 		}
 		return true;
@@ -161,13 +173,29 @@ public class Client {
 		Client client = new Client();
 		
 		Message msg = new Message ( Message.TYPE_HERO, null, null);
-		client.sendMessage(msg);
+		try {
+			client.sendMessage(msg);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
 		int i=0;
 		do{
 			
 			i++;
 		} while ( i < 3 );
+	}
+
+	public void auto_send_random() {
+		// TODO Auto-generated method stub
+		Message msg = new Message ( Message.TYPE_HERO, null, null);
+		try {
+			this.sendMessage(msg);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 }

@@ -46,7 +46,7 @@ class Heart_beat implements Serializable {
 	}
 }
 
-class Message implements Serializable {
+ class Message implements Serializable {
 
 	public static final int TYPE_HEART_BEAT = 1;
 	public static final int TYPE_OPERATION = 2;
@@ -135,6 +135,10 @@ class HandleAClient extends Thread {
 
 	public static void sendMessage(Serializable obj) {
 		try {
+			
+			Message msg = ( Message ) obj;
+			msg.set_time(System.currentTimeMillis());
+			
 			ByteArrayOutputStream baos = new ByteArrayOutputStream(); // 构造一个字节输出流
 			ObjectOutputStream oos = new ObjectOutputStream(baos); // 构造一个类输出流
 			// oos.writeObject(list); //写这个对象
@@ -143,7 +147,7 @@ class HandleAClient extends Thread {
 			oos.flush();
 			output.write(buf, 0, buf.length);
 		} catch (Exception e) {
-
+			
 		}
 	}
 
@@ -153,7 +157,7 @@ class HandleAClient extends Thread {
 			input.read(buf, 0, buf.length);
 		} catch (IOException e1) {
 			// TODO Auto-generated catch block
-			e1.printStackTrace();
+			//e1.printStackTrace();
 		}
 		ByteArrayInputStream bais = new ByteArrayInputStream(buf);
 		ObjectInputStream ois;
@@ -164,10 +168,10 @@ class HandleAClient extends Thread {
 
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
+			//e.printStackTrace();
 		} catch (ClassNotFoundException e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
+			//e.printStackTrace();
 		}
 		return msg;
 	}
@@ -193,6 +197,7 @@ class HandleAClient extends Thread {
 				// ObjectOutputStream(socket.getOutputStream()))){
 				Serializable obj = recvMessage();
 				Message msg = (Message) obj;
+				//System.out.println("type:"+msg.get_type());
 				if (msg.get_type() == Message.TYPE_HEART_BEAT) {
 					System.out.printf("receive heart_beat\n");
 					status.online = true;
