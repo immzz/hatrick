@@ -13,8 +13,6 @@ import com.hatrick.logic.Operation;
 
 public class GraphicBasicTest extends BasicGame {
 
-	public static long[] direction;
-
 	public GraphicBasicTest(String title) {
 		super(title);
 		// TODO Auto-generated constructor stub
@@ -59,8 +57,6 @@ public class GraphicBasicTest extends BasicGame {
 		Stage.add(avt_7);
 		Stage.add(avt_8);
 		Stage.add(avt_9);
-
-		direction = new long[] { 0, 0, 0, 0 };
 	}
 
 	@Override
@@ -72,84 +68,6 @@ public class GraphicBasicTest extends BasicGame {
 		Operation op = new Operation();
 		Input input = c.getInput();
 
-		if (input.isKeyDown(Input.KEY_W))
-			direction[0]++;
-		else
-			direction[0] = 0;
-		
-		if (input.isKeyDown(Input.KEY_S))
-			direction[1]++;
-		else
-			direction[1] = 0;
-		
-		if (input.isKeyDown(Input.KEY_A)) 
-			direction[2]++;
-		else
-			direction[2] = 0;
-		
-		if (input.isKeyDown(Input.KEY_D))
-			direction[3]++;
-		else
-			direction[3] = 0;
-
-		int min = -1;
-		long minvalue = Long.MAX_VALUE;
-		for (int i = 0; i < 4; i++) {
-			if (direction[i] != 0 && direction[i] < minvalue) {
-				minvalue = direction[i];
-				min = i;
-			}
-		}
-
-		if (min == 0) {
-			op.goingup();
-		} else if (min == 1) {
-			op.goingdown();
-		} else if (min == 2) {
-			op.goingleft();
-		} else if (min == 3) {
-			op.goingright();
-		}
-
-		if (input.isKeyDown(Input.KEY_J)) {
-			op.shoot();
-		}
-
-		if (input.isKeyDown(Input.KEY_K)) {
-			op.jump();
-		}
-
-		if (input.isKeyDown(Input.KEY_1)) {
-			op.useitem(1);
-		} else if (input.isKeyDown(Input.KEY_2)) {
-			op.useitem(2);
-		} else if (input.isKeyDown(Input.KEY_3)) {
-			op.useitem(3);
-		} else if (input.isKeyDown(Input.KEY_4)) {
-			op.useitem(4);
-		} else if (input.isKeyDown(Input.KEY_5)) {
-			op.useitem(5);
-		} else if (input.isKeyDown(Input.KEY_6)) {
-			op.useitem(6);
-		} else if (input.isKeyDown(Input.KEY_7)) {
-			op.useitem(7);
-		} else if (input.isKeyDown(Input.KEY_8)) {
-			op.useitem(8);
-		} else if (input.isKeyDown(Input.KEY_9)) {
-			op.useitem(9);
-		} else if (input.isKeyDown(Input.KEY_0)) {
-			op.useitem(0);
-		}
-
-		if (op.moving == 1) {
-			sprt.moveTo(sprt.getX(), sprt.getY() - delta / 2f);
-		} else if (op.moving == 2) {
-			sprt.moveTo(sprt.getX(), sprt.getY() + delta / 2f);
-		} else if (op.moving == 3) {
-			sprt.moveTo(sprt.getX() - delta / 2f, sprt.getY());
-		} else if (op.moving == 4) {
-			sprt.moveTo(sprt.getX() + delta / 2f, sprt.getY());
-		}
 		/*
 		 * if (input.isKeyDown(Input.KEY_R)) {
 		 * if(input.isKeyDown(Input.KEY_EQUALS)) sprt.rotateGraph(delta/50.0f);
