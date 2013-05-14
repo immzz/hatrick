@@ -2,7 +2,6 @@ package com.hatrick.test;
 
 import java.io.File;
 
-import com.hatrick.graphic.AnimationInfo;
 import com.hatrick.graphic.Avatar;
 
 public class GetAvatarNames {

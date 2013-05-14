@@ -2,8 +2,8 @@ package com.hatrick.resource;
 
 import java.util.HashMap;
 
-import com.hatrick.graphic.AnimationInfo;
 import com.hatrick.graphic.Avatar;
+import com.hatrick.graphic.AnimationInfo;
 
 public class AnimationResource {
 	public static class avatars{
