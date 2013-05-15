@@ -2,6 +2,9 @@ package com.hatrick.logic;
 
 import java.util.ArrayList;
 
+import com.hatrick.server.Client;
+import com.hatrick.server.Message;
+
 public class ClientLogic implements Runnable {
 	static Hero myhero;
 	static int myhero_index;
@@ -11,7 +14,7 @@ public class ClientLogic implements Runnable {
 		return hero_list;
 	}
 	
-	synchronized public void init() {
+	public void init() {
 		//**send message.INIT
 		//*lock
 	}
@@ -21,7 +24,7 @@ public class ClientLogic implements Runnable {
 	}
 
 	synchronized static void handleMessage(Object message) {
-		//if(message.type = Message.TYPE_OPERATION)
+		//if(message.type = Message.TYPE_OPERATION);
 		//nothing now; LATER: myhero.handle(message.data);
 		
 		//else if(message.type = Message.TYPE_HERO)

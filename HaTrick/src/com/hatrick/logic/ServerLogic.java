@@ -2,6 +2,8 @@ package com.hatrick.logic;
 
 import java.util.ArrayList;
 
+import com.hatrick.server.Message;
+
 public class ServerLogic implements Runnable{
 	static ArrayList<Hero> hero_list = new ArrayList<Hero>();
 	Hero myhero;
@@ -16,7 +18,11 @@ public class ServerLogic implements Runnable{
 		//**send hero_list
 	}
 	
-	void handleMessage(Object message) {
+	synchronized static void handleMessage(Message message) {
+		if(message.get_type() == Message.TYPE_INIT) {
+			Hero new_hero = new Hero();
+			System.out.println("Message INIT received");
+		}
 		//if(message.type = Message.TYPE_OPERATION)
 		//myhero.handle_op(message.item); notgood->add_op();
 		

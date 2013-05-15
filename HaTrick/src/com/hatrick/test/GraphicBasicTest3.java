@@ -10,6 +10,7 @@ import org.newdawn.slick.Input;
 import org.newdawn.slick.SlickException;
 
 import com.hatrick.graphic.*;
+import com.hatrick.logic.ServerLogic;
 import com.hatrick.server.Server;
 
 public class GraphicBasicTest3 extends BasicGame {
@@ -39,6 +40,7 @@ public class GraphicBasicTest3 extends BasicGame {
 		//ele_3.setPosition(500, 440);
 		System.out.println("server");
 		new Thread(new Server()).start();
+		new Thread(new ServerLogic()).start();
 		//Stage.loadMap(Map.SNOW);
 	}
 

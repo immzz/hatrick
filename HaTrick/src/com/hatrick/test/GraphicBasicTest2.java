@@ -10,7 +10,10 @@ import org.newdawn.slick.Input;
 import org.newdawn.slick.SlickException;
 
 import com.hatrick.graphic.*;
+import com.hatrick.logic.ClientLogic;
 import com.hatrick.server.Client;
+import com.hatrick.server.Message;
+import com.hatrick.server.Server;
 
 public class GraphicBasicTest2 extends BasicGame {
 
@@ -40,6 +43,22 @@ public class GraphicBasicTest2 extends BasicGame {
 		
 		Stage.add(ele_0);
 		Client client=new Client();
+		//new Thread(new ClientLogic()).start();
+		try {
+			Message init_message = new Message(Message.TYPE_HEART_BEAT, null, null);
+			Client.sendMessage( init_message );
+			init_message = new Message(Message.TYPE_OPERATION, null, null);
+			Client.sendMessage( init_message );
+			init_message = new Message(Message.TYPE_HERO, null, null);
+			Client.sendMessage( init_message );
+			init_message = new Message(Message.TYPE_INIT, null, null);
+			Client.sendMessage( init_message );
+			//init_message.set_type( Message.TYPE_HERO );
+			//Client.sendMessage( init_message );
+			System.out.println("--- succeed ---");
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 		
 		client.auto_send_random();
 		Client.sendMessage()
