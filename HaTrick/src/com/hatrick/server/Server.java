@@ -46,47 +46,6 @@ class Heart_beat implements Serializable {
 	}
 }
 
- class Message implements Serializable {
-
-	public static final int TYPE_HEART_BEAT = 1;
-	public static final int TYPE_OPERATION = 2;
-	public static final int TYPE_HERO = 3;
-
-	private int type;
-	private Long time;
-	private Serializable obj;
-
-	Message(int type, Long time, Serializable obj) {
-		this.set_obj(obj);
-		this.set_time(time);
-		this.set_type(type);
-	}
-
-	public void set_time(Long time) {
-		this.time = time;
-	}
-
-	public void set_obj(Serializable obj) {
-		this.obj = obj;
-	}
-
-	public void set_type(int type) {
-		this.type = type;
-	}
-
-	public int get_type() {
-		return type;
-	}
-
-	public Long get_time() {
-		return time;
-	}
-
-	public Serializable get_obj() {
-		return obj;
-	}
-}
-
 class HandleAClient extends Thread {
 	private Socket socket;// A connected socket
 	private Machine_status status;
@@ -139,11 +98,11 @@ class HandleAClient extends Thread {
 			Message msg = ( Message ) obj;
 			msg.set_time(System.currentTimeMillis());
 			
-			ByteArrayOutputStream baos = new ByteArrayOutputStream(); // ¹¹ÔìÒ»¸ö×Ö½ÚÊä³öÁ÷
-			ObjectOutputStream oos = new ObjectOutputStream(baos); // ¹¹ÔìÒ»¸öÀàÊä³öÁ÷
-			// oos.writeObject(list); //Ğ´Õâ¸ö¶ÔÏó
-			oos.writeObject(obj); // Ğ´Õâ¸ö¶ÔÏó
-			byte[] buf = baos.toByteArray(); // ´ÓÕâ¸öµØ²ã×Ö½ÚÁ÷ÖĞ°Ñ´«ÊäµÄÊı×é¸øÒ»¸öĞÂµÄÊı×é
+			ByteArrayOutputStream baos = new ByteArrayOutputStream(); // æ„é€ ä¸€ä¸ªå­—èŠ‚è¾“å‡ºæµ
+			ObjectOutputStream oos = new ObjectOutputStream(baos); // æ„é€ ä¸€ä¸ªç±»è¾“å‡ºæµ
+			// oos.writeObject(list); //å†™è¿™ä¸ªå¯¹è±¡
+			oos.writeObject(obj); // å†™è¿™ä¸ªå¯¹è±¡
+			byte[] buf = baos.toByteArray(); // ä»è¿™ä¸ªåœ°å±‚å­—èŠ‚æµä¸­æŠŠä¼ è¾“çš„æ•°ç»„ç»™ä¸€ä¸ªæ–°çš„æ•°ç»„
 			oos.flush();
 			output.write(buf, 0, buf.length);
 		} catch (Exception e) {
@@ -154,7 +113,7 @@ class HandleAClient extends Thread {
 	public static Serializable recvMessage() {
 		byte[] buf = new byte[4096];
 		try {
-			input.read(buf, 0, buf.length);
+			input.read(buf,0,4096);
 		} catch (IOException e1) {
 			// TODO Auto-generated catch block
 			//e1.printStackTrace();
@@ -168,7 +127,7 @@ class HandleAClient extends Thread {
 
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
-			//e.printStackTrace();
+			e.printStackTrace();
 		} catch (ClassNotFoundException e) {
 			// TODO Auto-generated catch block
 			//e.printStackTrace();
@@ -179,39 +138,47 @@ class HandleAClient extends Thread {
 	// Run the thread
 	public void run() {
 		// Create data input Streams
-		System.out.println("input");
+		
 		try {
 			output = socket.getOutputStream();
 			input = socket.getInputStream();
-			System.out.printf("input");
+			//System.out.printf("input");
 
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}// new a input
-
+		
 		while (true) {
 			// System.out.printf("execute\n");
 			try {
 				// if(is_connected(new
 				// ObjectOutputStream(socket.getOutputStream()))){
 				Serializable obj = recvMessage();
+				
 				Message msg = (Message) obj;
-				//System.out.println("type:"+msg.get_type());
+				//System.out.println("input");
+				//System.out.println(msg);
+				if( msg == null ){
+					System.out.println(  "null" );
+					continue;
+				}
+				//System.out.println( "recv a message type: "+ new Integer(msg.get_type()).toString());
+				System.out.println("type:"+msg.get_type());
 				if (msg.get_type() == Message.TYPE_HEART_BEAT) {
-					System.out.printf("receive heart_beat\n");
+					//System.out.printf("receive heart_beat\n");
 					status.online = true;
 					status.get_heart_beat().set_latest_clock(msg.get_time());
 					status.get_heart_beat().set_number(
 							status.get_heart_beat().get_number() + 1);
 				} else {
-					/******************************* µ÷ÓÃ½Ó¿ÚÌá½»ÊÕµ½µÄĞÅÏ¢ ********************************/
+					/******************************* è°ƒç”¨æ¥å£æäº¤æ”¶åˆ°çš„ä¿¡æ¯ ********************************/
 					//handleMessage((Message) obj);
-					System.out.println("recv a message type:"+msg.get_type());
+					//System.out.println("recv a message type:"+msg.get_type());
 					/*****************************************************************************/
 				}
 			} catch (Exception ex) {
-				// ex.printStackTrace();
+				ex.printStackTrace();
 				continue;
 			}
 		}
@@ -220,7 +187,6 @@ class HandleAClient extends Thread {
 	// return new Message();
 	// }
 }
-
 class Machine_status {
 	Heart_beat heart_beat;
 	boolean online;
@@ -276,7 +242,7 @@ public class Server implements Runnable {
 
 	@SuppressWarnings("deprecation")
 	void judge() {
-		for (int i = 0; i < array_thread.size(); i++) {
+		/*for (int i = 0; i < array_thread.size(); i++) {
 			double ratio = array_thread.get(i).get_status().get_heart_beat()
 					.calculate();
 			if (ratio > 10.0) {
@@ -305,7 +271,7 @@ public class Server implements Runnable {
 					e.printStackTrace();
 				}
 			}
-		}
+		}*/
 	}
 
 	// public static void main(String[] args) {
@@ -338,7 +304,7 @@ public class Server implements Runnable {
 
 		try {
 			// create a server socket
-			ServerSocket serversocket = new ServerSocket(8003);
+			ServerSocket serversocket = new ServerSocket(1234);
 			int clientNo = 1;
 			while (true) {
 				Socket socket = serversocket.accept();

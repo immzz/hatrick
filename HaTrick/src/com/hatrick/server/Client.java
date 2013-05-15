@@ -22,10 +22,10 @@ class CheckTimerTask extends TimerTask {
 
 	@Override
 	public void run() {
-		if (client.is_connected(toServer) == false) {
+		/*if (client.is_connected(toServer) == false) {
 			System.out.printf("Server is closed\n");
 			System.exit(0);
-		}
+		}*/
 		// TODO Auto-generated method stub
 
 	}
@@ -42,7 +42,7 @@ class HeartTimerTask extends TimerTask {
 
 	@Override
 	public void run() {
-		if (client.is_connected(client.toServer) == true) {
+		/*if (client.is_connected(client.toServer) == true) {
 			// byte b[]=new byte[20];
 			Message obj = new Message(Message.TYPE_HEART_BEAT,
 					System.currentTimeMillis(), null);
@@ -52,7 +52,7 @@ class HeartTimerTask extends TimerTask {
 				// TODO Auto-generated catch block
 				//e.printStackTrace();
 			}
-		}
+		}*/
 
 		// TODO Auto-generated method stub
 
@@ -72,7 +72,7 @@ public class Client {
 		try {
 
 			// create a socket to connect to the server
-			Socket socket = new Socket("localhost", 8003);
+			Socket socket = new Socket("localhost", 1234);
 			// create an output stream to send data to the server
 			toServer = socket.getOutputStream();
 			// create an input stream to receive data from the server
@@ -88,7 +88,7 @@ public class Client {
 			Timer checktimer = new Timer();
 			Timer hearttimer = new Timer();
 			checktimer.schedule(checktimertask, new Date(), 1000);
-			hearttimer.schedule(hearttimertask, new Date(), 200);
+			hearttimer.schedule(hearttimertask, new Date(), 1000);
 
 		} catch (IOException ex) {
 			ex.printStackTrace();
@@ -98,15 +98,15 @@ public class Client {
 	public static void sendMessage(Serializable obj) throws Exception {
 		
 			Message msg = ( Message )obj;
-			msg.set_time(System.currentTimeMillis());
+			
 			ByteArrayOutputStream baos = new ByteArrayOutputStream(); // 构造一个字节输出流
 			ObjectOutputStream oos = new ObjectOutputStream(baos); // 构造一个类输出流
 			// oos.writeObject(list); //写这个对象
+			msg.set_time(System.currentTimeMillis());
 			oos.writeObject(obj); // 写这个对象
 			byte[] buf = baos.toByteArray(); // 从这个地层字节流中把传输的数组给一个新的数组
 			oos.flush();
 			toServer.write(buf, 0, buf.length);
-		
 	}
 
 	public static Serializable recvMessage() {
