@@ -19,14 +19,51 @@ public class Stage {
 	private static final int FPS_MAX = 30;
 	private static com.hatrick.graphic.Map map;
 	
+	private static float c_x;	//camera左上角相对于地图的横坐标
+	private static float c_y;	//camera左上角相对于地图的纵坐标
+	private static int c_width;	//camera的宽度
+	private static int c_height;	//camera的高度
+	
 	public static int depth = 0;
 	
 	public Stage(AppGameContainer container){
 		setContainer(container);
+		c_x = 0;
+		c_y = 0;
+	}
+	
+	//设置camera大小
+	public void set_Camera_size(int width, int height) {
+		c_width = width;
+		c_height = height;
 	}
 
 	public static void setContainer(AppGameContainer agc){
 		container = agc;
+	}
+	
+	//根据物体的中心坐标m_x,m_y和地图的size来计算camera的x，y
+	public static void Caculate_Camera_xy(int m_height, int m_width, float s_x, float s_y) {
+		//计算camera的x
+		if (s_x < c_width/2) {
+			c_x = 0;
+		}
+		else if (s_x > m_width - c_width/2) {
+			c_x = m_width - c_width;
+		}
+		else {
+			c_x = s_x - c_width/2;
+		}
+		//计算camera的y
+		if (s_y < c_height/2) {
+			c_y = 0;
+		}
+		else if (s_y > m_height - c_height/2) {
+			c_y = m_height - c_height;
+		}
+		else {
+			c_y = s_y - c_height/2;
+		}
 	}
 	
 	/*when create a sprite, init it's depth for display*/
@@ -120,4 +157,14 @@ public class Stage {
 	public static int getMinDuration(){
 		return 1000/FPS_MAX;
 	}
+	
+	//获得camera左上角的x和y
+	public static float get_Camera_x() {
+		return c_x;
+	}
+
+	public static float get_Camera_y() {
+		return c_y;
+	}
+	
 }
