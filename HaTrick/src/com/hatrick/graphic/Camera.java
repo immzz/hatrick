@@ -7,12 +7,12 @@ public class Camera {
 	private int c_height;	//camera的高度
 	
 	//初始化camera的起始位置为(0,0)和窗口大小
-		public Camera(int width, int height) {
+	public Camera(int width, int height) {
 			c_x = 0;
 			c_y = 0;
 			c_width = width;
 			c_height = height;
-		}
+	}
 	
 	//可直接手工初始化camera的起始位置和窗口大小
 	public Camera(int x, int y,int width, int height) {
