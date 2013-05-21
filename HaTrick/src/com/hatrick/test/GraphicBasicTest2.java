@@ -1,6 +1,8 @@
 package com.hatrick.test;
 
 
+import java.io.Serializable;
+
 import org.newdawn.slick.AppGameContainer;
 import org.newdawn.slick.BasicGame;
 import org.newdawn.slick.GameContainer;
@@ -11,6 +13,7 @@ import org.newdawn.slick.SlickException;
 
 import com.hatrick.graphic.*;
 import com.hatrick.server.Client;
+import com.hatrick.server.Message;
 
 public class GraphicBasicTest2 extends BasicGame {
 
@@ -42,7 +45,13 @@ public class GraphicBasicTest2 extends BasicGame {
 		Client client=new Client();
 		
 		client.auto_send_random();
-		
+		String test = "";
+		try {
+			client.sendMessage(new Message(2, null, test));
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		//Stage.add(ele_1);
 		//Stage.add(ele_2);
 		//Stage.add(ele_3);

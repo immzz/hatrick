@@ -96,7 +96,6 @@ public class Client {
 	}
 
 	public static void sendMessage(Serializable obj) throws Exception {
-		
 			Message msg = ( Message )obj;
 			msg.set_time(System.currentTimeMillis());
 			ByteArrayOutputStream baos = new ByteArrayOutputStream(); // 构造一个字节输出流
@@ -106,7 +105,6 @@ public class Client {
 			byte[] buf = baos.toByteArray(); // 从这个地层字节流中把传输的数组给一个新的数组
 			oos.flush();
 			toServer.write(buf, 0, buf.length);
-		
 	}
 
 	public static Serializable recvMessage() {
