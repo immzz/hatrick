@@ -3,7 +3,6 @@ package com.hatrick.logic;
 import java.util.ArrayList;
 
 import org.newdawn.slick.Input;
-
 import com.hatrick.server.Client;
 import com.hatrick.server.Message;
 
@@ -29,6 +28,8 @@ public class ClientLogic implements Runnable {
 	}
 	
 	/**
+	 * relop for op
+	 * 
 	 * nothing to do
 	 */
 	public void run() {
@@ -43,6 +44,10 @@ public class ClientLogic implements Runnable {
 
 	synchronized static void handleMessage(Object message) {
 		//if(message.type = Message.TYPE_OPERATION);
+
+        // HEAD
+		//nothing now; LATER: myhero.handle(message.data);
+        // gamelogic
 		//no way
 		
 		//else if(message.type = Message.TYPE_HERO)

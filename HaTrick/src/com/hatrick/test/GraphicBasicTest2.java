@@ -61,7 +61,7 @@ public class GraphicBasicTest2 extends BasicGame {
 		}
 		
 		client.auto_send_random();
-		
+		Client.sendMessage()
 		//Stage.add(ele_1);
 		//Stage.add(ele_2);
 		//Stage.add(ele_3);
