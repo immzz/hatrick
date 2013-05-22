@@ -2,15 +2,15 @@ package com.hatrick.logic;
 
 import java.io.Serializable;
 
-public class Hero implements Serializable{
+public class Hero extends LogicObject implements Serializable{
 	private static final long serialVersionUID = 1L;
 	
 	int id;
 	/* moving */
-	double pos_x, pos_y;
-	double width;
-	int direction;		//1 of 4 OK? Will turn cost time? Different time?
-	double speed;
+	//double pos_x, pos_y;
+	//double width;
+	//int direction;		//1 of 4 OK? Will turn cost time? Different time?
+	//double speed;
 	/* status */
 	int status;			//stop
 	double hp;
@@ -20,6 +20,12 @@ public class Hero implements Serializable{
 	int strength;
 	int power;
 	
+    public Hero(double pos_x, double pos_y, double width, int direction, double speed) {
+        super(pos_x, pos_y, width, direction, speed);
+    }
+
+    public void doAction() {}
+
 	void handle_op(Operation op) {
 		if (op.moving == 1) {
 			pos_y -= speed;

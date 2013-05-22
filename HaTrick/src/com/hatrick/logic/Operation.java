@@ -50,11 +50,6 @@ public class Operation implements Serializable {
 		shooting = true;
 	}
 	
-	/*
-	 * Thread:
-	 * (var)	public static long[] direction;
-	 * (init)	direction = new long[] { 0, 0, 0, 0 };
-	 */
 	public void getInput(Input input, long[] direction) {
 		if (input.isKeyDown(Input.KEY_W))
 			direction[0]++;
