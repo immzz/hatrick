@@ -20,7 +20,7 @@ public class ServerLogic implements Runnable{
 	
 	synchronized static void handleMessage(Message message) {
 		if(message.get_type() == Message.TYPE_INIT) {
-			Hero new_hero = new Hero();
+			Hero new_hero = new Hero(1,2,3,4,0);
 			System.out.println("Message INIT received");
 		}
 		//if(message.type = Message.TYPE_OPERATION)

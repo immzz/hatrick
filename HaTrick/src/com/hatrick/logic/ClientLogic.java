@@ -14,11 +14,20 @@ public class ClientLogic implements Runnable {
 		return hero_list;
 	}
 	
-	public void init() {
-		//**send message.INIT
-		//*lock
+	/**
+	 * send message.INIT for hero name
+	 * lock until get herolist, init myhero_index, myhero
+	 * lock incase run() or graphics_get_herolist()
+	 */
+	public void init() {//lock for what?
+		
+		
 	}
 	
+	/**
+	 * relop for op
+	 * 
+	 */
 	public void run() {
 		//**will get op be here?
 	}
