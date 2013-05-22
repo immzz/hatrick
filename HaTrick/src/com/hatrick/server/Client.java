@@ -101,7 +101,11 @@ public class Client {
 	public static void sendMessage(Serializable obj) throws Exception {
 			
 			Message msg = ( Message )obj;
-			
+			int type=msg.get_type();
+			if(type!=1&&type!=2&&type!=3&&type!=4){
+				System.out.println("Sending message type error\n");
+				return ;
+			}
 			ByteArrayOutputStream baos = new ByteArrayOutputStream(); // 构造一个字节输出流
 			ObjectOutputStream oos = new ObjectOutputStream(baos); // 构造一个类输出流
 			// oos.writeObject(list); //写这个对象
@@ -182,7 +186,7 @@ public class Client {
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		Client client = new Client();
-		Message msg = new Message ( Message.TYPE_HERO, null, new Hero());
+		Message msg = new Message (5, null, new Hero(1.0,1.0,1.0,0,0.1));
 		Message msg1 = new Message ( Message.TYPE_INIT, null, null);
 		Message msg2 = new Message ( Message.TYPE_OPERATION, null, new Operation());
 		try {

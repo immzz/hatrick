@@ -1,5 +1,8 @@
 package com.hatrick.logic;
-public abstract class LogicObject {
+
+import java.io.Serializable;
+
+public abstract class LogicObject implements Serializable{
     static LogicMap mapInstance;
 
     public double pos_x, pos_y;
