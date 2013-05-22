@@ -5,6 +5,9 @@ import java.net.*;
 import java.sql.Time;
 import java.util.*;
 
+import com.hatrick.logic.Hero;
+import com.hatrick.logic.Operation;
+
 
 
 class CheckTimerTask extends TimerTask {
@@ -22,10 +25,10 @@ class CheckTimerTask extends TimerTask {
 
 	@Override
 	public void run() {
-		/*if (client.is_connected(toServer) == false) {
+		if (client.is_connected(toServer) == false) {
 			System.out.printf("Server is closed\n");
 			System.exit(0);
-		}*/
+		}
 		// TODO Auto-generated method stub
 
 	}
@@ -42,7 +45,7 @@ class HeartTimerTask extends TimerTask {
 
 	@Override
 	public void run() {
-		/*if (client.is_connected(client.toServer) == true) {
+		if (client.is_connected(client.toServer) == true) {
 			// byte b[]=new byte[20];
 			Message obj = new Message(Message.TYPE_HEART_BEAT,
 					System.currentTimeMillis(), null);
@@ -52,7 +55,7 @@ class HeartTimerTask extends TimerTask {
 				// TODO Auto-generated catch block
 				//e.printStackTrace();
 			}
-		}*/
+		}
 
 		// TODO Auto-generated method stub
 
@@ -72,7 +75,7 @@ public class Client {
 		try {
 
 			// create a socket to connect to the server
-			Socket socket = new Socket("localhost", 1234);
+			Socket socket = new Socket("localhost",8000);
 			// create an output stream to send data to the server
 			toServer = socket.getOutputStream();
 			// create an input stream to receive data from the server
@@ -96,7 +99,7 @@ public class Client {
 	}
 
 	public static void sendMessage(Serializable obj) throws Exception {
-		
+			
 			Message msg = ( Message )obj;
 			
 			ByteArrayOutputStream baos = new ByteArrayOutputStream(); // 构造一个字节输出流
@@ -105,14 +108,25 @@ public class Client {
 			msg.set_time(System.currentTimeMillis());
 			oos.writeObject(obj); // 写这个对象
 			byte[] buf = baos.toByteArray(); // 从这个地层字节流中把传输的数组给一个新的数组
+			int length=buf.length;
+			byte[] buf_new=new byte[4+length];
+			buf_new[0] = (byte) (length & 0xff);// 最低位   
+			buf_new[1] = (byte) ((length >> 8) & 0xff);// 次低位   
+			buf_new[2] = (byte) ((length>> 16) & 0xff);// 次高位   
+			buf_new[3] = (byte) (length>>> 24);// 最高位,无符号右移。   
+			System.arraycopy(buf, 0,buf_new,4,length);
 			oos.flush();
-			toServer.write(buf, 0, buf.length);
+			toServer.write(buf_new, 0,length+4);
 	}
 
 	public static Serializable recvMessage() {
 		byte[] buf = new byte[4096];
+		int length;
 		try {
-			fromServer.read(buf, 0, buf.length);
+			fromServer.read(buf,0,4);
+			length= (buf[0] & 0xff) | ((buf[1] << 8) & 0xff00) // | 表示安位或   
+					| ((buf[2] << 24) >>> 8) | (buf[3] << 24);   
+			fromServer.read(buf, 0,length);
 		} catch (IOException e1) {
 			// TODO Auto-generated catch block
 			//e1.printStackTrace();
@@ -124,13 +138,10 @@ public class Client {
 			ois = new ObjectInputStream(bais);
 			msg = (Message) ois.readObject();
 
-		} catch (IOException e) {
+		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			//e.printStackTrace();
-		} catch (ClassNotFoundException e) {
-			// TODO Auto-generated catch block
-			//e.printStackTrace();
-		}
+		} 
 		return msg;
 	}
 
@@ -144,7 +155,7 @@ public class Client {
 				Message msg = ( Message ) obj;
 				/******************************* 调用接口提交收到的信息 ********************************/
 				// handleMessage( (Message) obj );
-				System.out.println("recv a message type:"+msg.get_type());
+				//System.out.println("recv a message type:"+msg.get_type());
 				/*****************************************************************************/
 				}
 				catch(Exception e){
@@ -171,20 +182,17 @@ public class Client {
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		Client client = new Client();
-		
-		Message msg = new Message ( Message.TYPE_HERO, null, null);
+		Message msg = new Message ( Message.TYPE_HERO, null, new Hero());
+		Message msg1 = new Message ( Message.TYPE_INIT, null, null);
+		Message msg2 = new Message ( Message.TYPE_OPERATION, null, new Operation());
 		try {
-			client.sendMessage(msg);
+			Client.sendMessage(msg);
+			Client.sendMessage(msg1);
+			Client.sendMessage(msg2);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
-		int i=0;
-		do{
-			
-			i++;
-		} while ( i < 3 );
 	}
 
 	public void auto_send_random() {
