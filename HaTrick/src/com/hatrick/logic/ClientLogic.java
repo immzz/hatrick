@@ -59,7 +59,7 @@ public class ClientLogic implements Runnable {
 		}
 	}
 
-	public synchronized static void handleMessage(Object message) {
+	public synchronized static void handleMessage(Message message) {
 
 		//if(message.type = Message.TYPE_OPERATION);
 
@@ -74,10 +74,7 @@ public class ClientLogic implements Runnable {
 				if(hero_list.get(i).name.equals(name))
 					myhero = hero_list.get(i);
 			}
-		}
-		if(message.type == Message.TYPE_INIT) {
-		//map & other heros init
-		//*unlock
+			System.out.println("Get Fuck: " + hero_list.size());
 		}
 	}
 }

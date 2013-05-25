@@ -15,19 +15,22 @@ public class ServerLogic implements Runnable{
 	}
 	
 	public void run() {
-		try {
-			Thread.sleep(2);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+		while(true) {
+			try {
+				Thread.sleep(1000);
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			Server.broadcast(hero_list);
 		}
-		Server.broadcast(hero_list);
 	}
 	
 	public synchronized static void handleMessage(Message message) {
 		if(message.get_type() == Message.TYPE_INIT) {
 			hero_list.add(new Hero((String)message.get_obj(),0,0,0,0,10));
-			Server.broadcast(hero_list);
+			Message m = new Message(Message.TYPE_HERO, null, hero_list);
+			Server.broadcast(m);
 		}
 		else if(message.type == Message.TYPE_OPERATION) {
 			myhero.handle_op((Operation)message.get_obj()); //notgood->add_op();

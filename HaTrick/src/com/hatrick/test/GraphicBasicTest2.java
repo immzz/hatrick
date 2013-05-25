@@ -12,6 +12,7 @@ import org.newdawn.slick.SlickException;
 import com.hatrick.graphic.*;
 import com.hatrick.logic.ClientLogic;
 import com.hatrick.logic.Operation;
+import com.hatrick.logic.ServerLogic;
 import com.hatrick.server.Client;
 import com.hatrick.server.Message;
 import com.hatrick.server.Server;
@@ -44,6 +45,7 @@ public class GraphicBasicTest2 extends BasicGame {
 		
 		Stage.add(ele_0);
 		Client client=new Client();
+		new Thread(new ClientLogic("fuck")).start();
 
 	}
 
@@ -53,6 +55,7 @@ public class GraphicBasicTest2 extends BasicGame {
 		Input input = c.getInput();
 		Operation op = new Operation();
 		op.getInput(input, ClientLogic.direction);
+		ClientLogic.sendOperation(op);
 		
 		//Sprite sprt = Stage.get(0);
 		//System.out.println("delta:"+delta);

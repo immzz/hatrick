@@ -115,7 +115,7 @@ public class Client {
 			oos.writeObject(obj); // 写这个对象
 			byte[] buf = baos.toByteArray(); // 从这个地层字节流中把传输的数组给一个新的数组
 			int length=buf.length;
-			System.out.println("length: " + buf.length);
+			//System.out.println("length: " + buf.length);
 			byte[] buf_new=new byte[4+length];
 			buf_new[0] = (byte) (length & 0xff);// 最低位   
 			buf_new[1] = (byte) ((length >> 8) & 0xff);// 次低位   

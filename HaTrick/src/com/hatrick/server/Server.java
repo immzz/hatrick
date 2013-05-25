@@ -299,6 +299,7 @@ public class Server implements Runnable {
 			}
 			// if(array_thread.get(i).gethostaddress().equals(clientIP))break;
 		}
+		System.out.println("broadcast");
 		return;
 	}
 	public static void main(String[] args){
