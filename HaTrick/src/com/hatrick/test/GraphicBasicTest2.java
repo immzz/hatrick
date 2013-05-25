@@ -43,8 +43,9 @@ public class GraphicBasicTest2 extends BasicGame {
 		
 		Stage.add(ele_0);
 		Client client=new Client();
-		//new Thread(new ClientLogic()).start();
-		try {
+		new Thread(new ClientLogic("QWER")).start();
+		
+		/*try {
 			Message init_message = new Message(Message.TYPE_HEART_BEAT, null, null);
 			Client.sendMessage( init_message );
 			init_message = new Message(Message.TYPE_OPERATION, null, null);
@@ -58,10 +59,10 @@ public class GraphicBasicTest2 extends BasicGame {
 			System.out.println("--- succeed ---");
 		} catch (Exception e) {
 			e.printStackTrace();
-		}
+		}*/
 		
-		client.auto_send_random();
-		Client.sendMessage()
+		//client.auto_send_random();
+		//Client.sendMessage()
 		//Stage.add(ele_1);
 		//Stage.add(ele_2);
 		//Stage.add(ele_3);

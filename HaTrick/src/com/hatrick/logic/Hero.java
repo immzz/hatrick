@@ -5,6 +5,7 @@ import java.io.Serializable;
 public class Hero extends LogicObject implements Serializable{
 	private static final long serialVersionUID = 1L;
 	
+	String name;
 	int id;
 	/* moving */
 	//double pos_x, pos_y;
@@ -12,7 +13,6 @@ public class Hero extends LogicObject implements Serializable{
 	//int direction;		//1 of 4 OK? Will turn cost time? Different time?
 	//double speed;
 	/* status */
-	int status;			//stop
 	double hp;
 	double change;
 	/* using items */
@@ -20,8 +20,9 @@ public class Hero extends LogicObject implements Serializable{
 	int strength;
 	int power;
 	
-    public Hero(double pos_x, double pos_y, double width, int direction, double speed) {
+    public Hero(String s, double pos_x, double pos_y, double width, int direction, double speed) {
         super(pos_x, pos_y, width, direction, speed);
+        name = s;
     }
 
     public void doAction() {}

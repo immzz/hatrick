@@ -109,6 +109,7 @@ public class Client {
 			oos.writeObject(obj); // 写这个对象
 			byte[] buf = baos.toByteArray(); // 从这个地层字节流中把传输的数组给一个新的数组
 			int length=buf.length;
+			System.out.println("length: " + buf.length);
 			byte[] buf_new=new byte[4+length];
 			buf_new[0] = (byte) (length & 0xff);// 最低位   
 			buf_new[1] = (byte) ((length >> 8) & 0xff);// 次低位   
@@ -182,17 +183,17 @@ public class Client {
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		Client client = new Client();
-		Message msg = new Message ( Message.TYPE_HERO, null, new Hero());
-		Message msg1 = new Message ( Message.TYPE_INIT, null, null);
-		Message msg2 = new Message ( Message.TYPE_OPERATION, null, new Operation());
-		try {
-			Client.sendMessage(msg);
-			Client.sendMessage(msg1);
-			Client.sendMessage(msg2);
-		} catch (Exception e) {
+		//Message msg = new Message ( Message.TYPE_HERO, null, new Hero());
+		//Message msg1 = new Message ( Message.TYPE_INIT, null, null);
+		//Message msg2 = new Message ( Message.TYPE_OPERATION, null, new Operation());
+		//try {
+		//	Client.sendMessage(msg);
+		//	Client.sendMessage(msg1);
+		//	Client.sendMessage(msg2);
+		//} catch (Exception e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		//	e.printStackTrace();
+		//}
 	}
 
 	public void auto_send_random() {

@@ -5,6 +5,8 @@ import java.net.*;
 import java.sql.Time;
 import java.util.*;
 
+import com.hatrick.logic.ServerLogic;
+
 class Heart_beat implements Serializable {
 	private long initial_clock;
 	private int number;
@@ -177,7 +179,8 @@ class HandleAClient extends Thread {
 							status.get_heart_beat().get_number() + 1);
 				} else {
 					/******************************* 璋冪敤鎺ュ彛鎻愪氦鏀跺埌鐨勪俊鎭�********************************/
-					//handleMessage((Message) obj);
+					System.out.println("hey");
+					ServerLogic.handleMessage((Message) obj);
 					//System.out.println("recv a message type:"+msg.get_type());
 					/*****************************************************************************/
 				}
