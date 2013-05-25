@@ -11,6 +11,7 @@ import org.newdawn.slick.SlickException;
 
 import com.hatrick.graphic.*;
 import com.hatrick.logic.ClientLogic;
+import com.hatrick.logic.Operation;
 import com.hatrick.server.Client;
 import com.hatrick.server.Message;
 import com.hatrick.server.Server;
@@ -71,11 +72,14 @@ public class GraphicBasicTest2 extends BasicGame {
 	@Override
 	public void update(GameContainer c, int delta) throws SlickException {
 		// TODO Auto-generated method stub
-		/*Input input = c.getInput();
-		Sprite sprt = Stage.get(0);
+		Input input = c.getInput();
+		Operation op = new Operation();
+		op.getInput(input, ClientLogic.direction);
+		
+		//Sprite sprt = Stage.get(0);
 		//System.out.println("delta:"+delta);
 		//System.out.println("FPS:"+Stage.getFPS());
-		if (input.isKeyDown(Input.KEY_UP)) {
+		/*if (input.isKeyDown(Input.KEY_UP)) {
 			sprt.moveTo(sprt.getX(),sprt.getY()-delta/2f);
 		}else
 		if (input.isKeyDown(Input.KEY_DOWN)) {

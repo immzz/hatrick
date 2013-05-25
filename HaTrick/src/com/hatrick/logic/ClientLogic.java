@@ -38,18 +38,25 @@ public class ClientLogic implements Runnable {
 		Message message = new Message(Message.TYPE_INIT, null, name);
 		try {
 			Client.sendMessage(message);
-			this.wait();
+			//this.wait();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		
-		
 	}
 	
 	static public void new_operation(Input input) {
 		Operation op = new Operation();
 		op.getInput(input, direction);
 		//send to server
+	}
+	
+	static public void sendOperation(Operation op) {
+		Message message = new Message(Message.TYPE_OPERATION, null, op);
+		try {
+			Client.sendMessage(message);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 
 	synchronized static void handleMessage(Message message) {

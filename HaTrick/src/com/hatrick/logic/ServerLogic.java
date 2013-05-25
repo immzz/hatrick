@@ -27,7 +27,7 @@ public class ServerLogic implements Runnable{
 	public synchronized static void handleMessage(Message message) {
 		if(message.get_type() == Message.TYPE_INIT) {
 			hero_list.add(new Hero((String)message.get_obj(),0,0,0,0,10));
-			//send to Client
+			Server.broadcast(hero_list);
 		}
 		else if(message.type == Message.TYPE_OPERATION) {
 			myhero.handle_op((Operation)message.get_obj()); //notgood->add_op();
