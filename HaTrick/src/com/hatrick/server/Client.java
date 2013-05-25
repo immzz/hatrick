@@ -5,8 +5,10 @@ import java.net.*;
 import java.sql.Time;
 import java.util.*;
 
+import com.hatrick.logic.ClientLogic;
 import com.hatrick.logic.Hero;
 import com.hatrick.logic.Operation;
+import com.hatrick.logic.ServerLogic;
 
 
 
@@ -106,18 +108,18 @@ public class Client {
 				System.out.println("Sending message type error\n");
 				return ;
 			}
-			ByteArrayOutputStream baos = new ByteArrayOutputStream(); // ¹¹ÔìÒ»¸ö×Ö½ÚÊä³öÁ÷
-			ObjectOutputStream oos = new ObjectOutputStream(baos); // ¹¹ÔìÒ»¸öÀàÊä³öÁ÷
-			// oos.writeObject(list); //Ğ´Õâ¸ö¶ÔÏó
+			ByteArrayOutputStream baos = new ByteArrayOutputStream(); // æ„é€ ä¸€ä¸ªå­—èŠ‚è¾“å‡ºæµ
+			ObjectOutputStream oos = new ObjectOutputStream(baos); // æ„é€ ä¸€ä¸ªç±»è¾“å‡ºæµ
+			// oos.writeObject(list); //å†™è¿™ä¸ªå¯¹è±¡
 			msg.set_time(System.currentTimeMillis());
-			oos.writeObject(obj); // Ğ´Õâ¸ö¶ÔÏó
-			byte[] buf = baos.toByteArray(); // ´ÓÕâ¸öµØ²ã×Ö½ÚÁ÷ÖĞ°Ñ´«ÊäµÄÊı×é¸øÒ»¸öĞÂµÄÊı×é
+			oos.writeObject(obj); // å†™è¿™ä¸ªå¯¹è±¡
+			byte[] buf = baos.toByteArray(); // ä»è¿™ä¸ªåœ°å±‚å­—èŠ‚æµä¸­æŠŠä¼ è¾“çš„æ•°ç»„ç»™ä¸€ä¸ªæ–°çš„æ•°ç»„
 			int length=buf.length;
 			byte[] buf_new=new byte[4+length];
-			buf_new[0] = (byte) (length & 0xff);// ×îµÍÎ»   
-			buf_new[1] = (byte) ((length >> 8) & 0xff);// ´ÎµÍÎ»   
-			buf_new[2] = (byte) ((length>> 16) & 0xff);// ´Î¸ßÎ»   
-			buf_new[3] = (byte) (length>>> 24);// ×î¸ßÎ»,ÎŞ·ûºÅÓÒÒÆ¡£   
+			buf_new[0] = (byte) (length & 0xff);// æœ€ä½ä½   
+			buf_new[1] = (byte) ((length >> 8) & 0xff);// æ¬¡ä½ä½   
+			buf_new[2] = (byte) ((length>> 16) & 0xff);// æ¬¡é«˜ä½   
+			buf_new[3] = (byte) (length>>> 24);// æœ€é«˜ä½,æ— ç¬¦å·å³ç§»ã€‚   
 			System.arraycopy(buf, 0,buf_new,4,length);
 			oos.flush();
 			toServer.write(buf_new, 0,length+4);
@@ -128,7 +130,7 @@ public class Client {
 		int length;
 		try {
 			fromServer.read(buf,0,4);
-			length= (buf[0] & 0xff) | ((buf[1] << 8) & 0xff00) // | ±íÊ¾°²Î»»ò   
+			length= (buf[0] & 0xff) | ((buf[1] << 8) & 0xff00) // | è¡¨ç¤ºå®‰ä½æˆ–   
 					| ((buf[2] << 24) >>> 8) | (buf[3] << 24);   
 			fromServer.read(buf, 0,length);
 		} catch (IOException e1) {
@@ -157,10 +159,8 @@ public class Client {
 				try{
 				Serializable obj = recvMessage();
 				Message msg = ( Message ) obj;
-				/******************************* µ÷ÓÃ½Ó¿ÚÌá½»ÊÕµ½µÄĞÅÏ¢ ********************************/
-				// handleMessage( (Message) obj );
-				//System.out.println("recv a message type:"+msg.get_type());
-				/*****************************************************************************/
+				System.out.println("type:"+msg.get_type());
+				ClientLogic.handleMessage((Message) obj);
 				}
 				catch(Exception e){
 					

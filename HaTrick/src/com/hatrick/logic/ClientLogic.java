@@ -32,7 +32,7 @@ public class ClientLogic implements Runnable {
 		//**will get op be here?
 	}
 
-	synchronized static void handleMessage(Object message) {
+	public synchronized static void handleMessage(Object message) {
 		//if(message.type = Message.TYPE_OPERATION);
 		//nothing now; LATER: myhero.handle(message.data);
 		

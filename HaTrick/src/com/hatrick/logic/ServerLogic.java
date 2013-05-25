@@ -18,7 +18,7 @@ public class ServerLogic implements Runnable{
 		//**send hero_list
 	}
 	
-	synchronized static void handleMessage(Message message) {
+	public synchronized static void handleMessage(Message message) {
 		if(message.get_type() == Message.TYPE_INIT) {
 			Hero new_hero = new Hero(1,2,3,4,0);
 			System.out.println("Message INIT received");
