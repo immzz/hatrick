@@ -102,6 +102,33 @@ public class LogicMap {
         }
     }
 
+    public void damage(double pos_x, double pos_y, double range, double power) {
+        double left = pos_y - range;
+        double right = pos_y + range;
+        double up = pos_x - range;
+        double down = pos_x + range;
+        if (left < 0)
+            left = 0;
+        if (right > size_y)
+            right = size_y;
+        if (up < 0)
+            up = 0;
+        if (down > size_x)
+            down = size_x;
+
+        for (int i = Math.floor(up / ratio); i <= Math.ceil(down / ratio); i ++)
+            for (int j = Math.floor(left / ratio); j <= Math.ceil(right / ratio); j++) {
+                LogicObject iter = objMap[i][j];
+                while (iter != null) {
+                    if ((iter.pos_x - pos_x) * (iter.pos_x - pos_x)
+                            + (iter.pos_y - pos_y) * (iter.pos_y - pos_y)
+                            < range * range)
+                        iter.doDamage(power);
+                }
+            }
+        
+    }
+
     public void objMoveUp(LogicObject obj, double off_x) {
         // make sure how far can we go
         //   two direction according to off_ > 0 or < 0

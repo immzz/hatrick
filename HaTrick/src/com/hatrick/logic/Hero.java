@@ -5,14 +5,11 @@ import java.io.Serializable;
 public class Hero extends LogicObject implements Serializable{
 	private static final long serialVersionUID = 1L;
 	
-	int id;
 	/* moving */
 	//double pos_x, pos_y;
 	//double width;
 	//int direction;		//1 of 4 OK? Will turn cost time? Different time?
 	//double speed;
-	/* status */
-	int status;			//stop
 	double hp;
 	double change;
 	/* using items */
@@ -25,6 +22,15 @@ public class Hero extends LogicObject implements Serializable{
     }
 
     public void doAction() {}
+
+    public void doDamage(double damage) {
+        // naive
+        hp -= damage;
+        if (hp < 0)
+            dead();
+    }
+
+    private void dead(){}
 
 	void handle_op(Operation op) {
 		if (op.moving == 1) {

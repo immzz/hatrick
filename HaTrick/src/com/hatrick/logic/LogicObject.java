@@ -1,6 +1,11 @@
 package com.hatrick.logic;
 public abstract class LogicObject {
     static LogicMap mapInstance;
+    static int globalId = 0;
+
+    public int id;
+	/* status */
+	int status;			//stop
 
     public double pos_x, pos_y;
     public double width;
@@ -22,6 +27,7 @@ public abstract class LogicObject {
         this.speed = speed;
         this.actionTime = actionTime;
         this.deleteTime = deleteTime;
+        id = globalId ++;
     }
 
     protected LogicObject(double pos_x, double pos_y, double width, int direction, double speed) {
