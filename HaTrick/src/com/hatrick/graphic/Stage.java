@@ -18,11 +18,12 @@ public class Stage {
 	private static AppGameContainer container = null;
 	private static final int FPS_MAX = 30;
 	private static com.hatrick.graphic.Map map;
+	private static Camera camera = new Camera(0,0);
 	
-	private static float c_x;	//camera左上角相对于地图的横坐标
-	private static float c_y;	//camera左上角相对于地图的纵坐标
-	private static int c_width;	//camera的宽度
-	private static int c_height;	//camera的高度
+	private static float c_x;	//camera宸︿笂瑙掔浉瀵逛簬鍦板浘鐨勬í鍧愭爣
+	private static float c_y;	//camera宸︿笂瑙掔浉瀵逛簬鍦板浘鐨勭旱鍧愭爣
+	private static int c_width;	//camera鐨勫搴�
+	private static int c_height;	//camera鐨勯珮搴�
 	
 	public static int depth = 0;
 	
@@ -32,7 +33,7 @@ public class Stage {
 		c_y = 0;
 	}
 	
-	//设置camera大小
+	//璁剧疆camera澶у皬
 	public void set_Camera_size(int width, int height) {
 		c_width = width;
 		c_height = height;
@@ -42,9 +43,9 @@ public class Stage {
 		container = agc;
 	}
 	
-	//根据物体的中心坐标m_x,m_y和地图的size来计算camera的x，y
+	//鏍规嵁鐗╀綋鐨勪腑蹇冨潗鏍噈_x,m_y鍜屽湴鍥剧殑size鏉ヨ绠梒amera鐨剎锛寉
 	public static void Caculate_Camera_xy(int m_height, int m_width, float s_x, float s_y) {
-		//计算camera的x
+		//璁＄畻camera鐨剎
 		if (s_x < c_width/2) {
 			c_x = 0;
 		}
@@ -54,7 +55,7 @@ public class Stage {
 		else {
 			c_x = s_x - c_width/2;
 		}
-		//计算camera的y
+		//璁＄畻camera鐨剏
 		if (s_y < c_height/2) {
 			c_y = 0;
 		}
@@ -81,7 +82,7 @@ public class Stage {
 		sprt2.setDepth(depth1);
 	}
 	
-	//把物体加入到舞台
+	//鎶婄墿浣撳姞鍏ュ埌鑸炲彴
 	public static void add(Sprite sprt){
 		elements.put(sprt.getId(), sprt);
 		initDepth(sprt);
@@ -158,13 +159,21 @@ public class Stage {
 		return 1000/FPS_MAX;
 	}
 	
-	//获得camera左上角的x和y
+	//鑾峰緱camera宸︿笂瑙掔殑x鍜寉
 	public static float get_Camera_x() {
 		return c_x;
 	}
 
 	public static float get_Camera_y() {
 		return c_y;
+	}
+
+	public static Camera getCamera() {
+		return camera;
+	}
+
+	public static void setCamera(Camera camera) {
+		Stage.camera = camera;
 	}
 	
 }

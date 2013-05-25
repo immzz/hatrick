@@ -27,6 +27,7 @@ public class Avatar extends Sprite{
 		this.setDirectional(true);
 		this.setScale(2.0f);
 		ImageInfo [] img_infos = ImageResource.avatars.stand.get(type);
+		if(img_infos == null) return;
 		for(ImageInfo info : img_infos){
 			addImage(info);
 		}
