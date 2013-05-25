@@ -12,6 +12,7 @@ import com.hatrick.graphic.*;
 import com.hatrick.logic.Operation;
 
 public class GraphicBasicTest extends BasicGame {
+	public static long[] direction = new long[] { 0, 0, 0, 0 };
 
 	public GraphicBasicTest(String title) {
 		super(title);

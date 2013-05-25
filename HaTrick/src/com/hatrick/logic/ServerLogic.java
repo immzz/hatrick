@@ -2,9 +2,12 @@ package com.hatrick.logic;
 
 import java.util.ArrayList;
 
+import com.hatrick.server.Message;
+import com.hatrick.server.Server;
+
 public class ServerLogic implements Runnable{
 	static ArrayList<Hero> hero_list = new ArrayList<Hero>();
-	Hero myhero;
+	static Hero myhero;
 	ArrayList<Operation> op_list = new ArrayList<Operation>();
 	
 	synchronized static public ArrayList<Hero> get_heros () {
@@ -12,16 +15,22 @@ public class ServerLogic implements Runnable{
 	}
 	
 	public void run() {
-		//duel with op_list
-		//**send hero_list
+		try {
+			Thread.sleep(2);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		Server.broadcast(hero_list);
 	}
 	
-	void handleMessage(Object message) {
-		//if(message.type = Message.TYPE_OPERATION)
-		//myhero.handle_op(message.item); notgood->add_op();
-		
-		//else if(message.type = Message.TYPE_INIT)
-		//new hero
-		//ack hero_id & hero_list
+	public synchronized static void handleMessage(Message message) {
+		if(message.get_type() == Message.TYPE_INIT) {
+			hero_list.add(new Hero((String)message.get_obj(),0,0,0,0,10));
+			Server.broadcast(hero_list);
+		}
+		else if(message.type == Message.TYPE_OPERATION) {
+			myhero.handle_op((Operation)message.get_obj()); //notgood->add_op();
+		}
 	}
 }

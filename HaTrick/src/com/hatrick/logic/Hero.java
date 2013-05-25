@@ -2,17 +2,17 @@ package com.hatrick.logic;
 
 import java.io.Serializable;
 
-public class Hero implements Serializable{
+public class Hero extends LogicObject implements Serializable{
 	private static final long serialVersionUID = 1L;
 	
+	String name;
 	int id;
 	/* moving */
-	double pos_x, pos_y;
-	double width;
-	int direction;		//1 of 4 OK? Will turn cost time? Different time?
-	double speed;
+	//double pos_x, pos_y;
+	//double width;
+	//int direction;		//1 of 4 OK? Will turn cost time? Different time?
+	//double speed;
 	/* status */
-	int status;			//stop
 	double hp;
 	double change;
 	/* using items */
@@ -20,6 +20,12 @@ public class Hero implements Serializable{
 	int strength;
 	int power;
 	
+    public Hero(String s, double pos_x, double pos_y, double width, int direction, double speed) {
+        super(pos_x, pos_y, width, direction, speed);
+        name = s;
+    }
+
+    public void doAction() {}
 
 	void handle_op(Operation op) {
 		if (op.moving == 1) {
@@ -46,5 +52,4 @@ public class Hero implements Serializable{
 	void use_item(int n) {
 		if(n == 0) return;
 	}
-
 }
