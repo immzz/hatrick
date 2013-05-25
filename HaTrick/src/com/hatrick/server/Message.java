@@ -13,7 +13,7 @@ import java.io.Serializable;
 	public static final int TYPE_HERO = 3;
 	public static final int TYPE_INIT = 4;
 
-	private int type;
+	public int type;
 	private Long time;
 	private Serializable obj;
 
