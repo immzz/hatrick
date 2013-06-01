@@ -10,6 +10,7 @@ public class Hero extends LogicObject implements Serializable{
 	//double width;
 	//int direction;		//1 of 4 OK? Will turn cost time? Different time?
 	//double speed;
+	String name;
 	double hp;
 	double change;
 	/* using items */
@@ -17,10 +18,10 @@ public class Hero extends LogicObject implements Serializable{
 	int strength;
 	int power;
 	
-    public Hero(double pos_x, double pos_y, double width, int direction, double speed) {
+    public Hero(String name, double pos_x, double pos_y, double width, int direction, double speed) {
         super(pos_x, pos_y, width, direction, speed);
+        this.name = name;
     }
-
     public void doAction() {}
 
     public void doDamage(double damage) {

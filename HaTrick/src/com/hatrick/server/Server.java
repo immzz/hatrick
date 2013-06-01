@@ -1,9 +1,12 @@
+
 package com.hatrick.server;
 
 import java.io.*;
 import java.net.*;
 import java.sql.Time;
 import java.util.*;
+
+import com.hatrick.logic.ServerLogic;
 
 class Heart_beat implements Serializable {
 	private long initial_clock;
@@ -50,8 +53,8 @@ class HandleAClient extends Thread {
 	private Socket socket;// A connected socket
 	private Machine_status status;
 	private InetAddress ID;
-	static InputStream input;
-	static OutputStream output;
+	private InputStream input;
+	private OutputStream output;
 
 	// Construct a thread
 	public HandleAClient(Socket socket, Machine_status status, InetAddress ID) {
@@ -75,7 +78,12 @@ class HandleAClient extends Thread {
 	public Machine_status get_status() {
 		return status;
 	}
-
+	public InputStream get_InputStream(){ 
+		return input;
+	}
+	public OutputStream get_OutputStream(){
+		return output;
+	}
 	public void reset(Socket socket) {
 		this.socket = socket;
 		try {
@@ -92,10 +100,15 @@ class HandleAClient extends Thread {
 		}
 	}
 
-	public static void sendMessage(Serializable obj) {
+	public  void sendMessage(Serializable obj) {
 		try {
 			
 			Message msg = ( Message ) obj;
+			int type=msg.get_type();
+			if(type!=1&&type!=2&&type!=3&&type!=4){
+				System.out.println("Sending message type error\n");
+				return ;
+			}
 			msg.set_time(System.currentTimeMillis());
 			
 			ByteArrayOutputStream baos = new ByteArrayOutputStream(); // 鏋勯�涓�釜瀛楄妭杈撳嚭娴�			
@@ -111,12 +124,13 @@ class HandleAClient extends Thread {
 			System.arraycopy(buf, 0,buf_new,4,length);
 			oos.flush();
 			output.write(buf_new, 0,length+4);
+			
 		} catch (Exception e) {
 			
 		}
 	}
 
-	public static Serializable recvMessage() {
+	public  Serializable recvMessage() {
 		byte[] buf = new byte[4096];
 		int length;
 		try {
@@ -177,7 +191,7 @@ class HandleAClient extends Thread {
 							status.get_heart_beat().get_number() + 1);
 				} else {
 					/******************************* 璋冪敤鎺ュ彛鎻愪氦鏀跺埌鐨勪俊鎭�********************************/
-					//handleMessage((Message) obj);
+					ServerLogic.handleMessage((Message) obj);
 					//System.out.println("recv a message type:"+msg.get_type());
 					/*****************************************************************************/
 				}
@@ -258,13 +272,13 @@ public class Server implements Runnable {
 				}
 				array_thread.get(i).get_status().set_online(false);
 				try {
-					array_thread.get(i).input.close();
+					array_thread.get(i).get_InputStream().close();
 				} catch (IOException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				}
 				try {
-					array_thread.get(i).output.close();
+					array_thread.get(i).get_OutputStream().close();
 				} catch (IOException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
@@ -280,12 +294,13 @@ public class Server implements Runnable {
 	}
 	public static void broadcast(Serializable obj) {
 		for (int i = 0; i < array_thread.size(); i++) {
-
 			if (array_thread.get(i).isAlive()) {
+				//System.out.println("alive");
 				array_thread.get(i).sendMessage(obj);
 			}
 			// if(array_thread.get(i).gethostaddress().equals(clientIP))break;
 		}
+		//System.out.println("broadcast");
 		return;
 	}
 	public static void main(String[] args){

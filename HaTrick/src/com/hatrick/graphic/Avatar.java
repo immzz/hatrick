@@ -54,11 +54,22 @@ public class Avatar extends Sprite{
 	public void moveTo(float x, float y) {
 		this.setRotation((float) Math.toDegrees(Math.atan2(x-this.getX(),this.getY()-y)));
 		//System.out.println(x-this.getX());
-		this.setX((this.getX()+x)/2.0f);
-		this.setY((this.getY()+y)/2.0f);
-		//this.setX(x);
-		//this.setY(y);
-		this.act(Avatar.ACTION_WALK);
+		if(!(x == this.getX() && y == this.getY())){
+			this.act(Avatar.ACTION_WALK);
+		}
+		/*float next_x = (this.getX()+x)/2.0f;
+		float next_y = (this.getY()+y)/2.0f;
+		if(Math.abs(next_x - this.getX()) < 0.2){
+			next_x = this.getX();
+		}
+		if(Math.abs(next_y - this.getY()) < 0.2){
+			next_y = this.getY();
+		}
+		this.setX(next_x);
+		this.setY(next_y);*/
+		this.setX(x);
+		this.setY(y);
+		
 		//System.out.println(this.getAction());
 	}
 }

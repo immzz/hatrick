@@ -1,3 +1,4 @@
+
 package com.hatrick.server;
 
 import java.io.Serializable;
@@ -13,7 +14,7 @@ import java.io.Serializable;
 	public static final int TYPE_HERO = 3;
 	public static final int TYPE_INIT = 4;
 
-	private int type;
+	public int type;
 	private Long time;
 	private Serializable obj;
 
@@ -22,7 +23,9 @@ import java.io.Serializable;
 		this.set_time(time);
 		this.set_type(type);
 	}
-
+	public Message(){
+		
+	}
 	public void set_time(Long time) {
 		this.time = time;
 	}
@@ -47,3 +50,4 @@ import java.io.Serializable;
 		return obj;
 	}
 }
+

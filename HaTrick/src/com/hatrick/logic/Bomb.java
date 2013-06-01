@@ -1,4 +1,4 @@
-package com.hatrick.logic
+package com.hatrick.logic;
 import java.io.Serializable;
 public class Bomb extends LogicObject implements Serializable {
     static final int WAITING = 0;
