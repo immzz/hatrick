@@ -3,6 +3,7 @@ package com.hatrick.logic;
 import java.io.Serializable;
 
 public class Hero extends LogicObject implements Serializable{
+	private static final long serialVersionUID = 1L;
 	
 	/* moving */
 	//double pos_x, pos_y;
@@ -26,6 +27,7 @@ public class Hero extends LogicObject implements Serializable{
     	super.count_pos();
     	if(actionTime <= 1) {
     		LogicObject.mapInstance.delActionList(this);
+    		actionTime = 0;
     	}
     	else 
     		actionTime--;

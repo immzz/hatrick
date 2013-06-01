@@ -3,7 +3,11 @@ package com.hatrick.logic;
 import java.io.Serializable;
 
 public abstract class LogicObject implements Serializable{
-    static LogicMap mapInstance;
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = -1693769809101702805L;
+	static LogicMap mapInstance;
     static int globalId = 0;
 
     public int id;

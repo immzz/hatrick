@@ -50,7 +50,7 @@ public class GraphicBasicTest2 extends BasicGame {
 		avt_0.setPosition(0,0);
 		Stage.add(avt_0);
 		Client client=new Client();
-		new Thread(new ClientLogic("fucdk")).start();
+		new Thread(new ClientLogic("fucasdfasd")).start();
 
 	}
 
