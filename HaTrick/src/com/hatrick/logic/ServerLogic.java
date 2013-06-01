@@ -7,19 +7,21 @@ import com.hatrick.server.Server;
 
 public class ServerLogic implements Runnable{
 	static ArrayList<Hero> hero_list = new ArrayList<Hero>();
-    static LogicMap logicmap;
+    static LogicMap logicMap;
 	ArrayList<Operation> op_list = new ArrayList<Operation>();
 	
 	synchronized static public ArrayList<Hero> get_heros () {
 		return hero_list;
 	}
 
-    public static void initMap(int size_x, int size_y, int[][] groundMap, int ratio) {
-        
+    public static void initMap(int height, int width, int[][] groundMap) {
+
+        logicMap = new LogicMap(height, width, groundMap);
+        LogicObject.mapInstance = logicMap;
     }
 	
 	public void run() {
-        
+        Iterator<LogicObject> iter;
 		while(true) {
 			try {
 				Thread.sleep(50);
@@ -27,9 +29,14 @@ public class ServerLogic implements Runnable{
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-            
-            
 
+            // action list
+            iter = actionList.iterator();
+            while (iter.hasNext()) {
+                iter.next().doAction();
+            }
+
+            // TODO: deleteList
 
 			Message m = new Message(Message.TYPE_HERO, null, hero_list);
 			Server.broadcast(m);
