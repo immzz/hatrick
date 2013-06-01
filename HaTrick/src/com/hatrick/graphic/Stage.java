@@ -18,20 +18,14 @@ public class Stage {
 	private static AppGameContainer container = null;
 	private static final int FPS_MAX = 30;
 	private static com.hatrick.graphic.Map map;
-	
+	private static Camera camera = new Camera(800,600);
 	public static int depth = 0;
 	
 	public Stage(AppGameContainer container){
 		setContainer(container);
-		c_x = 0;
-		c_y = 0;
 	}
 	
-	//璁剧疆camera澶у皬
-	public void setCameraSize(int width, int height) {
-		c_width = width;
-		c_height = height;
-	}
+
 
 	public static void setContainer(AppGameContainer agc){
 		container = agc;
@@ -164,12 +158,5 @@ public class Stage {
 		Stage.camera = camera;
 	}
 
-	public static Camera getCamera() {
-		return camera;
-	}
-
-	public static void setCamera(Camera camera) {
-		Stage.camera = camera;
-	}
 	
 }

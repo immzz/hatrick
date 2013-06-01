@@ -11,9 +11,9 @@ import org.newdawn.slick.SlickException;
 
 import com.hatrick.graphic.*;
 
-public class GraphicTest extends BasicGame {
+public class GraphicBubbleTest extends BasicGame {
 
-	public GraphicTest(String title) {
+	public GraphicBubbleTest(String title) {
 		super(title);
 		// TODO Auto-generated constructor stub
 	}
@@ -26,21 +26,16 @@ public class GraphicTest extends BasicGame {
 
 	@Override
 	public void init(GameContainer arg0) throws SlickException {
-		/* Sprite Test */
-
-		Avatar avt = new Avatar(1,Sprite.ASSASSIN1A);
-		avt.setPosition(2, 3);
-		/* Map Test */
-		Stage.loadMap(Map.SNOW);
-		/* Camera Test */
-		Stage.getCamera().setPosition(10, 10);
-
+		// TODO Auto-generated method stub
+		Bubble bb = new Bubble(0,Bubble.BUBBLE_1);
+		bb.setPosition(50, 50);
+		Stage.add(bb);
 	}
 
 	@Override
 	public void update(GameContainer c, int delta) throws SlickException {
 		// TODO Auto-generated method stub
-		/*Input input = c.getInput();
+		Input input = c.getInput();
 		Sprite sprt = Stage.get(0);
 		//System.out.println("delta:"+delta);
 		//System.out.println("FPS:"+Stage.getFPS());
@@ -74,13 +69,13 @@ public class GraphicTest extends BasicGame {
 				sprt.setAlpha(sprt.getAlpha()+delta/5000f);
 			else if(input.isKeyDown(Input.KEY_MINUS))
 				sprt.setAlpha(sprt.getAlpha()-delta/5000f);
-		}*/
+		}
 	}
 
 	public static void main(String [] args){
 		try {
-			AppGameContainer g = new AppGameContainer(new GraphicTest(
-					"Graphic test."), 800, 600, false);
+			AppGameContainer g = new AppGameContainer(new GraphicBubbleTest(
+					"Graphic basic test."), 800, 600, false);
 			Stage.setContainer(g);
 			g.setFullscreen(false);
 			g.setVerbose(false);

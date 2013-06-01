@@ -232,4 +232,16 @@ public class AnimationResource {
 			};
 		};
 	}
+	public static class bubbles{
+		public static HashMap<Integer,AnimationInfo[]> still = new HashMap<Integer,AnimationInfo[]>(){
+			{
+				put(Sprite.BUBBLE_1,new AnimationInfo[]{
+						new AnimationInfo("res/game/graphic/bubbles/bubble_1.png",4,4,0,3,0,3,32,32)
+				});
+				put(Sprite.BUBBLE_2,new AnimationInfo[]{
+						new AnimationInfo("res/game/graphic/bubbles/bubble_2.png",4,4,0,3,0,3,32,32)
+				});
+			};
+		};
+	}
 }

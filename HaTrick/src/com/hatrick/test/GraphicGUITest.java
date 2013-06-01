@@ -1,19 +1,25 @@
 package com.hatrick.test;
 
 
+import java.awt.Font;
+
 import org.newdawn.slick.AppGameContainer;
 import org.newdawn.slick.BasicGame;
+import org.newdawn.slick.Color;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Image;
 import org.newdawn.slick.Input;
 import org.newdawn.slick.SlickException;
+import org.newdawn.slick.UnicodeFont;
+import org.newdawn.slick.font.effects.ColorEffect;
+import org.newdawn.slick.gui.GUIContext;
+import org.newdawn.slick.gui.TextField;
 
 import com.hatrick.graphic.*;
 
-public class GraphicTest extends BasicGame {
-
-	public GraphicTest(String title) {
+public class GraphicGUITest extends BasicGame {
+	public GraphicGUITest(String title) {
 		super(title);
 		// TODO Auto-generated constructor stub
 	}
@@ -21,26 +27,27 @@ public class GraphicTest extends BasicGame {
 	@Override
 	public void render(GameContainer arg0, Graphics arg1) throws SlickException {
 		// TODO Auto-generated method stub
-		Stage.display();
+		
+	      // Login box
+	      
+	      
+	      GUI.draw(arg0, arg1);
 	}
 
 	@Override
 	public void init(GameContainer arg0) throws SlickException {
-		/* Sprite Test */
-
-		Avatar avt = new Avatar(1,Sprite.ASSASSIN1A);
-		avt.setPosition(2, 3);
-		/* Map Test */
-		Stage.loadMap(Map.SNOW);
-		/* Camera Test */
-		Stage.getCamera().setPosition(10, 10);
-
+		Effect explosion_1 = new Effect(1,Effect.EXPLOSION_1);
+		explosion_1.setPosition(200, 200);
+		
+		Stage.add(explosion_1);
+		
+		GUI.init(arg0);
 	}
 
 	@Override
 	public void update(GameContainer c, int delta) throws SlickException {
 		// TODO Auto-generated method stub
-		/*Input input = c.getInput();
+		Input input = c.getInput();
 		Sprite sprt = Stage.get(0);
 		//System.out.println("delta:"+delta);
 		//System.out.println("FPS:"+Stage.getFPS());
@@ -74,13 +81,13 @@ public class GraphicTest extends BasicGame {
 				sprt.setAlpha(sprt.getAlpha()+delta/5000f);
 			else if(input.isKeyDown(Input.KEY_MINUS))
 				sprt.setAlpha(sprt.getAlpha()-delta/5000f);
-		}*/
+		}
 	}
 
 	public static void main(String [] args){
 		try {
-			AppGameContainer g = new AppGameContainer(new GraphicTest(
-					"Graphic test."), 800, 600, false);
+			AppGameContainer g = new AppGameContainer(new GraphicGUITest(
+					"Graphic basic test."), 800, 600, false);
 			Stage.setContainer(g);
 			g.setFullscreen(false);
 			g.setVerbose(false);

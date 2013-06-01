@@ -58,6 +58,9 @@ public abstract class Sprite {
 	/* Explosions */
 	public static final int EXPLOSION_1 = 200;
 	
+	/* Bubbles */
+	public static final int BUBBLE_1 = 500;
+	public static final int BUBBLE_2 = 501;
 	/* Elements */
 	public static final int SNOW_DUCK_1 = 10000;/* 2��1 */
 	public static final int SNOW_DUCK_2 = 10001;/* 2��1 */
@@ -121,6 +124,7 @@ public abstract class Sprite {
 	private boolean _acting;
 	private int _action;//Action that the sprite is performing
 	private int _nextAction;
+	private boolean _loop;
 	private int _depth; //sprite's depth to control display, less deeper,later display  
 	private int m_width;
 	private int m_height;
@@ -143,6 +147,7 @@ public abstract class Sprite {
 		_acting = false;
 		_action = ACTION_NONE;
 		_nextAction = ACTION_NONE;
+		_loop = false;
 		_imgs = new HashMap<Integer,Image>();
 		_actions = new HashMap<Integer,Animation>();
 		_currentImg = null;
@@ -240,10 +245,12 @@ public abstract class Sprite {
 			
 			//Check if this animation is finished and if so switch to the next animation
 			if(_currentAnimation.getFrame() == _currentAnimation.getFrameCount()-1){
-				_currentAnimation.stop();
-				_acting = false;
-				_action = _nextAction;
-				_nextAction = ACTION_NONE;
+				if(!_loop){
+					_currentAnimation.stop();
+					_acting = false;
+					_action = _nextAction;
+					_nextAction = ACTION_NONE;
+				}
 			}
 		}else{
 			if(_currentImg == null) return;
@@ -446,5 +453,13 @@ public abstract class Sprite {
 	
 	public int getDepth() {
 		return this._depth;
+	}
+
+	public boolean isLoop() {
+		return _loop;
+	}
+
+	public void setLoop(boolean _loop) {
+		this._loop = _loop;
 	}
 }
