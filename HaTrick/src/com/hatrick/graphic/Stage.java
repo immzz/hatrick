@@ -13,6 +13,9 @@ import org.newdawn.slick.AppGameContainer;
 import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
 
+import com.hatrick.logic.ClientLogic;
+import com.hatrick.logic.Hero;
+
 public class Stage {
 	private static HashMap<Integer,Sprite> elements = new HashMap<Integer,Sprite>();
 	private static AppGameContainer container = null;
@@ -20,23 +23,23 @@ public class Stage {
 	private static com.hatrick.graphic.Map map;
 	private static Camera camera = new Camera(800,600);
 	public static int depth = 0;
-	
+
 	public Stage(AppGameContainer container){
 		setContainer(container);
 	}
-	
+
 
 
 	public static void setContainer(AppGameContainer agc){
 		container = agc;
 	}
-	
+
 	/*when create a sprite, init it's depth for display*/
 	public static void initDepth(Sprite sprt) {
 		sprt.setDepth(depth);
 		depth++;
 	}
-	
+
 	/*switch depth of two sprite when necessary*/
 	public static void switchDepth(Sprite sprt1,Sprite sprt2) {
 		int depth1,depth2;
@@ -45,7 +48,7 @@ public class Stage {
 		sprt1.setDepth(depth2);
 		sprt2.setDepth(depth1);
 	}
-	
+
 	//鎶婄墿浣撳姞鍏ュ埌鑸炲彴
 	public static void add(Sprite sprt){
 		elements.put(sprt.getId(), sprt);
@@ -71,7 +74,7 @@ public class Stage {
 				flags[i][j] = false;
 			}
 		}
-		
+
 		//load floor
 		for(int i = 0;i<height;i++){
 			for(int j=0;j<width;j++){
@@ -91,13 +94,13 @@ public class Stage {
 				}
 			}
 		}
-		
+
 		for(int i = 0;i<height;i++){
 			for(int j=0;j<width;j++){
 				flags[i][j] = false;
 			}
 		}
-		
+
 		//load assets
 		for(int i = 0;i<height;i++){
 			for(int j=0;j<width;j++){
@@ -134,6 +137,30 @@ public class Stage {
 			sprt_entry.getValue().draw();
 		}
 	}
+	public static void update(){
+		ArrayList<Hero> list = ClientLogic.get_heros();
+		for(int i=0;i<list.size();i++){
+			boolean found = false;
+			Hero hero = list.get(i);
+			Sprite sprt = null;
+			Iterator iter = elements.entrySet().iterator();
+			while (iter.hasNext()) {
+				Map.Entry<Integer,Sprite> entry = (Map.Entry) iter.next();
+				sprt = entry.getValue();
+				if(sprt.getLogicId() == hero.id){
+					found = true;
+					break;
+				}
+			}
+			if(!found){
+				sprt = new Avatar(Sprite.getNextClientSpriteId(),Avatar.ASSASSIN1B);
+				sprt.setLogicId(hero.id);
+				Stage.add(sprt);
+			}
+			sprt.moveTo((float)hero.pos_x,(float)hero.pos_y);
+			
+		}
+	}
 
 	public static int getFPS() {
 		return container.getFPS();
@@ -158,5 +185,5 @@ public class Stage {
 		Stage.camera = camera;
 	}
 
-	
+
 }
