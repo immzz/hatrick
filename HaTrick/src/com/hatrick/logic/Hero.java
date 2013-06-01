@@ -14,7 +14,7 @@ public class Hero extends LogicObject implements Serializable{
 	double hp;
 	double change;
 	/* using items */
-	Item[] bag = new Item[10];
+	//Item[] bag = new Item[10];
 	int strength;
 	int power;
 	
@@ -25,8 +25,8 @@ public class Hero extends LogicObject implements Serializable{
     public void doAction() {
     	actionTime--;
     	offset++;
-    	if(actionTime == 0) {
-    		
+    	if(actionTime <= 0) {
+    		LogicObject.mapInstance.delActionList(this);
     	}
     }
 

@@ -1,4 +1,7 @@
 package com.hatrick.logic;
+
+import java.util.ArrayList;
+
 public class LogicMap {
     static final int WALK_THROUGH = 32;
     int height, width;
@@ -117,8 +120,8 @@ public class LogicMap {
         int new_y = obj.p_y + off_y;
         if (reachable(new_x, new_y)) {
             actionList.add(obj);
-            deleteObj(obj.p_x, obj.p_y);
-            insertObj(new_x, new_y):
+            deleteObj(obj);
+            insertObj(obj);
         }
         else {
             obj.actionTime = 0;
