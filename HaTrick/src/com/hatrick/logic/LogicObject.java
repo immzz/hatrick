@@ -14,13 +14,10 @@ public abstract class LogicObject implements Serializable{
     public double width;
     public int direction;
     public double speed;
-    public long actionTime;
-    public long deleteTime;
+    public int actionTime;
+    public int deleteTime;
 
     public LogicObject mapNext;
-    public LogicObject listNext;
-    public LogicObject actionListNext;
-    public LogicObject deleteListNext;
 
     protected LogicObject(double pos_x, double pos_y, double width, int direction, double speed, long actionTime, long deleteTime) {
         this.pos_x = pos_x;
