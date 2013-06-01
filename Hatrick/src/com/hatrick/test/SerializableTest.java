@@ -11,7 +11,7 @@ public class SerializableTest {
 		class DumbOutputStream extends OutputStream {
 			int count = 0;
 			public void write(int b) throws IOException {
-				count++; // 只计数，不产生字节转移
+				count++; // 鍙鏁帮紝涓嶄骇鐢熷瓧鑺傝浆绉�
 			}
 		}
 		DumbOutputStream buf = new DumbOutputStream();
@@ -32,9 +32,9 @@ public class SerializableTest {
 	}
 
 	public static void main(String[] args) {
-		Hero newhero = new Hero(1, 2, 3, 4, 5);
+		/*Hero newhero = new Hero(1, 2, 3, 4, 5);
 		System.out.println("Size of Hero: " + calcSize(newhero));
 		Operation newop = new Operation();
-		System.out.println("Size of Operation: " + calcSize(newop));
+		System.out.println("Size of Operation: " + calcSize(newop));*/
 	}
 }
