@@ -1,4 +1,3 @@
-
 package com.hatrick.test;
 
 
@@ -11,16 +10,10 @@ import org.newdawn.slick.Input;
 import org.newdawn.slick.SlickException;
 
 import com.hatrick.graphic.*;
-import com.hatrick.logic.ClientLogic;
-import com.hatrick.logic.Operation;
-import com.hatrick.logic.ServerLogic;
-import com.hatrick.server.Client;
-import com.hatrick.server.Message;
-import com.hatrick.server.Server;
 
-public class GraphicBasicTest2 extends BasicGame {
+public class GraphicExplosionTest extends BasicGame {
 
-	public GraphicBasicTest2(String title) {
+	public GraphicExplosionTest(String title) {
 		super(title);
 		// TODO Auto-generated constructor stub
 	}
@@ -28,45 +21,25 @@ public class GraphicBasicTest2 extends BasicGame {
 	@Override
 	public void render(GameContainer arg0, Graphics arg1) throws SlickException {
 		// TODO Auto-generated method stub
-		Stage.update();
 		Stage.display();
 	}
 
 	@Override
 	public void init(GameContainer arg0) throws SlickException {
 		// TODO Auto-generated method stub
-		//Element ele_0 = new Element(0,Element.SNOW_CAGE);
-		//Element ele_1 = new Element(1,Element.BRICK1B);
-		//Element ele_2 = new Element(2,Element.FLOWER1A);
-		//Element ele_3 = new Element(3,Element.FLOWER1B);
-
-		//ele_0.setPosition(160, 80);
-		//ele_1.setPosition(320, 200);
-		//ele_2.setPosition(160, 320);
-		//ele_3.setPosition(500, 440);
-		
-		//Stage.add(ele_0);
-		Avatar avt_0 = new Avatar(0, Avatar.DAEMON2A);
-		avt_0.setPosition(0,0);
-		Stage.add(avt_0);
-		Client client=new Client();
-		new Thread(new ClientLogic("fuck")).start();
-
+		Effect explosion_1 = new Effect(1,Effect.EXPLOSION_1);
+		explosion_1.setPosition(200, 200);
+		Stage.add(explosion_1);
 	}
 
 	@Override
 	public void update(GameContainer c, int delta) throws SlickException {
 		// TODO Auto-generated method stub
 		Input input = c.getInput();
-		Operation op = new Operation();
-		op.getInput(input, ClientLogic.direction);
-		op.index = ClientLogic.myhero_index;
-		ClientLogic.sendOperation(op);
-		
-		//Sprite sprt = Stage.get(0);
+		Sprite sprt = Stage.get(0);
 		//System.out.println("delta:"+delta);
 		//System.out.println("FPS:"+Stage.getFPS());
-		/*if (input.isKeyDown(Input.KEY_UP)) {
+		if (input.isKeyDown(Input.KEY_UP)) {
 			sprt.moveTo(sprt.getX(),sprt.getY()-delta/2f);
 		}else
 		if (input.isKeyDown(Input.KEY_DOWN)) {
@@ -96,21 +69,18 @@ public class GraphicBasicTest2 extends BasicGame {
 				sprt.setAlpha(sprt.getAlpha()+delta/5000f);
 			else if(input.isKeyDown(Input.KEY_MINUS))
 				sprt.setAlpha(sprt.getAlpha()-delta/5000f);
-		}*/
+		}
 	}
 
 	public static void main(String [] args){
 		try {
-			AppGameContainer g = new AppGameContainer(new GraphicBasicTest2(
+			AppGameContainer g = new AppGameContainer(new GraphicExplosionTest(
 					"Graphic basic test."), 800, 600, false);
 			Stage.setContainer(g);
 			g.setFullscreen(false);
 			g.setVerbose(false);
 			g.setTargetFrameRate(Stage.getMaxFPS());
 			g.start();
-			
-			
-			
 		} catch (SlickException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

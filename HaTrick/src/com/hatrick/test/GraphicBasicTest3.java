@@ -40,7 +40,8 @@ public class GraphicBasicTest3 extends BasicGame {
 		//ele_3.setPosition(500, 440);
 		System.out.println("server");
 		new Thread(new Server()).start();
-		//
+		Stage.loadMap(Map.SNOW);
+		ServerLogic.initMap(Stage.getMap().getHeight(), Stage.getMap().getWidth(), Stage.getMap().getAssets());
 		new Thread(new ServerLogic()).start();
 		//Stage.loadMap(Map.SNOW);
 	}

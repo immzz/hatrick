@@ -23,11 +23,13 @@ public class Hero extends LogicObject implements Serializable{
         this.name = name;
     }
     public void doAction() {
-    	actionTime--;
     	offset++;
-    	if(actionTime <= 0) {
+    	super.count_pos();
+    	if(actionTime <= 1) {
     		LogicObject.mapInstance.delActionList(this);
     	}
+    	else 
+    		actionTime--;
     }
 
     public void doDamage(int damage) {
