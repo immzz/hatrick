@@ -64,14 +64,14 @@ public abstract class LogicObject implements Serializable{
     }
 
     public void moveDown() {
-        mapInstance.objMoveDown(this, 0, 1);
+        mapInstance.objMove(this, 0, 1);
     }
 
     public void moveLeft() {
-        mapInstance.objMoveLeft(this, -1, 0);
+        mapInstance.objMove(this, -1, 0);
     }
 
     public void moveRight() {
-        mapInstance.objMoveRight(this, 1, 0);
+        mapInstance.objMove(this, 1, 0);
     }
 }
