@@ -2,6 +2,7 @@ package com.hatrick.graphic;
 
 import com.hatrick.resource.AnimationResource;
 import com.hatrick.resource.ImageResource;
+import com.hatrick.graphic.AnimationInfo;
 
 public class Avatar extends Sprite{
 	
@@ -26,6 +27,7 @@ public class Avatar extends Sprite{
 		this.setDirectional(true);
 		this.setScale(2.0f);
 		ImageInfo [] img_infos = ImageResource.avatars.stand.get(type);
+		if(img_infos == null) return;
 		for(ImageInfo info : img_infos){
 			addImage(info);
 		}
@@ -54,22 +56,12 @@ public class Avatar extends Sprite{
 	public void moveTo(float x, float y) {
 		this.setRotation((float) Math.toDegrees(Math.atan2(x-this.getX(),this.getY()-y)));
 		//System.out.println(x-this.getX());
-		if(!(x == this.getX() && y == this.getY())){
-			this.act(Avatar.ACTION_WALK);
-		}
-		/*float next_x = (this.getX()+x)/2.0f;
-		float next_y = (this.getY()+y)/2.0f;
-		if(Math.abs(next_x - this.getX()) < 0.2){
-			next_x = this.getX();
-		}
-		if(Math.abs(next_y - this.getY()) < 0.2){
-			next_y = this.getY();
-		}
-		this.setX(next_x);
-		this.setY(next_y);*/
-		this.setX(x);
-		this.setY(y);
-		
+		this.setX((this.getX()+x)/2.0f);
+		this.setY((this.getY()+y)/2.0f);
+		//this.setX(x);
+		//this.setY(y);
+		this.act(Avatar.ACTION_WALK);
 		//System.out.println(this.getAction());
 	}
 }
+
