@@ -3,7 +3,6 @@ package com.hatrick.logic;
 import java.io.Serializable;
 
 public class Hero extends LogicObject implements Serializable{
-	private static final long serialVersionUID = 1L;
 	
 	/* moving */
 	//double pos_x, pos_y;
