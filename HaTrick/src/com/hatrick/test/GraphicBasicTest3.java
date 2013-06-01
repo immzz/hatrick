@@ -36,8 +36,11 @@ public class GraphicBasicTest3 extends BasicGame {
 		//ele_1.setPosition(320, 200);
 		//ele_2.setPosition(160, 320);
 		//ele_3.setPosition(500, 440);
-		
+		//Stage.getCamera().setCameraX(140);
+		//Stage.getCamera().setCameraY(140);
+		Stage.getCamera().caculateCameraXY(980,700,400,400);
 		Stage.loadMap(Map.SNOW);
+		
 	}
 
 	@Override

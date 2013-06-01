@@ -23,7 +23,7 @@ public class Camera {
 	}
 	
 	//根据物体的中心坐标m_x,m_y和地图的size来计算camera的x，y
-	public void Caculate_Camera_xy(int m_height, int m_width, float s_x, float s_y) {
+	public void caculateCameraXY(int m_width, int m_height, float s_x, float s_y) {
 		//计算camera的x
 		if (s_x < c_width/2) {
 			c_x = 0;
@@ -46,19 +46,24 @@ public class Camera {
 		}
 	}
 	
-	public void set_Camera_x(float x) {
+	public void setCameraX(float x) {
 		this.c_x = x;
 	}
 
-	public void set_Camera_y(float y) {
+	public void setCameraY(float y) {
 		this.c_y = y;
 	}
 	
-	public float get_Camera_x() {
+	public void setPosition(float x,float y) {
+		this.c_x = x;
+		this.c_y = y;
+	}
+	
+	public float getCameraX() {
 		return c_x;
 	}
 
-	public float get_Camera_y() {
+	public float getCameraY() {
 		return c_y;
 	}
 	

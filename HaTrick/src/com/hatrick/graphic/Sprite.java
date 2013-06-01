@@ -231,7 +231,7 @@ public abstract class Sprite {
 			current_frame.setRotation(_graphicRotation);
 			
 			/*draw参数是相对于舞台左上角，x，y是相对与地图左上角，换成camera视角*/
-			_currentAnimation.draw((int)(Stage.get_Camera_x()-current_frame.getCenterOfRotationX()*_scale),(int)(Stage.get_Camera_y()-current_frame.getCenterOfRotationY()*_scale), current_frame.getWidth()*_scale, current_frame.getHeight()*_scale);
+			_currentAnimation.draw((int)((_x-current_frame.getCenterOfRotationX()*_scale)-Stage.getCamera().getCameraX()),(int)((_y-current_frame.getCenterOfRotationY()*_scale)-Stage.getCamera().getCameraY()), current_frame.getWidth()*_scale, current_frame.getHeight()*_scale);
 			
 			//Check if this animation is finished and if so switch to the next animation
 			if(_currentAnimation.getFrame() == _currentAnimation.getFrameCount()-1){
@@ -248,7 +248,7 @@ public abstract class Sprite {
 			}
 			_currentImg.setAlpha(_alpha);
 			_currentImg.setRotation(_graphicRotation);
-			_currentImg.draw((int)(Stage.get_Camera_x()-_currentImg.getCenterOfRotationX()*_scale),(int)(Stage.get_Camera_y()-_currentImg.getCenterOfRotationY()*_scale), _currentImg.getWidth()*_scale, _currentImg.getHeight()*_scale);
+			_currentImg.draw((int)((_x-_currentImg.getCenterOfRotationX()*_scale)-Stage.getCamera().getCameraX()),(int)((_y-_currentImg.getCenterOfRotationY()*_scale)-Stage.getCamera().getCameraY()), _currentImg.getWidth()*_scale, _currentImg.getHeight()*_scale);
 		}
 	}
 
