@@ -9,7 +9,7 @@ import com.hatrick.server.Message;
 public class ClientLogic implements Runnable {
 	static String name;
 	static Hero myhero;
-	//static int myhero_index;
+	public static int myhero_index;
 	static ArrayList<Hero> hero_list = new ArrayList<Hero>();
 	
 	public static long[] direction = new long[] { 0, 0, 0, 0 };
@@ -51,6 +51,7 @@ public class ClientLogic implements Runnable {
 	}
 	
 	static public void sendOperation(Operation op) {
+		//System.out.println("send op");
 		Message message = new Message(Message.TYPE_OPERATION, null, op);
 		try {
 			Client.sendMessage(message);
@@ -59,7 +60,8 @@ public class ClientLogic implements Runnable {
 		}
 	}
 
-	synchronized static void handleMessage(Message message) {
+	public synchronized static void handleMessage(Message message) {
+
 		//if(message.type = Message.TYPE_OPERATION);
 
         // HEAD
@@ -70,13 +72,12 @@ public class ClientLogic implements Runnable {
 		if(message.type == Message.TYPE_HERO) {
 			hero_list = (ArrayList<Hero>)message.get_obj();
 			for(int i=0; i<hero_list.size(); i++) {
-				if(hero_list.get(i).name.equals(name))
+				if(hero_list.get(i).name.equals(name)) {
 					myhero = hero_list.get(i);
+					myhero_index = i;
+				}
 			}
-		}
-		if(message.type == Message.TYPE_INIT) {
-		//map & other heros init
-		//*unlock
+			//System.out.println("Hero:\tpos_x" + hero_list.get(0).pos_x +"\tpos_y" + hero_list.get(0).pos_y);
 		}
 	}
 }

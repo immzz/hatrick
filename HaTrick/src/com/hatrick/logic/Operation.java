@@ -13,6 +13,7 @@ public class Operation implements Serializable {
 	public boolean shooting = false;	// 0no 1yes
 	public boolean jumping = false;		// 0no 1yes
 	public long time = 0;
+	public int index;
 	
 	public void goingup() {
 		moving = 1;
