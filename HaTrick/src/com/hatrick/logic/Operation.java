@@ -13,6 +13,7 @@ public class Operation implements Serializable {
 	public boolean shooting = false;	// 0no 1yes
 	public boolean jumping = false;		// 0no 1yes
 	public long time = 0;
+	public int index;
 	
 	public void goingup() {
 		moving = 1;
@@ -50,11 +51,6 @@ public class Operation implements Serializable {
 		shooting = true;
 	}
 	
-	/*
-	 * Thread:
-	 * (var)	public static long[] direction;
-	 * (init)	direction = new long[] { 0, 0, 0, 0 };
-	 */
 	public void getInput(Input input, long[] direction) {
 		if (input.isKeyDown(Input.KEY_W))
 			direction[0]++;

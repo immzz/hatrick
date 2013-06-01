@@ -1,33 +1,67 @@
 package com.hatrick.logic;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 
 import com.hatrick.server.Message;
+import com.hatrick.server.Server;
 
 public class ServerLogic implements Runnable{
 	static ArrayList<Hero> hero_list = new ArrayList<Hero>();
-	Hero myhero;
+    static LogicMap logicMap;
 	ArrayList<Operation> op_list = new ArrayList<Operation>();
 	
 	synchronized static public ArrayList<Hero> get_heros () {
 		return hero_list;
 	}
+
+    public static void initMap(int height, int width, short[][] groundMap) {
+    	int[][] intMap = new int[height][width];
+    	for(int i=0;i<height;i++){
+    		for(int j=0;j<width;j++){
+    			intMap[i][j] = groundMap[i][j];
+    		}
+    	}
+        logicMap = new LogicMap(height, width, intMap);
+        LogicObject.mapInstance = logicMap;
+    }
 	
 	public void run() {
-		//duel with op_list
-		//**send hero_list
+        Iterator<LogicObject> iter;
+		while(true) {
+			try {
+				Thread.sleep(50);
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+
+            // action list
+            iter = logicMap.actionList.iterator();
+            while (!logicMap.actionList.isEmpty() && iter.hasNext()) {
+                iter.next().doAction();
+            }
+            if(logicMap.actionList.isEmpty()) System.out.println("empty");
+
+            // TODO: deleteList
+
+			Message m = new Message(Message.TYPE_HERO, null, hero_list);
+			Server.broadcast(m);
+			//if(hero_list.size() > 0)
+				//System.out.println("pos_x" + hero_list.get(0).pos_x);
+		}
 	}
 	
-	synchronized static void handleMessage(Message message) {
+	public synchronized static void handleMessage(Message message) {
 		if(message.get_type() == Message.TYPE_INIT) {
-			Hero new_hero = new Hero();
-			System.out.println("Message INIT received");
+			hero_list.add(new Hero((String)message.get_obj(),0,0,0,0,10));
+			Message m = new Message(Message.TYPE_HERO, null, hero_list);
+			Server.broadcast(m);
 		}
-		//if(message.type = Message.TYPE_OPERATION)
-		//myhero.handle_op(message.item); notgood->add_op();
-		
-		//else if(message.type = Message.TYPE_INIT)
-		//new hero
-		//ack hero_id & hero_list
+		else if(message.type == Message.TYPE_OPERATION) {
+			Operation op = (Operation)message.get_obj();
+			if(hero_list.get(op.index).is_free())
+				hero_list.get(op.index).handle_op((Operation)message.get_obj());
+		}
 	}
 }

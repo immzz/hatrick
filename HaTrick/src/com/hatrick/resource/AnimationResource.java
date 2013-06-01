@@ -2,8 +2,9 @@ package com.hatrick.resource;
 
 import java.util.HashMap;
 
-import com.hatrick.graphic.Avatar;
 import com.hatrick.graphic.AnimationInfo;
+import com.hatrick.graphic.Avatar;
+import com.hatrick.graphic.Sprite;
 
 public class AnimationResource {
 	public static class avatars{
@@ -221,6 +222,27 @@ public class AnimationResource {
 						new AnimationInfo("res/game/graphic/avatars/witch3a.png",3,4,0,2,3,3,16,32)});
 			}
 		};
-
+	}
+	public static class effects{
+		public static HashMap<Integer,AnimationInfo[]> explosions = new HashMap<Integer,AnimationInfo[]>(){
+			{
+				put(Sprite.EXPLOSION_1,new AnimationInfo[]{
+						new AnimationInfo("res/game/graphic/explosion/explosion_1.png",4,3,0,3,0,2,35,35)
+				});
+			};
+		};
+	}
+	public static class bubbles{
+		public static HashMap<Integer,AnimationInfo[]> still = new HashMap<Integer,AnimationInfo[]>(){
+			{
+				put(Sprite.BUBBLE_1,new AnimationInfo[]{
+						new AnimationInfo("res/game/graphic/bubbles/bubble_1.png",4,4,0,3,0,3,32,32)
+				});
+				put(Sprite.BUBBLE_2,new AnimationInfo[]{
+						new AnimationInfo("res/game/graphic/bubbles/bubble_2.png",4,4,0,3,0,3,32,32)
+				});
+			};
+		};
 	}
 }
+

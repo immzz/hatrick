@@ -54,44 +54,51 @@ public abstract class Sprite {
 	public static final int ASSASSIN3A = 47;
 	public static final int ASSASSIN3B = 48;
 	public static final int ASSASSIN4A = 49;
+	
+	/* Explosions */
+	public static final int EXPLOSION_1 = 200;
+	
+	/* Bubbles */
+	public static final int BUBBLE_1 = 500;
+	public static final int BUBBLE_2 = 501;
 	/* Elements */
-	public static final int SNOW_DUCK_1 = 10000;/* 2°¡1 */
-	public static final int SNOW_DUCK_2 = 10001;/* 2°¡1 */
-	public static final int SNOW_DUCK_3 = 10002;/* 2°¡1 */
-	public static final int SNOW_ICEBLOCK_1 = 10003;/* 1°¡1 */
-	public static final int SNOW_ICEBLOCK_2 = 10004;/* 1°¡1 */
-	public static final int SNOW_ICEBLOCK_3 = 10005;/* 1°¡1 */
-	public static final int SNOW_ICEBLOCK_4 = 10006;/* 1°¡1 */
-	public static final int SNOW_CAGE = 10007;/* 1°¡1 */
-	//public static final int SNOW_STATUE_1 = 10008;/* 2°¡4 */
-	public static final int SNOW_STATUE_2 = 10009;/* 2°¡4 */
-	public static final int SNOW_PLANT = 10010;/* 2°¡1 */
-	public static final int SNOW_GRASS_1 = 10011;/* 1°¡1 */
-	public static final int SNOW_GRASS_2 = 10012;/* 1°¡1 */
-	public static final int SNOW_FLOOR_1 = 10013;/* 1°¡1 */
-	public static final int SNOW_FLOOR_2 = 10014;/* 1°¡1 */
-	public static final int SNOW_FLOOR_3 = 10015;/* 1°¡1 */
-	public static final int SNOW_FLOOR_4 = 10016;/* 1°¡1 */
-	public static final int SNOW_FLOOR_5 = 10017;/* 1°¡1 */
-	public static final int SNOW_FLOOR_6 = 10018;/* 1°¡1 */
-	public static final int SNOW_FLOOR_7 = 10019;/* 1°¡1 */
-	public static final int SNOW_FLOOR_8 = 10020;/* 1°¡1 */
-	public static final int SNOW_ROAD_CURVE_1 = 10021;/* 2°¡2 */
-	public static final int SNOW_ROAD_CURVE_2 = 10022;/* 2°¡2 */
-	public static final int SNOW_ROAD_CURVE_3 = 10023;/* 2°¡2 */
-	public static final int SNOW_ROAD_CURVE_4 = 10024;/* 2°¡2 */
-	public static final int SNOW_ROAD_CURVE_5 = 10025;/* 2°¡2 */
-	public static final int SNOW_ROAD_CURVE_6 = 10026;/* 2°¡2 */
-	public static final int SNOW_ROAD_CURVE_7 = 10027;/* 2°¡2 */
-	public static final int SNOW_ROAD_CURVE_8 = 10028;/* 2°¡2 */
+	public static final int SNOW_DUCK_1 = 10000;/* 2ÔøΩÔøΩ1 */
+	public static final int SNOW_DUCK_2 = 10001;/* 2ÔøΩÔøΩ1 */
+	public static final int SNOW_DUCK_3 = 10002;/* 2ÔøΩÔøΩ1 */
+	public static final int SNOW_ICEBLOCK_1 = 10003;/* 1ÔøΩÔøΩ1 */
+	public static final int SNOW_ICEBLOCK_2 = 10004;/* 1ÔøΩÔøΩ1 */
+	public static final int SNOW_ICEBLOCK_3 = 10005;/* 1ÔøΩÔøΩ1 */
+	public static final int SNOW_ICEBLOCK_4 = 10006;/* 1ÔøΩÔøΩ1 */
+	public static final int SNOW_CAGE = 10007;/* 1ÔøΩÔøΩ1 */
+	//public static final int SNOW_STATUE_1 = 10008;/* 2ÔøΩÔøΩ4 */
+	public static final int SNOW_STATUE_2 = 10009;/* 2ÔøΩÔøΩ4 */
+	public static final int SNOW_PLANT = 10010;/* 2ÔøΩÔøΩ1 */
+	public static final int SNOW_GRASS_1 = 10011;/* 1ÔøΩÔøΩ1 */
+	public static final int SNOW_GRASS_2 = 10012;/* 1ÔøΩÔøΩ1 */
+	public static final int SNOW_FLOOR_1 = 10013;/* 1ÔøΩÔøΩ1 */
+	public static final int SNOW_FLOOR_2 = 10014;/* 1ÔøΩÔøΩ1 */
+	public static final int SNOW_FLOOR_3 = 10015;/* 1ÔøΩÔøΩ1 */
+	public static final int SNOW_FLOOR_4 = 10016;/* 1ÔøΩÔøΩ1 */
+	public static final int SNOW_FLOOR_5 = 10017;/* 1ÔøΩÔøΩ1 */
+	public static final int SNOW_FLOOR_6 = 10018;/* 1ÔøΩÔøΩ1 */
+	public static final int SNOW_FLOOR_7 = 10019;/* 1ÔøΩÔøΩ1 */
+	public static final int SNOW_FLOOR_8 = 10020;/* 1ÔøΩÔøΩ1 */
+	public static final int SNOW_ROAD_CURVE_1 = 10021;/* 2ÔøΩÔøΩ2 */
+	public static final int SNOW_ROAD_CURVE_2 = 10022;/* 2ÔøΩÔøΩ2 */
+	public static final int SNOW_ROAD_CURVE_3 = 10023;/* 2ÔøΩÔøΩ2 */
+	public static final int SNOW_ROAD_CURVE_4 = 10024;/* 2ÔøΩÔøΩ2 */
+	public static final int SNOW_ROAD_CURVE_5 = 10025;/* 2ÔøΩÔøΩ2 */
+	public static final int SNOW_ROAD_CURVE_6 = 10026;/* 2ÔøΩÔøΩ2 */
+	public static final int SNOW_ROAD_CURVE_7 = 10027;/* 2ÔøΩÔøΩ2 */
+	public static final int SNOW_ROAD_CURVE_8 = 10028;/* 2ÔøΩÔøΩ2 */
 	//public static final int SNOW_ROAD_HOR_1 = 10029;
-	public static final int SNOW_ROAD_HOR_2 = 10030;/* 1°¡1 */
+	public static final int SNOW_ROAD_HOR_2 = 10030;/* 1ÔøΩÔøΩ1 */
 	//public static final int SNOW_ROAD_HOR_3 = 10031;
-	public static final int SNOW_ROAD_HOR_4 = 10032;/* 1°¡1 */
+	public static final int SNOW_ROAD_HOR_4 = 10032;/* 1ÔøΩÔøΩ1 */
 	//public static final int SNOW_ROAD_VER_1 = 10032;
-	public static final int SNOW_ROAD_VER_2 = 10033;/* 1°¡1 */
+	public static final int SNOW_ROAD_VER_2 = 10033;/* 1ÔøΩÔøΩ1 */
 	//public static final int SNOW_ROAD_VER_3 = 10034;
-	public static final int SNOW_ROAD_VER_4 = 10035;/* 1°¡1 */
+	public static final int SNOW_ROAD_VER_4 = 10035;/* 1ÔøΩÔøΩ1 */
 	
 	
 	public static final int DIRECTION_NONE = 100;
@@ -106,17 +113,21 @@ public abstract class Sprite {
 	private static final int ACTION_NONE = 1000000;
 	
 	private int _id;
+	private int _logic_id;
 	private float _x;
 	private float _y;
 	private float _rotation;//This is the rotation of movement.
 	private float _graphicRotation;//This is the rotation of graphic.
 	private float _scale;
 	private float _alpha;
+	private int _logic_direction;
 	private boolean _directional;
 	private boolean _visible;
 	private boolean _acting;
 	private int _action;//Action that the sprite is performing
 	private int _nextAction;
+	private boolean _loop;
+	private int _depth; //sprite's depth to control display, less deeper,later display  
 	private int m_width;
 	private int m_height;
 	
@@ -138,6 +149,7 @@ public abstract class Sprite {
 		_acting = false;
 		_action = ACTION_NONE;
 		_nextAction = ACTION_NONE;
+		_loop = false;
 		_imgs = new HashMap<Integer,Image>();
 		_actions = new HashMap<Integer,Animation>();
 		_currentImg = null;
@@ -209,7 +221,7 @@ public abstract class Sprite {
 		if(_acting){
 			Animation _prevAnimation = _currentAnimation;
 			if(isActDirectional(_action)){
-				_currentAnimation = _actions.get(_action+getDirection());
+				_currentAnimation = _actions.get(_action+getLogicDirection());
 			}else{
 				_currentAnimation = _actions.get(_action);
 			}
@@ -229,24 +241,29 @@ public abstract class Sprite {
 			current_frame.setAlpha(_alpha);
 			current_frame.setRotation(_graphicRotation);
 			
-			_currentAnimation.draw((int)(_x-current_frame.getCenterOfRotationX()*_scale),(int)(_y-current_frame.getCenterOfRotationY()*_scale), current_frame.getWidth()*_scale, current_frame.getHeight()*_scale);
+			/*drawÂèÇÊï∞ÊòØÁõ∏ÂØπ‰∫éËàûÂè∞Â∑¶‰∏äËßíÔºåxÔºåyÊòØÁõ∏ÂØπ‰∏éÂú∞ÂõæÂ∑¶‰∏äËßíÔºåÊç¢ÊàêcameraËßÜËßí*/
+			_currentAnimation.draw((int)((_x-current_frame.getCenterOfRotationX()*_scale)-Stage.getCamera().getCameraX()),(int)((_y-current_frame.getCenterOfRotationY()*_scale)-Stage.getCamera().getCameraY()), current_frame.getWidth()*_scale, current_frame.getHeight()*_scale);
+
 			
 			//Check if this animation is finished and if so switch to the next animation
 			if(_currentAnimation.getFrame() == _currentAnimation.getFrameCount()-1){
-				_currentAnimation.stop();
-				_acting = false;
-				_action = _nextAction;
-				_nextAction = ACTION_NONE;
+				if(!_loop){
+					_currentAnimation.stop();
+					_acting = false;
+					_action = _nextAction;
+					_nextAction = ACTION_NONE;
+				}
 			}
 		}else{
+			if(_currentImg == null) return;
 			if(_directional){
-				_currentImg = _imgs.get(getDirection());
+				_currentImg = _imgs.get(getLogicDirection());
 			}else{
 				_currentImg = _imgs.get(DIRECTION_NONE);
 			}
 			_currentImg.setAlpha(_alpha);
 			_currentImg.setRotation(_graphicRotation);
-			_currentImg.draw((int)(_x-_currentImg.getCenterOfRotationX()*_scale),(int)(_y-_currentImg.getCenterOfRotationY()*_scale), _currentImg.getWidth()*_scale, _currentImg.getHeight()*_scale);
+			_currentImg.draw((int)((_x-_currentImg.getCenterOfRotationX()*_scale)-Stage.getCamera().getCameraX()),(int)((_y-_currentImg.getCenterOfRotationY()*_scale)-Stage.getCamera().getCameraY()), _currentImg.getWidth()*_scale, _currentImg.getHeight()*_scale);
 		}
 	}
 
@@ -264,6 +281,12 @@ public abstract class Sprite {
 	}
 	private void setCurrentAnimation(Animation anmi){
 		
+	}
+	public int getLogicDirection(){
+		return _logic_direction;
+	}
+	public void setLogicDirection(int _direction){
+		_logic_direction = _direction;
 	}
 	protected int getDirection(){
 		float real_deg =  ( 360 + (_rotation % 360 )) % 360;
@@ -388,6 +411,14 @@ public abstract class Sprite {
 	public void setId(int _id) {
 		this._id = _id;
 	}
+	
+	public int getLogicId() {
+		return _logic_id;
+	}
+
+	public void setLogicId(int _id) {
+		this._logic_id = _id;
+	}
 
 	public int getAction() {
 		return _action;
@@ -432,4 +463,20 @@ public abstract class Sprite {
 		return m_width;
 	}
 	
+	public void setDepth(int depth) {
+		this._depth = depth;
+	}
+	
+	public int getDepth() {
+		return this._depth;
+	}
+
+	public boolean isLoop() {
+		return _loop;
+	}
+
+	public void setLoop(boolean _loop) {
+		this._loop = _loop;
+	}
 }
+

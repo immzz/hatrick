@@ -2,9 +2,10 @@ package com.hatrick.graphic;
 
 import com.hatrick.resource.AnimationResource;
 import com.hatrick.resource.ImageResource;
+import com.hatrick.graphic.AnimationInfo;
 
 public class Avatar extends Sprite{
-	
+
 	public static final int [] ASSASSINS = new int[]{ASSASSIN1A,ASSASSIN1B,ASSASSIN2A,ASSASSIN3A,ASSASSIN3B,ASSASSIN4A};
 	public static final int [] CRUSADERS = new int[]{CRUSADER1A,CRUSADER1B};
 	public static final int [] DAEMONS = new int[]{DAEMON2A};
@@ -17,15 +18,16 @@ public class Avatar extends Sprite{
 	public static final int [] MAGICIANS = new int[]{MAGICIAN1A,MAGICIAN2A,MAGICIAN3A,MAGICIAN3B,MAGICIAN4A,MAGICIAN4B,MAGICIAN5A,MAGICIAN5B,MAGICIAN6A,MAGICIAN6B};
 	public static final int [] MONKS = new int[]{MONK1A,MONK1B};
 	public static final int [] PRIESTS = new int[]{PRIEST1A,PRIEST1B,PRIEST2A,PRIEST2B,PRIEST3A};
-	
-	
+
+
 	public static final int ACTION_WALK = 0;
-	
+
 	public Avatar(int id,int type){
 		setId(id);
 		this.setDirectional(true);
 		this.setScale(2.0f);
 		ImageInfo [] img_infos = ImageResource.avatars.stand.get(type);
+		if(img_infos == null) return;
 		for(ImageInfo info : img_infos){
 			addImage(info);
 		}
@@ -39,7 +41,7 @@ public class Avatar extends Sprite{
 			}
 		}
 	}
-	
+
 	@Override
 	public boolean isActDirectional(int action) {
 		// TODO Complete the function when new actions added.
@@ -54,11 +56,15 @@ public class Avatar extends Sprite{
 	public void moveTo(float x, float y) {
 		this.setRotation((float) Math.toDegrees(Math.atan2(x-this.getX(),this.getY()-y)));
 		//System.out.println(x-this.getX());
-		this.setX((this.getX()+x)/2.0f);
-		this.setY((this.getY()+y)/2.0f);
-		//this.setX(x);
-		//this.setY(y);
-		this.act(Avatar.ACTION_WALK);
+		if(Math.abs(this.getX() - x) > 1 || Math.abs(this.getY() - y) > 1){
+			this.setX((this.getX()+x)/2.0f);
+			this.setY((this.getY()+y)/2.0f);
+			this.act(Avatar.ACTION_WALK);
+		}else{
+			this.setX(x);
+			this.setY(y);
+		}
 		//System.out.println(this.getAction());
 	}
 }
+
