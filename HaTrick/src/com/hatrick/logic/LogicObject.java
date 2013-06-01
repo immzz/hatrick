@@ -13,7 +13,6 @@ public abstract class LogicObject implements Serializable{
 	public int p_x, p_y;
 	public int offset;
     public double pos_x, pos_y;
-    public double width;
     public int direction;
     public double speed;
     public int actionTime;
@@ -40,7 +39,7 @@ public abstract class LogicObject implements Serializable{
     	}
     }
 
-    protected LogicObject(int p_x, int p_y, double width, int direction, double speed, int actionTime, int deleteTime) {
+    protected LogicObject(int p_x, int p_y, int direction, double speed, int actionTime, int deleteTime) {
         this.p_x = p_x;
         this.p_y = p_y;
         this.width = width;
@@ -51,11 +50,19 @@ public abstract class LogicObject implements Serializable{
         id = globalId ++;
     }
 
-    protected LogicObject(int p_x, int p_y, double width, int direction, double speed) {
-        this(p_x, p_y, width, direction, speed, 0, 0);
+    protected LogicObject(int p_x, int p_y, int direction, double speed) {
+        this(p_x, p_y, direction, speed, 0, 0);
     }
 
     public abstract void doAction();
+
+    public void doDelete() {
+        deleteTime --;
+        if (actionTime <= 0) {
+            LogicObject.mapInstance.delDelList(this);
+            LogicObject.mapInstance.delObjList(this);
+        }
+    }
     
     // NOTICE!!!!!!!!!!!!!!!!!!!!!!!!!
     // we may assume dis < width

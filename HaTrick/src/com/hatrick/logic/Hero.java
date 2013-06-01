@@ -18,8 +18,8 @@ public class Hero extends LogicObject implements Serializable{
 	int strength;
 	int power;
 	
-    public Hero(String name, int p_x, int p_y, double width, int direction, double speed) {
-        super(p_x, p_y, width, direction, speed);
+    public Hero(String name, int p_x, int p_y, int direction, double speed) {
+        super(p_x, p_y, direction, speed);
         this.name = name;
     }
     public void doAction() {
@@ -30,14 +30,17 @@ public class Hero extends LogicObject implements Serializable{
     	}
     }
 
-    public void doDamage(double damage) {
+    public void doDamage(int damage) {
         // naive
         hp -= damage;
         if (hp < 0)
             dead();
     }
 
-    private void dead(){}
+    private void dead(){
+        deleteTime = 0;
+        LogicObject.mapInstance.addDeleteList(this);
+    }
     
     boolean is_free() {
     	if(this.actionTime == 0) return true;

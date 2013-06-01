@@ -40,7 +40,7 @@ public class LogicMap {
         actionList.add(obj);
     }
 
-    private void addDeleteList(LogicObject obj) {
+    public void addDeleteList(LogicObject obj) {
         deleteList.add(obj);
     }
 
@@ -82,37 +82,24 @@ public class LogicMap {
         if (objMap[y][x] != null &&
             (objMap[y][x] instanceof Bomb))
             return false;
-        else
+        else if (groundMap[y][x] <= WALK_THROUGH)
             return true;
+        else
+            return false;
     }
 
-    public void damage(double pos_x, double pos_y, double range, double power) {
-        /*
-        double left = pos_y - range;
-        double right = pos_y + range;
-        double up = pos_x - range;
-        double down = pos_x + range;
-        if (left < 0)
-            left = 0;
-        if (right > size_y)
-            right = size_y;
-        if (up < 0)
-            up = 0;
-        if (down > size_x)
-            down = size_x;
-
-        for (int i = Math.floor(up / ratio); i <= Math.ceil(down / ratio); i ++)
-            for (int j = Math.floor(left / ratio); j <= Math.ceil(right / ratio); j++) {
+    public void damage(int x, int y, int power) {
+        for (int i = y - 1; i <= y + 1; i ++)
+            for (int j = x - 1; j <= x + 1; j ++) {
+                if (i < 0 || i >= height || j < 0 || j >= width)
+                    continue;
                 LogicObject iter = objMap[i][j];
                 while (iter != null) {
-                    if ((iter.pos_x - pos_x) * (iter.pos_x - pos_x)
-                            + (iter.pos_y - pos_y) * (iter.pos_y - pos_y)
-                            < range * range)
-                        iter.doDamage(power);
+                    if (iter instanceof Hero)
+                        ((Hero)iter).doDamage(power);
+                    iter = iter.mapNext;
                 }
             }
-                        */
-        
     }
 
     public void objMove(LogicObject obj, int off_x, int off_y) {
