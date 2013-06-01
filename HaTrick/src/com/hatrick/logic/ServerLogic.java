@@ -1,26 +1,44 @@
 package com.hatrick.logic;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 
 import com.hatrick.server.Message;
 import com.hatrick.server.Server;
 
 public class ServerLogic implements Runnable{
 	static ArrayList<Hero> hero_list = new ArrayList<Hero>();
+    static LogicMap logicMap;
 	ArrayList<Operation> op_list = new ArrayList<Operation>();
 	
 	synchronized static public ArrayList<Hero> get_heros () {
 		return hero_list;
 	}
+
+    public static void initMap(int height, int width, int[][] groundMap) {
+
+        logicMap = new LogicMap(height, width, groundMap);
+        LogicObject.mapInstance = logicMap;
+    }
 	
 	public void run() {
+        Iterator<LogicObject> iter;
 		while(true) {
 			try {
-				Thread.sleep(30);
+				Thread.sleep(50);
 			} catch (InterruptedException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
+
+            // action list
+            iter = logicMap.actionList.iterator();
+            while (iter.hasNext()) {
+                iter.next().doAction();
+            }
+
+            // TODO: deleteList
+
 			Message m = new Message(Message.TYPE_HERO, null, hero_list);
 			Server.broadcast(m);
 			//if(hero_list.size() > 0)
@@ -36,8 +54,8 @@ public class ServerLogic implements Runnable{
 		}
 		else if(message.type == Message.TYPE_OPERATION) {
 			Operation op = (Operation)message.get_obj();
-			//System.out.println(op.moving);
-			hero_list.get(op.index).handle_op((Operation)message.get_obj()); //notgood->add_op();
+			if(hero_list.get(op.index).is_free())
+				hero_list.get(op.index).handle_op((Operation)message.get_obj());
 		}
 	}
 }

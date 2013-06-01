@@ -10,21 +10,39 @@ public abstract class LogicObject implements Serializable{
 	/* status */
 	int status;			//stop
 
+	public int p_x, p_y;
+	public int offset;
     public double pos_x, pos_y;
     public double width;
     public int direction;
     public double speed;
-    public long actionTime;
-    public long deleteTime;
+    public int actionTime;
+    public int deleteTime;
 
     public LogicObject mapNext;
-    public LogicObject listNext;
-    public LogicObject actionListNext;
-    public LogicObject deleteListNext;
+    
+    void count_pos() {
+    	if(direction == 1) {
+    		this.pos_x = p_x * 70;
+        	this.pos_y = (p_y - (double)offset / 4) * 70;
+    	}
+    	else if(direction == 2) {
+    		this.pos_x = p_x * 70;
+        	this.pos_y = (p_y + (double)offset / 4) * 70;
+    	}
+    	else if(direction == 3) {
+    		this.pos_x = (p_x - (double)offset / 4) * 70;
+        	this.pos_y = p_y * 70;
+    	}
+    	else if(direction == 4) {
+    		this.pos_x = (p_x + (double)offset / 4) * 70;
+        	this.pos_y = p_y * 70;
+    	}
+    }
 
-    protected LogicObject(double pos_x, double pos_y, double width, int direction, double speed, long actionTime, long deleteTime) {
-        this.pos_x = pos_x;
-        this.pos_y = pos_y;
+    protected LogicObject(int p_x, int p_y, double width, int direction, double speed, int actionTime, int deleteTime) {
+        this.p_x = p_x;
+        this.p_y = p_y;
         this.width = width;
         this.direction = direction;
         this.speed = speed;
@@ -33,46 +51,27 @@ public abstract class LogicObject implements Serializable{
         id = globalId ++;
     }
 
-    protected LogicObject(double pos_x, double pos_y, double width, int direction, double speed) {
-        this(pos_x, pos_y, width, direction, speed, 0, 0);
+    protected LogicObject(int p_x, int p_y, double width, int direction, double speed) {
+        this(p_x, p_y, width, direction, speed, 0, 0);
     }
 
     public abstract void doAction();
-
-    public boolean collide(double x, double y) {
-        if (x > pos_x && x < pos_x + width
-            && y > pos_y && y < pos_y + width)
-            return true;
-        else
-            return false;
-    }
-
-    private boolean collideWith(LogicObject obj) {
-        return collide(obj.pos_x, obj.pos_y)
-                || collide(obj.pos_x + obj.width, obj.pos_y)
-                || collide(obj.pos_x, obj.pos_x + obj.width)
-                || collide(obj.pos_x + obj.width, obj.pos_y + obj.width);
-    }
-
-    public boolean collide(LogicObject obj) {
-        return this.collideWith(obj) || obj.collideWith(this);
-    }
     
     // NOTICE!!!!!!!!!!!!!!!!!!!!!!!!!
     // we may assume dis < width
-    public void moveUp(double dis) {
-        mapInstance.objMoveUp(this, -dis);
+    public void moveUp() {
+        mapInstance.objMove(this, 0, -1);
     }
 
-    public void moveDown(double dis) {
-        mapInstance.objMoveDown(this, dis);
+    public void moveDown() {
+        mapInstance.objMove(this, 0, 1);
     }
 
-    public void moveLeft(double dis) {
-        mapInstance.objMoveLeft(this, -dis);
+    public void moveLeft() {
+        mapInstance.objMove(this, -1, 0);
     }
 
-    public void moveRight(double dis) {
-        mapInstance.objMoveRight(this, dis);
+    public void moveRight() {
+        mapInstance.objMove(this, 1, 0);
     }
 }
