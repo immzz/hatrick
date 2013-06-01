@@ -113,6 +113,7 @@ public abstract class Sprite {
 	private static final int ACTION_NONE = 1000000;
 	
 	private int _id;
+	private int _logic_id;
 	private float _x;
 	private float _y;
 	private float _rotation;//This is the rotation of movement.
@@ -402,6 +403,14 @@ public abstract class Sprite {
 
 	public void setId(int _id) {
 		this._id = _id;
+	}
+	
+	public int getLogicId() {
+		return _logic_id;
+	}
+
+	public void setLogicId(int _id) {
+		this._logic_id = _id;
 	}
 
 	public int getAction() {
