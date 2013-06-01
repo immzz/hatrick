@@ -54,6 +54,10 @@ public abstract class Sprite {
 	public static final int ASSASSIN3A = 47;
 	public static final int ASSASSIN3B = 48;
 	public static final int ASSASSIN4A = 49;
+	
+	/* Explosions */
+	public static final int EXPLOSION_1 = 200;
+	
 	/* Elements */
 	public static final int SNOW_DUCK_1 = 10000;/* 2��1 */
 	public static final int SNOW_DUCK_2 = 10001;/* 2��1 */
@@ -241,6 +245,7 @@ public abstract class Sprite {
 				_nextAction = ACTION_NONE;
 			}
 		}else{
+			if(_currentImg == null) return;
 			if(_directional){
 				_currentImg = _imgs.get(getDirection());
 			}else{
