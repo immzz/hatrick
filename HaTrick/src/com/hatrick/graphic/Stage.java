@@ -13,25 +13,43 @@ import org.newdawn.slick.AppGameContainer;
 import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
 
-import com.hatrick.logic.ClientLogic;
-import com.hatrick.logic.Hero;
-
 public class Stage {
 	private static HashMap<Integer,Sprite> elements = new HashMap<Integer,Sprite>();
 	private static AppGameContainer container = null;
 	private static final int FPS_MAX = 30;
 	private static com.hatrick.graphic.Map map;
-
+	private static Camera camera = new Camera(800,600);
+	public static int depth = 0;
+	
 	public Stage(AppGameContainer container){
 		setContainer(container);
 	}
+	
+
 
 	public static void setContainer(AppGameContainer agc){
 		container = agc;
 	}
-
+	
+	/*when create a sprite, init it's depth for display*/
+	public static void initDepth(Sprite sprt) {
+		sprt.setDepth(depth);
+		depth++;
+	}
+	
+	/*switch depth of two sprite when necessary*/
+	public static void switchDepth(Sprite sprt1,Sprite sprt2) {
+		int depth1,depth2;
+		depth1 = sprt1.getDepth();
+		depth2 = sprt2.getDepth();
+		sprt1.setDepth(depth2);
+		sprt2.setDepth(depth1);
+	}
+	
+	//鎶婄墿浣撳姞鍏ュ埌鑸炲彴
 	public static void add(Sprite sprt){
 		elements.put(sprt.getId(), sprt);
+		initDepth(sprt);
 	}
 
 	public static void remove(int id){
@@ -39,40 +57,6 @@ public class Stage {
 	}
 	public static Sprite get(int id){
 		return elements.get(id);
-	}
-	public static Sprite getLogic(int id){
-		Iterator iter = elements.entrySet().iterator();
-		while(iter.hasNext()){
-			Map.Entry<Integer, Sprite> entry = (Entry<Integer, Sprite>) iter.next();
-			Sprite sprt = entry.getValue();
-			System.out.println(sprt.getId());
-			if(sprt.getLogicId() == id){
-				return sprt;
-			}
-		}
-		return null;
-	}
-	
-	public static void clean(){
-		elements.clear();
-	}
-	
-	public static void update(){
-		ArrayList<Hero> heroes = ClientLogic.get_heros();
-		//System.out.println("size:"+heroes.size());
-		
-		for(Hero hero: heroes){
-			Sprite sprt = Stage.getLogic(hero.id);
-			if(sprt == null){
-				System.out.println("new sprite");
-				Avatar avt = new Avatar(Sprite.getNextClientSpriteId(), Sprite.DAEMON2A);
-				avt.setLogicId(hero.id);
-				avt.setPosition(hero.pos_x, hero.pos_y);
-				Stage.add(avt);
-				sprt = avt;
-			}
-			sprt.moveTo((float)hero.pos_x,(float)hero.pos_y);
-		}
 	}
 
 	public static void loadMap(int id){
@@ -87,6 +71,8 @@ public class Stage {
 				flags[i][j] = false;
 			}
 		}
+		
+		//load floor
 		for(int i = 0;i<height;i++){
 			for(int j=0;j<width;j++){
 				if(flags[i][j]) continue;
@@ -94,6 +80,7 @@ public class Stage {
 				Element ele = new Element(Sprite.getNextClientSpriteId(),floor[i][j]);
 				ele.setGraphicPosition((j+ele.getMWidth())*70 - ele.getWidth(), (i+ele.getMHeight())*70 - ele.getHeight());
 				add(ele);
+				System.out.println("DepthFloor:"+ele.getDepth());
 				System.out.println(ele.getX()+","+ele.getY());
 				System.out.println(ele.getWidth()+","+ele.getHeight());
 				System.out.println(ele.getMWidth()+","+ele.getMHeight());
@@ -102,7 +89,32 @@ public class Stage {
 						flags[l][m] = true;
 					}
 				}
-
+			}
+		}
+		
+		for(int i = 0;i<height;i++){
+			for(int j=0;j<width;j++){
+				flags[i][j] = false;
+			}
+		}
+		
+		//load assets
+		for(int i = 0;i<height;i++){
+			for(int j=0;j<width;j++){
+				if(flags[i][j]) continue;
+				if(assets[i][j] == 0) continue;
+				Element ele = new Element(Sprite.getNextClientSpriteId(),assets[i][j]);
+				ele.setGraphicPosition((j+ele.getMWidth())*70 - ele.getWidth(), (i+ele.getMHeight())*70 - ele.getHeight());
+				add(ele);
+				System.out.println("DepthAssets:"+ele.getDepth());
+				System.out.println(ele.getX()+","+ele.getY());
+				System.out.println(ele.getWidth()+","+ele.getHeight());
+				System.out.println(ele.getMWidth()+","+ele.getMHeight());
+				for(int l=i;l<i+ele.getMHeight();l++){
+					for(int m=j;m<j+ele.getMWidth();m++){
+						flags[l][m] = true;
+					}
+				}
 			}
 		}
 	}
@@ -114,7 +126,7 @@ public class Stage {
 		Collections.sort(sprites, new Comparator<Map.Entry<Integer, Sprite>>() {   
 			public int compare(Map.Entry<Integer, Sprite> o1, Map.Entry<Integer, Sprite> o2) {      
 				//return (o2.getValue() - o1.getValue()); 
-				return (int) (o1.getValue().getY() - o2.getValue().getY());
+				return (int) (o1.getValue().getDepth() - o2.getValue().getDepth());
 			}
 		});
 
@@ -137,4 +149,14 @@ public class Stage {
 	public static int getMinDuration(){
 		return 1000/FPS_MAX;
 	}
+	public static Camera getCamera() {
+		return camera;
+
+	}
+
+	public static void setCamera(Camera camera) {
+		Stage.camera = camera;
+	}
+
+	
 }
