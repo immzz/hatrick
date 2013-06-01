@@ -121,6 +121,9 @@ public class Stage {
 			}
 		}
 	}
+	public static com.hatrick.graphic.Map getMap(){
+		return map;
+	}
 	public static void display(){
 		//Display the elements in order of their depth.
 		List<Map.Entry<Integer, Sprite>> sprites =

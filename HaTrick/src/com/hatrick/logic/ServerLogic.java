@@ -15,9 +15,14 @@ public class ServerLogic implements Runnable{
 		return hero_list;
 	}
 
-    public static void initMap(int height, int width, int[][] groundMap) {
-
-        logicMap = new LogicMap(height, width, groundMap);
+    public static void initMap(int height, int width, short[][] groundMap) {
+    	int[][] intMap = new int[height][width];
+    	for(int i=0;i<height;i++){
+    		for(int j=0;j<width;j++){
+    			intMap[i][j] = groundMap[i][j];
+    		}
+    	}
+        logicMap = new LogicMap(height, width, intMap);
         LogicObject.mapInstance = logicMap;
     }
 	
