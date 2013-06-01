@@ -120,6 +120,7 @@ public abstract class Sprite {
 	private float _graphicRotation;//This is the rotation of graphic.
 	private float _scale;
 	private float _alpha;
+	private int _logic_direction;
 	private boolean _directional;
 	private boolean _visible;
 	private boolean _acting;
@@ -220,7 +221,7 @@ public abstract class Sprite {
 		if(_acting){
 			Animation _prevAnimation = _currentAnimation;
 			if(isActDirectional(_action)){
-				_currentAnimation = _actions.get(_action+getDirection());
+				_currentAnimation = _actions.get(_action+getLogicDirection());
 			}else{
 				_currentAnimation = _actions.get(_action);
 			}
@@ -256,7 +257,7 @@ public abstract class Sprite {
 		}else{
 			if(_currentImg == null) return;
 			if(_directional){
-				_currentImg = _imgs.get(getDirection());
+				_currentImg = _imgs.get(getLogicDirection());
 			}else{
 				_currentImg = _imgs.get(DIRECTION_NONE);
 			}
@@ -280,6 +281,12 @@ public abstract class Sprite {
 	}
 	private void setCurrentAnimation(Animation anmi){
 		
+	}
+	public int getLogicDirection(){
+		return _logic_direction;
+	}
+	public void setLogicDirection(int _direction){
+		_logic_direction = _direction;
 	}
 	protected int getDirection(){
 		float real_deg =  ( 360 + (_rotation % 360 )) % 360;

@@ -3,7 +3,11 @@ package com.hatrick.logic;
 import java.io.Serializable;
 
 public abstract class LogicObject implements Serializable{
-    static LogicMap mapInstance;
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = -1693769809101702805L;
+	static LogicMap mapInstance;
     static int globalId = 0;
 
     public int id;
@@ -67,18 +71,22 @@ public abstract class LogicObject implements Serializable{
     // NOTICE!!!!!!!!!!!!!!!!!!!!!!!!!
     // we may assume dis < width
     public void moveUp() {
-        mapInstance.objMove(this, 0, -1);
+    	if(!mapInstance.objMove(this, 0, -1))
+    		actionTime = 0;
     }
 
     public void moveDown() {
-        mapInstance.objMove(this, 0, 1);
+    	if(!mapInstance.objMove(this, 0, 1))
+    		actionTime = 0;
     }
 
     public void moveLeft() {
-        mapInstance.objMove(this, -1, 0);
+    	if(!mapInstance.objMove(this, -1, 0))
+    		actionTime = 0;
     }
 
     public void moveRight() {
-        mapInstance.objMove(this, 1, 0);
+    	if(!mapInstance.objMove(this, 1, 0))
+    		actionTime = 0;
     }
 }
