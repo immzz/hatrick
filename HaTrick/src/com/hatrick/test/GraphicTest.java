@@ -1,6 +1,9 @@
 package com.hatrick.test;
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> cbc99dae57962068f93d6246f74e75246ef33841
 import org.newdawn.slick.AppGameContainer;
 import org.newdawn.slick.BasicGame;
 import org.newdawn.slick.GameContainer;
@@ -27,12 +30,21 @@ public class GraphicTest extends BasicGame {
 	@Override
 	public void init(GameContainer arg0) throws SlickException {
 		/* Sprite Test */
+<<<<<<< HEAD
 		Avatar avt = new Avatar(1,Sprite.ASSASSIN1A);
 		avt.setPosition(2, 3);
 		/* Map Test */
 		Stage.loadMap(Map.SNOW);
 		/* Camera Test */
 		Stage.getCamera().setPosition(10, 10);
+=======
+		//Avatar avt = new Avatar(1,Sprite.ASSASSIN1A);
+		//avt.setPosition(2, 3);
+		/* Map Test */
+		//Stage.loadMap(Map.SNOW);
+		/* Camera Test */
+		//Stage.getCamera().setPosition(10, 10);
+>>>>>>> cbc99dae57962068f93d6246f74e75246ef33841
 	}
 
 	@Override
@@ -77,7 +89,11 @@ public class GraphicTest extends BasicGame {
 
 	public static void main(String [] args){
 		try {
+<<<<<<< HEAD
 			AppGameContainer g = new AppGameContainer(new GraphicTest(
+=======
+			AppGameContainer g = new AppGameContainer(new GraphicBasicTest2(
+>>>>>>> cbc99dae57962068f93d6246f74e75246ef33841
 					"Graphic test."), 800, 600, false);
 			Stage.setContainer(g);
 			g.setFullscreen(false);
