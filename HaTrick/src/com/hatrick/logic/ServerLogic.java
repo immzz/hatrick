@@ -1,6 +1,7 @@
 package com.hatrick.logic;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 
 import com.hatrick.server.Message;
 import com.hatrick.server.Server;
@@ -31,7 +32,7 @@ public class ServerLogic implements Runnable{
 			}
 
             // action list
-            iter = actionList.iterator();
+            iter = logicMap.actionList.iterator();
             while (iter.hasNext()) {
                 iter.next().doAction();
             }
