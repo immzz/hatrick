@@ -22,7 +22,9 @@ import java.io.Serializable;
 		this.set_time(time);
 		this.set_type(type);
 	}
-
+	public Message(){
+		
+	}
 	public void set_time(Long time) {
 		this.time = time;
 	}

@@ -147,7 +147,7 @@ public class Client {
 
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
-			//e.printStackTrace();
+			e.printStackTrace();
 		} 
 		return msg;
 	}
@@ -160,11 +160,11 @@ public class Client {
 				try{
 				Serializable obj = recvMessage();
 				Message msg = ( Message ) obj;
-				System.out.println("type:"+msg.get_type());
+				//System.out.println("type:"+msg.get_type());
 				ClientLogic.handleMessage((Message) obj);
 				}
 				catch(Exception e){
-					
+					e.printStackTrace();
 				}
 			}
 		}

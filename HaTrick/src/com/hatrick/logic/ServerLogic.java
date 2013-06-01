@@ -7,7 +7,6 @@ import com.hatrick.server.Server;
 
 public class ServerLogic implements Runnable{
 	static ArrayList<Hero> hero_list = new ArrayList<Hero>();
-	static Hero myhero;
 	ArrayList<Operation> op_list = new ArrayList<Operation>();
 	
 	synchronized static public ArrayList<Hero> get_heros () {
@@ -17,12 +16,15 @@ public class ServerLogic implements Runnable{
 	public void run() {
 		while(true) {
 			try {
-				Thread.sleep(1000);
+				Thread.sleep(30);
 			} catch (InterruptedException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-			Server.broadcast(hero_list);
+			Message m = new Message(Message.TYPE_HERO, null, hero_list);
+			Server.broadcast(m);
+			//if(hero_list.size() > 0)
+				//System.out.println("pos_x" + hero_list.get(0).pos_x);
 		}
 	}
 	
@@ -33,7 +35,9 @@ public class ServerLogic implements Runnable{
 			Server.broadcast(m);
 		}
 		else if(message.type == Message.TYPE_OPERATION) {
-			myhero.handle_op((Operation)message.get_obj()); //notgood->add_op();
+			Operation op = (Operation)message.get_obj();
+			//System.out.println(op.moving);
+			hero_list.get(op.index).handle_op((Operation)message.get_obj()); //notgood->add_op();
 		}
 	}
 }

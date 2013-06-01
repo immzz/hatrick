@@ -13,6 +13,9 @@ import org.newdawn.slick.AppGameContainer;
 import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
 
+import com.hatrick.logic.ClientLogic;
+import com.hatrick.logic.Hero;
+
 public class Stage {
 	private static HashMap<Integer,Sprite> elements = new HashMap<Integer,Sprite>();
 	private static AppGameContainer container = null;
@@ -36,6 +39,40 @@ public class Stage {
 	}
 	public static Sprite get(int id){
 		return elements.get(id);
+	}
+	public static Sprite getLogic(int id){
+		Iterator iter = elements.entrySet().iterator();
+		while(iter.hasNext()){
+			Map.Entry<Integer, Sprite> entry = (Entry<Integer, Sprite>) iter.next();
+			Sprite sprt = entry.getValue();
+			System.out.println(sprt.getId());
+			if(sprt.getLogicId() == id){
+				return sprt;
+			}
+		}
+		return null;
+	}
+	
+	public static void clean(){
+		elements.clear();
+	}
+	
+	public static void update(){
+		ArrayList<Hero> heroes = ClientLogic.get_heros();
+		//System.out.println("size:"+heroes.size());
+		
+		for(Hero hero: heroes){
+			Sprite sprt = Stage.getLogic(hero.id);
+			if(sprt == null){
+				System.out.println("new sprite");
+				Avatar avt = new Avatar(Sprite.getNextClientSpriteId(), Sprite.DAEMON2A);
+				avt.setLogicId(hero.id);
+				avt.setPosition(hero.pos_x, hero.pos_y);
+				Stage.add(avt);
+				sprt = avt;
+			}
+			sprt.moveTo((float)hero.pos_x,(float)hero.pos_y);
+		}
 	}
 
 	public static void loadMap(int id){

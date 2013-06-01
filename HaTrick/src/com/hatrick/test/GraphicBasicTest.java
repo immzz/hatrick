@@ -103,5 +103,4 @@ public class GraphicBasicTest extends BasicGame {
 		}
 	}
 
-
 }

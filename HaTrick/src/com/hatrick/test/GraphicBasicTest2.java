@@ -27,25 +27,29 @@ public class GraphicBasicTest2 extends BasicGame {
 	@Override
 	public void render(GameContainer arg0, Graphics arg1) throws SlickException {
 		// TODO Auto-generated method stub
+		Stage.update();
 		Stage.display();
 	}
 
 	@Override
 	public void init(GameContainer arg0) throws SlickException {
 		// TODO Auto-generated method stub
-		Element ele_0 = new Element(0,Element.SNOW_CAGE);
+		//Element ele_0 = new Element(0,Element.SNOW_CAGE);
 		//Element ele_1 = new Element(1,Element.BRICK1B);
 		//Element ele_2 = new Element(2,Element.FLOWER1A);
 		//Element ele_3 = new Element(3,Element.FLOWER1B);
 
-		ele_0.setPosition(160, 80);
+		//ele_0.setPosition(160, 80);
 		//ele_1.setPosition(320, 200);
 		//ele_2.setPosition(160, 320);
 		//ele_3.setPosition(500, 440);
 		
-		Stage.add(ele_0);
+		//Stage.add(ele_0);
+		Avatar avt_0 = new Avatar(0, Avatar.DAEMON2A);
+		avt_0.setPosition(0,0);
+		Stage.add(avt_0);
 		Client client=new Client();
-		new Thread(new ClientLogic("fuck")).start();
+		new Thread(new ClientLogic("fucdk")).start();
 
 	}
 
@@ -55,6 +59,7 @@ public class GraphicBasicTest2 extends BasicGame {
 		Input input = c.getInput();
 		Operation op = new Operation();
 		op.getInput(input, ClientLogic.direction);
+		op.index = ClientLogic.myhero_index;
 		ClientLogic.sendOperation(op);
 		
 		//Sprite sprt = Stage.get(0);

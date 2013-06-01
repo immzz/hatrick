@@ -106,6 +106,7 @@ public abstract class Sprite {
 	private static final int ACTION_NONE = 1000000;
 	
 	private int _id;
+	private int _logic_id;
 	private float _x;
 	private float _y;
 	private float _rotation;//This is the rotation of movement.
@@ -298,6 +299,10 @@ public abstract class Sprite {
 		this._x = _x;
 		this._y = _y;
 	}
+	public void setPosition(double _x,double _y){
+		this._x = (float) _x;
+		this._y = (float) _y;
+	}
 	/** Set the topleft corner to the given position
 	 * @param _x
 	 * @param _y
@@ -430,6 +435,14 @@ public abstract class Sprite {
 
 	public int getMWidth() {
 		return m_width;
+	}
+
+	public int getLogicId() {
+		return _logic_id;
+	}
+
+	public void setLogicId(int _logic_id) {
+		this._logic_id = _logic_id;
 	}
 	
 }

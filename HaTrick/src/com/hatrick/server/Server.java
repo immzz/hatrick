@@ -181,7 +181,7 @@ class HandleAClient extends Thread {
 				//System.out.println("input");
 				//System.out.println(msg);
 				//System.out.println( "recv a message type: "+ new Integer(msg.get_type()).toString());
-				System.out.println("type:"+msg.get_type());
+				//System.out.println("type:"+msg.get_type());
 				if (msg.get_type() == Message.TYPE_HEART_BEAT) {
 					//System.out.printf("receive heart_beat\n");
 					status.online = true;
@@ -293,13 +293,13 @@ public class Server implements Runnable {
 	}
 	public static void broadcast(Serializable obj) {
 		for (int i = 0; i < array_thread.size(); i++) {
-
 			if (array_thread.get(i).isAlive()) {
+				//System.out.println("alive");
 				array_thread.get(i).sendMessage(obj);
 			}
 			// if(array_thread.get(i).gethostaddress().equals(clientIP))break;
 		}
-		System.out.println("broadcast");
+		//System.out.println("broadcast");
 		return;
 	}
 	public static void main(String[] args){
