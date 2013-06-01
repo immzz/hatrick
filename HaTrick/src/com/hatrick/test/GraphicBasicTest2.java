@@ -45,14 +45,15 @@ public class GraphicBasicTest2 extends BasicGame {
 		Client client=new Client();
 		//new Thread(new ClientLogic()).start();
 		try {
-			Message init_message = new Message(Message.TYPE_HEART_BEAT, null, null);
-			Client.sendMessage( init_message );
-			init_message = new Message(Message.TYPE_OPERATION, null, null);
-			Client.sendMessage( init_message );
-			init_message = new Message(Message.TYPE_HERO, null, null);
+			Message init_message = new Message(Message.TYPE_HERO, null, null);
 			Client.sendMessage( init_message );
 			init_message = new Message(Message.TYPE_INIT, null, null);
 			Client.sendMessage( init_message );
+			 init_message = new Message(Message.TYPE_HEART_BEAT, null, null);
+			//Client.sendMessage( init_message );
+			init_message = new Message(Message.TYPE_OPERATION, null, null);
+			//Client.sendMessage( init_message );
+			
 			//init_message.set_type( Message.TYPE_HERO );
 			//Client.sendMessage( init_message );
 			System.out.println("--- succeed ---");
@@ -61,7 +62,7 @@ public class GraphicBasicTest2 extends BasicGame {
 		}
 		
 		client.auto_send_random();
-		Client.sendMessage()
+		
 		//Stage.add(ele_1);
 		//Stage.add(ele_2);
 		//Stage.add(ele_3);

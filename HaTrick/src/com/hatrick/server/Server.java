@@ -98,13 +98,19 @@ class HandleAClient extends Thread {
 			Message msg = ( Message ) obj;
 			msg.set_time(System.currentTimeMillis());
 			
-			ByteArrayOutputStream baos = new ByteArrayOutputStream(); // 构造一个字节输出流
-			ObjectOutputStream oos = new ObjectOutputStream(baos); // 构造一个类输出流
-			// oos.writeObject(list); //写这个对象
-			oos.writeObject(obj); // 写这个对象
-			byte[] buf = baos.toByteArray(); // 从这个地层字节流中把传输的数组给一个新的数组
+			ByteArrayOutputStream baos = new ByteArrayOutputStream(); // 鏋勯�涓�釜瀛楄妭杈撳嚭娴�			
+			ObjectOutputStream oos = new ObjectOutputStream(baos); // 鏋勯�涓�釜绫昏緭鍑烘祦
+			oos.writeObject(obj); //鍐欒繖涓璞�			oos.writeObject(obj); // 鍐欒繖涓璞�			
+			byte[] buf = baos.toByteArray(); // 浠庤繖涓湴灞傚瓧鑺傛祦涓妸浼犺緭鐨勬暟缁勭粰涓�釜鏂扮殑鏁扮粍
+			int length=buf.length;
+			byte[] buf_new=new byte[4+length];
+			buf_new[0] = (byte) (length & 0xff);// 最低位   
+			buf_new[1] = (byte) ((length >> 8) & 0xff);// 次低位   
+			buf_new[2] = (byte) ((length>> 16) & 0xff);// 次高位   
+			buf_new[3] = (byte) (length>>> 24);// 最高位,无符号右移。   
+			System.arraycopy(buf, 0,buf_new,4,length);
 			oos.flush();
-			output.write(buf, 0, buf.length);
+			output.write(buf_new, 0,length+4);
 		} catch (Exception e) {
 			
 		}
@@ -112,8 +118,13 @@ class HandleAClient extends Thread {
 
 	public static Serializable recvMessage() {
 		byte[] buf = new byte[4096];
+		int length;
 		try {
-			input.read(buf,0,4096);
+			input.read(buf,0,4);
+			length= (buf[0] & 0xff) | ((buf[1] << 8) & 0xff00) // | 表示安位或   
+					| ((buf[2] << 24) >>> 8) | (buf[3] << 24);   
+			input.read(buf, 0,length);
+			//System.out.println("a.length:"+a);
 		} catch (IOException e1) {
 			// TODO Auto-generated catch block
 			//e1.printStackTrace();
@@ -125,13 +136,10 @@ class HandleAClient extends Thread {
 			ois = new ObjectInputStream(bais);
 			msg = (Message) ois.readObject();
 
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (ClassNotFoundException e) {
+		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			//e.printStackTrace();
-		}
+		} 
 		return msg;
 	}
 
@@ -159,26 +167,22 @@ class HandleAClient extends Thread {
 				Message msg = (Message) obj;
 				//System.out.println("input");
 				//System.out.println(msg);
-				if( msg == null ){
-					System.out.println(  "null" );
-					continue;
-				}
 				//System.out.println( "recv a message type: "+ new Integer(msg.get_type()).toString());
-				System.out.println("type:"+msg.get_type());
+				//System.out.println("type:"+msg.get_type());
 				if (msg.get_type() == Message.TYPE_HEART_BEAT) {
 					//System.out.printf("receive heart_beat\n");
 					status.online = true;
-					status.get_heart_beat().set_latest_clock(msg.get_time());
+					status.get_heart_beat().set_latest_clock(System.currentTimeMillis());
 					status.get_heart_beat().set_number(
 							status.get_heart_beat().get_number() + 1);
 				} else {
-					/******************************* 调用接口提交收到的信息 ********************************/
+					/******************************* 璋冪敤鎺ュ彛鎻愪氦鏀跺埌鐨勪俊鎭�********************************/
 					//handleMessage((Message) obj);
 					//System.out.println("recv a message type:"+msg.get_type());
 					/*****************************************************************************/
 				}
 			} catch (Exception ex) {
-				ex.printStackTrace();
+				//ex.printStackTrace();
 				continue;
 			}
 		}
@@ -242,9 +246,10 @@ public class Server implements Runnable {
 
 	@SuppressWarnings("deprecation")
 	void judge() {
-		/*for (int i = 0; i < array_thread.size(); i++) {
+		for (int i = 0; i < array_thread.size(); i++) {
 			double ratio = array_thread.get(i).get_status().get_heart_beat()
 					.calculate();
+			//System.out.println("ration:"+ratio);
 			if (ratio > 10.0) {
 				if (array_thread.get(i).get_status().get_online() == true) {
 					array_thread.get(i).suspend();
@@ -271,13 +276,8 @@ public class Server implements Runnable {
 					e.printStackTrace();
 				}
 			}
-		}*/
+		}
 	}
-
-	// public static void main(String[] args) {
-	// // TODO Auto-generated method stub
-	// new Server();
-	// }
 	public static void broadcast(Serializable obj) {
 		for (int i = 0; i < array_thread.size(); i++) {
 
@@ -288,10 +288,10 @@ public class Server implements Runnable {
 		}
 		return;
 	}
-//	public static void main(String[] args){
-//		Server ser = new Server();
-//		new Thread(ser).start();
-//	}
+	public static void main(String[] args){
+	Server ser = new Server();
+		new Thread(ser).start();
+	}
 	
 	@Override
 	public void run() {
@@ -304,7 +304,7 @@ public class Server implements Runnable {
 
 		try {
 			// create a server socket
-			ServerSocket serversocket = new ServerSocket(1234);
+			ServerSocket serversocket = new ServerSocket(8000);
 			int clientNo = 1;
 			while (true) {
 				Socket socket = serversocket.accept();
