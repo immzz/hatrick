@@ -21,7 +21,7 @@ public class GUI {
 	private static HTextField side_1_score;
 	private static HTextField side_2_score;
 	Rectangle healthBG = new Rectangle(300, 300, 200, 20);
-    ShapeFill healthFill = new GradientFill();
+    //ShapeFill healthFill = new GradientFill();
 
 	public GUI(){
 		
