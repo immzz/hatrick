@@ -38,9 +38,10 @@ public class ServerLogic implements Runnable{
 
             // action list
             iter = logicMap.actionList.iterator();
-            while (iter.hasNext()) {
+            while (!logicMap.actionList.isEmpty() && iter.hasNext()) {
                 iter.next().doAction();
             }
+            if(logicMap.actionList.isEmpty()) System.out.println("empty");
 
             // TODO: deleteList
 

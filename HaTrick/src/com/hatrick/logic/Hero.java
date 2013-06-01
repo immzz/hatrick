@@ -22,11 +22,26 @@ public class Hero extends LogicObject implements Serializable{
         super(p_x, p_y, width, direction, speed);
         this.name = name;
     }
-    public void doAction() {
+    public synchronized void doAction() {
+    	System.out.println("do");
     	offset++;
     	super.count_pos();
     	if(actionTime <= 1) {
     		LogicObject.mapInstance.delActionList(this);
+    		offset = 0;
+    		if(direction == 1) {
+        		p_y--;
+        	}
+        	else if(direction == 2) {
+        		p_y++;
+        	}
+        	else if(direction == 3) {
+        		p_x--;
+        	}
+        	else if(direction == 4) {
+        		p_x++;
+        	}
+    		actionTime = 0;
     	}
     	else 
     		actionTime--;
@@ -43,10 +58,10 @@ public class Hero extends LogicObject implements Serializable{
     
     boolean is_free() {
     	if(this.actionTime == 0) return true;
-    	else return false;
+    	else {System.out.println(actionTime); return false;}
     }
 
-	void handle_op(Operation op) {
+    synchronized void handle_op(Operation op) {
 		if (op.moving == 1) {
 			direction = 1;
 			actionTime = 4;

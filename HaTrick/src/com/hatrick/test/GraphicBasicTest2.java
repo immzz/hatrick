@@ -61,9 +61,10 @@ public class GraphicBasicTest2 extends BasicGame {
 		Operation op = new Operation();
 		op.getInput(input, ClientLogic.direction);
 		op.index = ClientLogic.myhero_index;
+		Stage.loadMap(Map.SNOW);
 		ClientLogic.sendOperation(op);
 		
-		//Sprite sprt = Stage.get(0);
+		//Sprite sprt = Stage.get(0);d
 		//System.out.println("delta:"+delta);
 		//System.out.println("FPS:"+Stage.getFPS());
 		/*if (input.isKeyDown(Input.KEY_UP)) {
@@ -72,7 +73,7 @@ public class GraphicBasicTest2 extends BasicGame {
 		if (input.isKeyDown(Input.KEY_DOWN)) {
 			sprt.moveTo(sprt.getX(),sprt.getY()+delta/2f);
 		}else
-		if (input.isKeyDown(Input.KEY_LEFT)) {
+		if (input.isKeyDown(Input.KEY_LEFT)) {1
 			sprt.moveTo(sprt.getX()-delta/2f,sprt.getY());
 		}else
 		if (input.isKeyDown(Input.KEY_RIGHT)) {

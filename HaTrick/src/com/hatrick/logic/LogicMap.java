@@ -115,16 +115,17 @@ public class LogicMap {
         
     }
 
-    public void objMove(LogicObject obj, int off_x, int off_y) {
+    public boolean objMove(LogicObject obj, int off_x, int off_y) {
         int new_x = obj.p_x + off_x;
         int new_y = obj.p_y + off_y;
         if (reachable(new_x, new_y)) {
             actionList.add(obj);
             deleteObj(obj);
             insertObj(obj);
+            return true;
         }
         else {
-            obj.actionTime = 0;
+            return false;
         }
     }
 }
