@@ -18,11 +18,17 @@ public class Hero extends LogicObject implements Serializable{
 	int strength;
 	int power;
 	
-    public Hero(String name, double pos_x, double pos_y, double width, int direction, double speed) {
-        super(pos_x, pos_y, width, direction, speed);
+    public Hero(String name, int p_x, int p_y, double width, int direction, double speed) {
+        super(p_x, p_y, width, direction, speed);
         this.name = name;
     }
-    public void doAction() {}
+    public void doAction() {
+    	actionTime--;
+    	offset++;
+    	if(actionTime == 0) {
+    		
+    	}
+    }
 
     public void doDamage(double damage) {
         // naive
@@ -32,20 +38,29 @@ public class Hero extends LogicObject implements Serializable{
     }
 
     private void dead(){}
+    
+    boolean is_free() {
+    	if(this.actionTime == 0) return true;
+    	else return false;
+    }
 
 	void handle_op(Operation op) {
 		if (op.moving == 1) {
-			pos_y -= speed;
 			direction = 1;
+			actionTime = 4;
+			super.moveUp();
 		} else if (op.moving == 2) {
-			pos_y += speed;
 			direction = 2;
+			actionTime = 4;
+			super.moveDown();
 		} else if (op.moving == 3) {
-			pos_x -= speed;
 			direction = 3;
+			actionTime = 4;
+			super.moveLeft();
 		} else if (op.moving == 4) {
-			pos_x += speed;
 			direction = 4;
+			actionTime = 4;
+			super.moveRight();
 		}
 		use_item(op.usingitem);
 	}

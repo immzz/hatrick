@@ -16,7 +16,7 @@ public class ServerLogic implements Runnable{
 	public void run() {
 		while(true) {
 			try {
-				Thread.sleep(30);
+				Thread.sleep(50);
 			} catch (InterruptedException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -36,8 +36,8 @@ public class ServerLogic implements Runnable{
 		}
 		else if(message.type == Message.TYPE_OPERATION) {
 			Operation op = (Operation)message.get_obj();
-			//System.out.println(op.moving);
-			hero_list.get(op.index).handle_op((Operation)message.get_obj()); //notgood->add_op();
+			if(hero_list.get(op.index).is_free())
+				hero_list.get(op.index).handle_op((Operation)message.get_obj());
 		}
 	}
 }
