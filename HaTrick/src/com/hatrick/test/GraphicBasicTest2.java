@@ -19,7 +19,6 @@ import com.hatrick.server.Message;
 import com.hatrick.server.Server;
 
 public class GraphicBasicTest2 extends BasicGame {
-
 	public GraphicBasicTest2(String title) {
 		super(title);
 		// TODO Auto-generated constructor stub
