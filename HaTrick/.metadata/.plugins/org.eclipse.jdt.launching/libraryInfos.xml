@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <libraryInfos>
 <libraryInfo home="F:\大三上学期\java\software\JDK1.7\jre" version="1.7.0">
@@ -37,3 +38,44 @@
 </endorsedDirs>
 </libraryInfo>
 </libraryInfos>
+=======
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<libraryInfos>
+<libraryInfo home="F:\大三上学期\java\software\JDK1.7\jre" version="1.7.0">
+<bootpath>
+<entry path="F:\大三上学期\java\software\JDK1.7\jre\lib\resources.jar"/>
+<entry path="F:\大三上学期\java\software\JDK1.7\jre\lib\rt.jar"/>
+<entry path="F:\大三上学期\java\software\JDK1.7\jre\lib\sunrsasign.jar"/>
+<entry path="F:\大三上学期\java\software\JDK1.7\jre\lib\jsse.jar"/>
+<entry path="F:\大三上学期\java\software\JDK1.7\jre\lib\jce.jar"/>
+<entry path="F:\大三上学期\java\software\JDK1.7\jre\lib\charsets.jar"/>
+<entry path="F:\大三上学期\java\software\JDK1.7\jre\classes"/>
+</bootpath>
+<extensionDirs>
+<entry path="F:\大三上学期\java\software\JDK1.7\jre\lib\ext"/>
+<entry path="C:\Windows\Sun\Java\lib\ext"/>
+</extensionDirs>
+<endorsedDirs>
+<entry path="F:\大三上学期\java\software\JDK1.7\jre\lib\endorsed"/>
+</endorsedDirs>
+</libraryInfo>
+<libraryInfo home="F:\大三上学期\java\software\JDK1.7" version="1.7.0">
+<bootpath>
+<entry path="F:\大三上学期\java\software\JDK1.7\jre\lib\resources.jar"/>
+<entry path="F:\大三上学期\java\software\JDK1.7\jre\lib\rt.jar"/>
+<entry path="F:\大三上学期\java\software\JDK1.7\jre\lib\sunrsasign.jar"/>
+<entry path="F:\大三上学期\java\software\JDK1.7\jre\lib\jsse.jar"/>
+<entry path="F:\大三上学期\java\software\JDK1.7\jre\lib\jce.jar"/>
+<entry path="F:\大三上学期\java\software\JDK1.7\jre\lib\charsets.jar"/>
+<entry path="F:\大三上学期\java\software\JDK1.7\jre\classes"/>
+</bootpath>
+<extensionDirs>
+<entry path="F:\大三上学期\java\software\JDK1.7\jre\lib\ext"/>
+<entry path="C:\Windows\Sun\Java\lib\ext"/>
+</extensionDirs>
+<endorsedDirs>
+<entry path="F:\大三上学期\java\software\JDK1.7\jre\lib\endorsed"/>
+</endorsedDirs>
+</libraryInfo>
+</libraryInfos>
+>>>>>>> f2ae285249b2639b2b6f0ee528fba96bc33d40f2

@@ -52,7 +52,6 @@ public class GraphicBasicTest2 extends BasicGame {
 		Stage.loadMap(Map.SNOW);
 		Client client=new Client();
 		new Thread(new ClientLogic("fuck")).start();
-
 	}
 
 	@Override
