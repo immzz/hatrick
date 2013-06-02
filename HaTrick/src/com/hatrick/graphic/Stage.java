@@ -121,6 +121,9 @@ public class Stage {
 			}
 		}
 	}
+	public static com.hatrick.graphic.Map getMap(){
+		return map;
+	}
 	public static void display(){
 		//Display the elements in order of their depth.
 		List<Map.Entry<Integer, Sprite>> sprites =
@@ -137,6 +140,7 @@ public class Stage {
 			sprt_entry.getValue().draw();
 		}
 	}
+	
 	public static void update(){
 		ArrayList<Hero> list = ClientLogic.get_heros();
 		for(int i=0;i<list.size();i++){
@@ -158,8 +162,11 @@ public class Stage {
 				Stage.add(sprt);
 			}
 			sprt.moveTo((float)hero.pos_x,(float)hero.pos_y);
-			
+			sprt.setLogicDirection(convertDirection(hero.direction));
 		}
+	}
+	private static int convertDirection(int logic_direction){
+		return (logic_direction+2)%4;
 	}
 
 	public static int getFPS() {

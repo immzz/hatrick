@@ -124,7 +124,6 @@ class HandleAClient extends Thread {
 			System.arraycopy(buf, 0,buf_new,4,length);
 			oos.flush();
 			output.write(buf_new, 0,length+4);
-			
 		} catch (Exception e) {
 			
 		}

@@ -6,6 +6,7 @@ import java.net.*;
 import java.sql.Time;
 import java.util.*;
 
+
 import com.hatrick.logic.ClientLogic;
 import com.hatrick.logic.Hero;
 import com.hatrick.logic.Operation;
@@ -109,18 +110,19 @@ public class Client {
 				System.out.println("Sending message type error\n");
 				return ;
 			}
-			ByteArrayOutputStream baos = new ByteArrayOutputStream(); // 鏋勯�涓�釜瀛楄妭杈撳嚭娴�
+			ByteArrayOutputStream baos = new ByteArrayOutputStream(); // 鏋勯�涓�釜瀛楄妭杈撳嚭娴�			
 			ObjectOutputStream oos = new ObjectOutputStream(baos); // 鏋勯�涓�釜绫昏緭鍑烘祦
-			// oos.writeObject(list); //鍐欒繖涓璞�
+			// oos.writeObject(list); //鍐欒繖涓璞�			
 			msg.set_time(System.currentTimeMillis());
-			oos.writeObject(obj); // 鍐欒繖涓璞�
-			byte[] buf = baos.toByteArray(); // 浠庤繖涓湴灞傚瓧鑺傛祦涓妸浼犺緭鐨勬暟缁勭粰涓�釜鏂扮殑鏁扮粍
+			oos.writeObject(obj); // 鍐欒繖涓璞�			
+
+			byte[] buf = baos.toByteArray(); // 浠庤繖涓湴灞傚瓧鑺傛祦涓妸浼犺緭鐨勬暟缁勭粰涓�釜鏂扮殑鏁扮�?
 			int length=buf.length;
 			//System.out.println("length: " + buf.length);
 			byte[] buf_new=new byte[4+length];
-			buf_new[0] = (byte) (length & 0xff);// 鏈�綆浣�  
+			buf_new[0] = (byte) (length & 0xff);// 鏈�綆浣�? 
 			buf_new[1] = (byte) ((length >> 8) & 0xff);// 娆′綆浣�  
-			buf_new[2] = (byte) ((length>> 16) & 0xff);// 娆￠珮浣�  
+			buf_new[2] = (byte) ((length>> 16) & 0xff);// 娆￠珮浣�? 
 			buf_new[3] = (byte) (length>>> 24);// 鏈�珮浣�鏃犵鍙峰彸绉汇�   
 			System.arraycopy(buf, 0,buf_new,4,length);
 			oos.flush();
@@ -132,7 +134,7 @@ public class Client {
 		int length;
 		try {
 			fromServer.read(buf,0,4);
-			length= (buf[0] & 0xff) | ((buf[1] << 8) & 0xff00) // | 琛ㄧず瀹変綅鎴�  
+			length= (buf[0] & 0xff) | ((buf[1] << 8) & 0xff00) // | 琛ㄧず瀹変綅鎴�? 
 					| ((buf[2] << 24) >>> 8) | (buf[3] << 24);   
 			fromServer.read(buf, 0,length);
 		} catch (IOException e1) {
@@ -188,7 +190,6 @@ public class Client {
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		Client client = new Client();
-
 	}
 
 	public void auto_send_random() {
