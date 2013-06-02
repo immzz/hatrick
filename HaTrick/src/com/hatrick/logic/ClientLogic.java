@@ -8,7 +8,7 @@ import com.hatrick.server.Message;
 
 public class ClientLogic implements Runnable {
 	static String name;
-	static Hero myhero;
+	public static Hero myhero;
 	public static int myhero_index;
 	static ArrayList<Hero> hero_list = new ArrayList<Hero>();
 	

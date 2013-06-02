@@ -49,6 +49,7 @@ public class GraphicBasicTest2 extends BasicGame {
 		Avatar avt_0 = new Avatar(0, Avatar.DAEMON2A);
 		avt_0.setPosition(0,0);
 		Stage.add(avt_0);
+		Stage.loadMap(Map.SNOW);
 		Client client=new Client();
 		new Thread(new ClientLogic("fuck")).start();
 
@@ -61,7 +62,6 @@ public class GraphicBasicTest2 extends BasicGame {
 		Operation op = new Operation();
 		op.getInput(input, ClientLogic.direction);
 		op.index = ClientLogic.myhero_index;
-		Stage.loadMap(Map.SNOW);
 		ClientLogic.sendOperation(op);
 		
 		//Sprite sprt = Stage.get(0);d

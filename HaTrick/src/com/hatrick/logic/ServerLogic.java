@@ -54,7 +54,7 @@ public class ServerLogic implements Runnable{
 	
 	public synchronized static void handleMessage(Message message) {
 		if(message.get_type() == Message.TYPE_INIT) {
-			hero_list.add(new Hero((String)message.get_obj(),0,0,0,0,10));
+			hero_list.add(new Hero((String)message.get_obj(),0,0,0,10));
 			Message m = new Message(Message.TYPE_HERO, null, hero_list);
 			Server.broadcast(m);
 		}

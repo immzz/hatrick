@@ -41,12 +41,13 @@ public abstract class LogicObject implements Serializable{
     		this.pos_x = (p_x + (double)offset / 4) * 70;
         	this.pos_y = p_y * 70;
     	}
+    	this.pos_x += 35;
+    	this.pos_y += 55;
     }
 
     protected LogicObject(int p_x, int p_y, int direction, double speed, int actionTime, int deleteTime) {
         this.p_x = p_x;
         this.p_y = p_y;
-        this.width = width;
         this.direction = direction;
         this.speed = speed;
         this.actionTime = actionTime;

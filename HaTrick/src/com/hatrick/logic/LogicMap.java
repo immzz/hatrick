@@ -77,7 +77,7 @@ public class LogicMap {
     }
 
     public boolean reachable(int x, int y) {
-        if (x < 0 || x >= height || y < 0 || y >= width)
+        if (x < 0 || x >= width || y < 0 || y >= height)
             return false;
         if (objMap[y][x] != null &&
             (objMap[y][x] instanceof Bomb))
