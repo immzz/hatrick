@@ -140,6 +140,7 @@ public abstract class Sprite {
 		_id = 0;
 		_x = 0;
 		_y = 0;
+		_logic_id = -1;
 		_rotation = 0;
 		_graphicRotation = 0;
 		_scale = 1.0f;
@@ -331,6 +332,7 @@ public abstract class Sprite {
 			this._x = _x + current_frame.getCenterOfRotationX()*_scale;
 			this._y = _y + current_frame.getCenterOfRotationY()*_scale;
 		}else{
+			System.out.println(_currentImg.getCenterOfRotationX()*_scale);
 			this._x = _x + _currentImg.getCenterOfRotationX()*_scale;
 			this._y = _y + _currentImg.getCenterOfRotationY()*_scale;
 		}

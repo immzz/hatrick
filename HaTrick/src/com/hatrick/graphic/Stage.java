@@ -163,6 +163,7 @@ public class Stage {
 			}
 			sprt.moveTo((float)hero.pos_x,(float)hero.pos_y);
 			sprt.setLogicDirection(convertDirection(hero.direction));
+			camera.caculateCameraXY(map.getWidth()*70,map.getHeight()*70,(float)ClientLogic.myhero.pos_x,(float)ClientLogic.myhero.pos_y-35);
 		}
 	}
 	private static int convertDirection(int logic_direction){
