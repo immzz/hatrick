@@ -1,6 +1,7 @@
 package com.hatrick.server;
 
 import java.awt.BorderLayout;
+import java.awt.Dimension;
 import java.awt.GridLayout;
 
 import javax.swing.JButton;
@@ -38,10 +39,14 @@ public class LobbyServerScreen {
 		roomPanel.setLayout(new GridLayout(30,1,5,5));
 		
 		//add button
-		userlistPanel.add(new JButton("某用户1"));
+		JButton jb1 = new JButton("某用户1");
+		jb1.setPreferredSize(new Dimension(100,50));
+		userlistPanel.add(jb1);
 		userlistPanel.add(new JButton("某用户2"));
 		userlistPanel.add(new JButton("某用户3"));
-		roomPanel.add(new JButton("某房间1"));
+		JButton rb1 = new JButton("某房间1");
+		rb1.setPreferredSize(new Dimension(100,50));
+		roomPanel.add(rb1);
 		roomPanel.add(new JButton("某房间2"));
 		roomPanel.add(new JButton("某房间3"));
 		roomPanel.add(new JButton("某房间4"));

@@ -7,7 +7,7 @@ import java.awt.event.ActionListener;
 import javax.swing.*;
 import javax.swing.border.TitledBorder;
 
-public class RoomScreen {
+public class RoomClientScreen {
 
 	
 	JFrame roomframe;
@@ -18,7 +18,7 @@ public class RoomScreen {
 	
 	JButton[] member = new JButton[6];
 	
-	RoomScreen(){
+	RoomClientScreen(){
 		//create panel and roomframe
 		roomframe = new JFrame("Game Room");
 				
@@ -73,6 +73,17 @@ public class RoomScreen {
 		buttonPanel.add(charButton);
 		buttonPanel.add(quitButton);
 		
+		
+		//member
+		//
+		JPanel wholeApanel = new JPanel();
+		buttonAPanel bApanel = new buttonAPanel();
+		wholeApanel.add(bApanel,BorderLayout.CENTER);
+		wholeApanel.add(member[0],BorderLayout.SOUTH);
+		buttonAction bAction = new buttonAction(bApanel,member[0]);
+		member[0].addActionListener(bAction);
+		
+		//
 		charPanel.add(member[0]);
 		charPanel.add(member[1]);
 		charPanel.add(member[2]);
@@ -94,7 +105,7 @@ public class RoomScreen {
 	
 	public static void main(String[] args){
 		
-		RoomScreen roomscreen = new RoomScreen();
+		RoomClientScreen roomscreen = new RoomClientScreen();
 	}
 	
 	
@@ -112,24 +123,45 @@ class charAction implements ActionListener{
 		// TODO Auto-generated method stub
 		JFrame frame = new JFrame("Game character");
 
+		
+		//create image panel
 		CrusaderImagePanel crusaderimagepanel = new CrusaderImagePanel();
 		DaemonImagePanel daemonimagepanel = new DaemonImagePanel();
 		WitchImagePanel witchimagepanel = new WitchImagePanel();
 		
-		//crusaderimagepanel.setBorder(new TitledBorder(""));
+		//create panel
 		JPanel crusaderPanel = new JPanel();
-		crusaderPanel.setLayout(new GridLayout(2, 1, 5, 5));
+		JPanel daemonPanel = new JPanel();
+		JPanel witchPanel = new JPanel();
 		
+		//crusaderimagepanel.setBorder(new TitledBorder(""));
+		//for crusaderPanel
+		crusaderPanel.setLayout(new GridLayout(2, 1, 5, 5));
 		crusaderPanel.add(crusaderimagepanel);
 		JButton crusaderButton = new JButton("十字军骑士");
 		crusaderButton.setPreferredSize(new Dimension(100,40));
 		crusaderPanel.add(crusaderButton);
 		
+		//for daemonPanel
+		daemonPanel.setLayout(new GridLayout(2, 1, 5, 5));
+		daemonPanel.add(daemonimagepanel);
+		JButton daemonButton = new JButton("肉山大魔王");
+		daemonButton.setPreferredSize(new Dimension(100,40));
+		daemonPanel.add(daemonButton);
+
+		//for witchPanel
+		witchPanel.setLayout(new GridLayout(2, 1, 5, 5));
+		witchPanel.add(witchimagepanel);
+		JButton witchButton = new JButton("伪娘");
+		witchButton.setPreferredSize(new Dimension(100,40));
+		witchPanel.add(witchButton);
 		
+		
+		//add panel
 		frame.setLayout(new GridLayout(1, 3, 5, 5));
 		frame.add(crusaderPanel);
-		frame.add(daemonimagepanel);
-		frame.add(witchimagepanel);
+		frame.add(daemonPanel);
+		frame.add(witchPanel);
 		//frame.add(new JPanel());
 		
 		frame.setSize(300,250);
@@ -139,6 +171,46 @@ class charAction implements ActionListener{
 		
 	}
 	
+}
+class buttonAction implements ActionListener{
+
+	private buttonAPanel panel = null;
+	private JButton button;
+	private boolean isEmpty = true;
+	
+	buttonAction(buttonAPanel panel, JButton button){
+		this.panel = panel;
+		this.button = button;
+	}
+	
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		// TODO Auto-generated method stub
+		//this.panel.switchEmpty();
+		//this.panel.repaint();
+		if(isEmpty)
+			button.setText("你点我了");
+		else
+			button.setText("");
+		
+		isEmpty = !isEmpty;
+	}
+
+}
+class buttonAPanel extends JPanel{
+	private int isEmpty = 1;
+	private Image img = new ImageIcon("res/game/graphic/avatars/crusader1a_head1.jpg").getImage();
+	protected void paintComponent(Graphics g){
+		super.paintComponent(g);
+		if(isEmpty == 0){
+			g.drawImage(null, 0, 0, WIDTH, HEIGHT, this);
+		}else{
+			g.drawImage(img, 0, 0, WIDTH, HEIGHT, this);
+		}
+	}
+	public void switchEmpty(){
+		isEmpty = 1 - isEmpty;
+	}
 }
 class CrusaderImagePanel extends JPanel{
 	private ImageIcon icon = new ImageIcon("res/game/graphic/avatars/crusader1a_head1.jpg");
