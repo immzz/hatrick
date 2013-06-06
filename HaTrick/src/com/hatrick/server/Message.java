@@ -13,6 +13,7 @@ import java.io.Serializable;
 	public static final int TYPE_OPERATION = 2;
 	public static final int TYPE_HERO = 3;
 	public static final int TYPE_INIT = 4;
+	public static final int TYPE_BOMB = 5;
 
 	public int type;
 	private Long time;
