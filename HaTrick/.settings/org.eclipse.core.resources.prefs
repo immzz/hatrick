@@ -1,5 +1,6 @@
 
 eclipse.preferences.version=1
 encoding//src/com/hatrick/graphic/Camera.java=UTF-8
-encoding//src/com/hatrick/graphic/Sprite.java=UTF-8
 encoding//src/com/hatrick/graphic/Stage.java=UTF-8
+encoding//src/com/hatrick/server/Client.java=UTF-8
+encoding//src/com/hatrick/server/Server.java=UTF-8

@@ -10,6 +10,8 @@ import org.newdawn.slick.Input;
 import org.newdawn.slick.SlickException;
 
 import com.hatrick.graphic.*;
+import com.hatrick.logic.ServerLogic;
+import com.hatrick.server.Server;
 
 public class GraphicBasicTest3 extends BasicGame {
 
@@ -36,11 +38,12 @@ public class GraphicBasicTest3 extends BasicGame {
 		//ele_1.setPosition(320, 200);
 		//ele_2.setPosition(160, 320);
 		//ele_3.setPosition(500, 440);
-		//Stage.getCamera().setCameraX(140);
-		//Stage.getCamera().setCameraY(140);
-		Stage.getCamera().caculateCameraXY(980,700,400,400);
+		System.out.println("server");
+		new Thread(new Server()).start();
 		Stage.loadMap(Map.SNOW);
-		
+		ServerLogic.initMap(Stage.getMap().getHeight(), Stage.getMap().getWidth(), Stage.getMap().getAssets());
+		new Thread(new ServerLogic()).start();
+		//Stage.loadMap(Map.SNOW);
 	}
 
 	@Override
@@ -84,7 +87,9 @@ public class GraphicBasicTest3 extends BasicGame {
 	}
 
 	public static void main(String [] args){
+		
 		try {
+
 			AppGameContainer g = new AppGameContainer(new GraphicBasicTest3(
 					"Graphic basic test."), 800, 600, false);
 			Stage.setContainer(g);
@@ -92,6 +97,10 @@ public class GraphicBasicTest3 extends BasicGame {
 			g.setVerbose(false);
 			g.setTargetFrameRate(Stage.getMaxFPS());
 			g.start();
+			
+			
+			
+			
 		} catch (SlickException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

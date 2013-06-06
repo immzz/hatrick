@@ -1,0 +1,13 @@
+<<<<<<< HEAD
+<?xml version="1.0" encoding="UTF-8"?>
+<section name="Workbench">
+	<item value="C:\Users\caiqingpeng\git\hatrick\.git" key="GitSelectRepositoryPage.lastRepository"/>
+	<item value="0" key="org.eclipse.egit.ui.internal.clone.GitSelectWizardPageWizardSel"/>
+</section>
+=======
+<?xml version="1.0" encoding="UTF-8"?>
+<section name="Workbench">
+	<item value="C:\Users\caiqingpeng\git\hatrick\.git" key="GitSelectRepositoryPage.lastRepository"/>
+	<item value="0" key="org.eclipse.egit.ui.internal.clone.GitSelectWizardPageWizardSel"/>
+</section>
+>>>>>>> f2ae285249b2639b2b6f0ee528fba96bc33d40f2

@@ -113,12 +113,14 @@ public abstract class Sprite {
 	private static final int ACTION_NONE = 1000000;
 	
 	private int _id;
+	private int _logic_id;
 	private float _x;
 	private float _y;
 	private float _rotation;//This is the rotation of movement.
 	private float _graphicRotation;//This is the rotation of graphic.
 	private float _scale;
 	private float _alpha;
+	private int _logic_direction;
 	private boolean _directional;
 	private boolean _visible;
 	private boolean _acting;
@@ -138,6 +140,7 @@ public abstract class Sprite {
 		_id = 0;
 		_x = 0;
 		_y = 0;
+		_logic_id = -1;
 		_rotation = 0;
 		_graphicRotation = 0;
 		_scale = 1.0f;
@@ -219,7 +222,7 @@ public abstract class Sprite {
 		if(_acting){
 			Animation _prevAnimation = _currentAnimation;
 			if(isActDirectional(_action)){
-				_currentAnimation = _actions.get(_action+getDirection());
+				_currentAnimation = _actions.get(_action+getLogicDirection());
 			}else{
 				_currentAnimation = _actions.get(_action);
 			}
@@ -255,7 +258,7 @@ public abstract class Sprite {
 		}else{
 			if(_currentImg == null) return;
 			if(_directional){
-				_currentImg = _imgs.get(getDirection());
+				_currentImg = _imgs.get(getLogicDirection());
 			}else{
 				_currentImg = _imgs.get(DIRECTION_NONE);
 			}
@@ -279,6 +282,12 @@ public abstract class Sprite {
 	}
 	private void setCurrentAnimation(Animation anmi){
 		
+	}
+	public int getLogicDirection(){
+		return _logic_direction;
+	}
+	public void setLogicDirection(int _direction){
+		_logic_direction = _direction;
 	}
 	protected int getDirection(){
 		float real_deg =  ( 360 + (_rotation % 360 )) % 360;
@@ -323,6 +332,7 @@ public abstract class Sprite {
 			this._x = _x + current_frame.getCenterOfRotationX()*_scale;
 			this._y = _y + current_frame.getCenterOfRotationY()*_scale;
 		}else{
+			System.out.println(_currentImg.getCenterOfRotationX()*_scale);
 			this._x = _x + _currentImg.getCenterOfRotationX()*_scale;
 			this._y = _y + _currentImg.getCenterOfRotationY()*_scale;
 		}
@@ -403,6 +413,14 @@ public abstract class Sprite {
 	public void setId(int _id) {
 		this._id = _id;
 	}
+	
+	public int getLogicId() {
+		return _logic_id;
+	}
+
+	public void setLogicId(int _id) {
+		this._logic_id = _id;
+	}
 
 	public int getAction() {
 		return _action;
@@ -463,3 +481,4 @@ public abstract class Sprite {
 		this._loop = _loop;
 	}
 }
+
