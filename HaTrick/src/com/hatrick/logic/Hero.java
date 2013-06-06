@@ -42,7 +42,6 @@ public class Hero extends LogicObject implements Serializable{
     }
 
     public synchronized void doAction() {
-    	System.out.println("do");
     	offset++;
     	super.count_pos();
     	if(actionTime <= 1) {
@@ -117,7 +116,10 @@ public class Hero extends LogicObject implements Serializable{
     
     boolean is_free() {
     	if(this.actionTime == 0) return true;
-    	else {System.out.println(actionTime); return false;}
+    	else {
+            //System.out.println(actionTime);
+            return false;
+        }
     }
 
     synchronized void handle_op(Operation op) {

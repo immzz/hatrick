@@ -29,6 +29,10 @@ public class LogicMap {
         deleteListDel = new ArrayList<LogicObject>();
     }
 
+    public boolean emptyPlace(int x, int y) {
+        return (objMap[y][x] == null) && (groundMap[y][x] <= WALK_THROUGH);
+    }
+
     public void addNewObj(LogicObject obj) {
         objList.add(obj);
         insertObj(obj);
@@ -64,6 +68,20 @@ public class LogicMap {
         synchronized (objMap) {
             obj.mapNext = objMap[obj.p_y][obj.p_x];
             objMap[obj.p_y][obj.p_x] = obj;
+        }
+    }
+
+    private void dealItem(int x, int y, Hero hero) {
+        synchronized (objMap) {
+            LogicObject lo = objMap[y][x];
+            if (lo instanceof Potion) {
+                objMap[y][x] = lo.mapNext;
+                lo.deleteTime = 0;
+                if (hero.hp < 90)
+                    hero.hp += 10;
+                else
+                    hero.hp = 100;
+            }
         }
     }
 
@@ -117,6 +135,7 @@ public class LogicMap {
         int temp_x;
         int temp_y;
         if (reachable(new_x, new_y)) {
+            dealItem(new_x, new_y, (Hero)obj);
             actionList.add(obj);
             temp_x = obj.p_x;
             temp_y = obj.p_y;

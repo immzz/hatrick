@@ -2,6 +2,7 @@ package com.hatrick.logic;
 
 import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.Random;
 
 import com.hatrick.server.Message;
 import com.hatrick.server.Server;
@@ -29,12 +30,18 @@ public class ServerLogic implements Runnable{
     
     public void run() {
         Iterator<LogicObject> iter;
+        Random r = new Random();
         while(true) {
             try {
                 Thread.sleep(50);
             } catch (InterruptedException e) {
                 // TODO Auto-generated catch block
                 e.printStackTrace();
+            }
+
+            // set potion
+            if (r.nextInt(10000) > 9990) {
+                new Potion(0, 0, 0, 10000);
             }
 
             // action list
@@ -60,7 +67,9 @@ public class ServerLogic implements Runnable{
             // we should add more code about deletion
             iter = logicMap.deleteListDel.iterator();
             while (iter.hasNext()) {
-                logicMap.deleteList.remove(iter.next());
+                LogicObject lo = iter.next();
+                logicMap.deleteList.remove(lo);
+                logicMap.objList.remove(lo);
             }
             logicMap.deleteListDel = new ArrayList<LogicObject>();
 
