@@ -1,15 +1,17 @@
 package com.hatrick.logic;
 
-import java.util.ArrayList;
+import java.util.*;
 
 public class LogicMap {
     static final int WALK_THROUGH = 32;
     int height, width;
     int[][] groundMap;
     LogicObject[][] objMap;
-    ArrayList<LogicObject> objList;
-    ArrayList<LogicObject> actionList;
-    ArrayList<LogicObject> deleteList;
+    List<LogicObject> objList;
+    List<LogicObject> actionList;
+    List<LogicObject> deleteList;
+    List<LogicObject> actionListDel;
+    List<LogicObject> deleteListDel;
 
     public LogicMap(int height, int width, int[][] groundMap) {
         LogicObject.mapInstance = this;
@@ -20,9 +22,11 @@ public class LogicMap {
         for (int i = 0; i < height; i ++)
             for (int j = 0; j < width; j ++)
                 objMap[i][j] = null;
-        objList =    new ArrayList<LogicObject>();
-        actionList = new ArrayList<LogicObject>();
-        deleteList = new ArrayList<LogicObject>();
+        objList =    Collections.synchronizedList(new ArrayList<LogicObject>());
+        actionList = Collections.synchronizedList(new ArrayList<LogicObject>());
+        deleteList = Collections.synchronizedList(new ArrayList<LogicObject>());
+        actionListDel = new ArrayList<LogicObject>();
+        deleteListDel = new ArrayList<LogicObject>();
     }
 
     public void addNewObj(LogicObject obj) {
@@ -57,22 +61,27 @@ public class LogicMap {
     }
 
     private void insertObj(LogicObject obj) {
-        obj.mapNext = objMap[obj.p_y][obj.p_x];
-        objMap[obj.p_y][obj.p_x] = obj;
+        synchronized (objMap) {
+            obj.mapNext = objMap[obj.p_y][obj.p_x];
+            objMap[obj.p_y][obj.p_x] = obj;
+        }
     }
 
-    private void deleteObj(LogicObject obj) {
-        int x = obj.p_x;
-        int y = obj.p_y;
-        
-        LogicObject iter = objMap[y][x];
-        if (iter == obj) {
-            objMap[y][x] = obj.mapNext;
-        }
-        else {
-            while (iter.mapNext != obj)
-                iter = iter.mapNext;
-            iter.mapNext = iter.mapNext.mapNext;
+    public void deleteObj(LogicObject obj) {
+        synchronized (objMap) {
+            int x = obj.p_x;
+            int y = obj.p_y;
+            
+            LogicObject iter = objMap[y][x];
+            if (iter == obj) {
+                objMap[y][x] = obj.mapNext;
+            }
+            else {
+                while (iter.mapNext != obj) {
+                    iter = iter.mapNext;
+                }
+                iter.mapNext = iter.mapNext.mapNext;
+            }
         }
     }
 
@@ -105,10 +114,18 @@ public class LogicMap {
     public boolean objMove(LogicObject obj, int off_x, int off_y) {
         int new_x = obj.p_x + off_x;
         int new_y = obj.p_y + off_y;
+        int temp_x;
+        int temp_y;
         if (reachable(new_x, new_y)) {
             actionList.add(obj);
+            temp_x = obj.p_x;
+            temp_y = obj.p_y;
             deleteObj(obj);
+            obj.p_x = new_x;
+            obj.p_y = new_y;
             insertObj(obj);
+            obj.p_x = temp_x;
+            obj.p_y = temp_y;
             return true;
         }
         else {
