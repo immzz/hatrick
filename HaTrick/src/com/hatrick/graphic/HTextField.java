@@ -26,6 +26,7 @@ public class HTextField{
 		};
 		text_field = new TextField(guic , uFont, 0 , 0 , width , height);
 		text_field.setText(text);
+		text_field.setBorderColor(new org.newdawn.slick.Color(0, 0, 0, 0));
 	}
 	
 	public void setText(String text){

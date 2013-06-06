@@ -30,16 +30,38 @@ public class GraphicGUITest extends BasicGame {
 		
 	      // Login box
 	      
-	      
-	      GUI.draw(arg0, arg1);
+
+		Stage.display();
+	    GUI.draw(arg0, arg1);
 	}
 
 	@Override
 	public void init(GameContainer arg0) throws SlickException {
-		Effect explosion_1 = new Effect(1,Effect.EXPLOSION_1);
-		explosion_1.setPosition(200, 200);
 		
-		Stage.add(explosion_1);
+
+		
+		Avatar avt_0 = new Avatar(0,Avatar.DAEMON2A);
+		Avatar avt_1 = new Avatar(1,Avatar.COLLABO1A);
+		Avatar avt_2 = new Avatar(2,Avatar.MUMMY4A);
+		
+		avt_0.setPosition(596, 200);
+		avt_0.setScale(1.5f);
+		//avt_0.set;
+		avt_1.setPosition(596, 200);
+		avt_1.setScale(1.5f);
+		avt_1.setRotation(2);
+		avt_2.setPosition(596, 400);
+		avt_2.setScale(1.5f);
+		avt_2.setRotation(3);
+		
+		Stage.add(avt_0);
+		Stage.add(avt_1);
+		Stage.add(avt_2);
+		
+		//Effect explosion_1 = new Effect(1,Effect.EXPLOSION_1);
+		//explosion_1.setPosition(200, 200);
+		
+		//Stage.add(explosion_1);
 		
 		GUI.init(arg0);
 	}
@@ -98,5 +120,4 @@ public class GraphicGUITest extends BasicGame {
 			e.printStackTrace();
 		}
 	}
-
 }
