@@ -8,6 +8,7 @@ public class Element extends Sprite{
 	
 	public Element(int id,int type){
 		setId(id);
+		this.setType(type);
 		this.setDirectional(false);
 		//this.setScale(2.0f);
 		ImageInfo [] img_infos = ImageResource.elements.still.get(type);

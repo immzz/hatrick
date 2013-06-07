@@ -12,6 +12,7 @@ public class Hero extends LogicObject implements Serializable{
 	//int direction;		//1 of 4 OK? Will turn cost time? Different time?
 	//double speed;
 	String name;
+    public int occupation;
 	int hp;
 	
 
@@ -41,6 +42,10 @@ public class Hero extends LogicObject implements Serializable{
         this.name = name;
         LogicObject.mapInstance.addNewObj(this);
         hp = 100;
+    }
+
+    public void setOccupation(int occupation) {
+        this.occupation = occupation;
     }
 
     public synchronized void doAction() {
@@ -94,7 +99,7 @@ public class Hero extends LogicObject implements Serializable{
                 powerGauge --;
                 // add bomb to list
                 Bomb bomb =
-                    new Bomb(this.p_x, this.p_y, strength, -value * 1000 / 50, -value * 1000 / 50 + 4);
+                    new Bomb(this.p_x, this.p_y, strength, -value * 1000 / 50, (-value * 1000 / 50) + 5);
                 mapInstance.addNewObj(bomb);
                 if (powerGauge == 2) {
                     Thread thread = new Thread(new RecoveryPower());

@@ -23,6 +23,7 @@ public class Avatar extends Sprite{
 	public static final int ACTION_WALK = 0;
 
 	public Avatar(int id,int type){
+		this.setType(type);
 		setId(id);
 		this.setDirectional(true);
 		this.setScale(2.0f);

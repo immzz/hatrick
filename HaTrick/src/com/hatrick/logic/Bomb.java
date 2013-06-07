@@ -7,17 +7,16 @@ public class Bomb extends LogicObject implements Serializable {
     int power;
     // delay is ms value
     public Bomb(int p_x, int p_y, int power, int actionDely, int deleteDely) {
-        //super(p_x, p_y, 0, 0, actionDely, deleteDely);
         super(p_x, p_y, 0, 0, actionDely, deleteDely);
         this.power = power;
         status = WAITING;
     }
 
     public void doAction() {
-        if(0 == actionTime --) {
+        actionTime --;
+        if(0 == actionTime) {
             System.out.printf("bomb!!!!!!!!!!!!!!!!!!!!!!!!!!!!\n");
             mapInstance.deleteObj(this);
-            //mapInstance.delActionList(this);
             mapInstance.actionListDel.add(this);
             mapInstance.damage(p_x, p_y, power);
             status = BANG;

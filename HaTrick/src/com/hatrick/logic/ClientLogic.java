@@ -1,6 +1,7 @@
 package com.hatrick.logic;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 
 import org.newdawn.slick.Input;
 import com.hatrick.server.Client;
@@ -91,6 +92,13 @@ public class ClientLogic implements Runnable {
         }
         if (message.type == Message.TYPE_BOMB) {
             bomb_list = (ArrayList<Bomb>)message.get_obj();
+            Iterator<Bomb> iter = bomb_list.iterator();
+            while (iter.hasNext()) {
+                Bomb lo = iter.next();
+                //if (lo.isExploring()) {
+                //    System.out.printf("EXPLORE!!!!!!!!!!!\n");
+                //}
+            }
         }
         if (message.type == Message.TYPE_POTION) {
             potion_list = (ArrayList<Potion>)message.get_obj();
