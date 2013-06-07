@@ -26,6 +26,7 @@ public class Stage {
 	private static Camera camera = new Camera(800,600);
 	public static int depth_floor = 0;
 	public static int depth_bubble = 1000;
+	public static int depth_potion = 1500;
 	public static int depth_asserts_avater = 2000;
 	public static int depth_exposion = 4000;
 
@@ -49,6 +50,10 @@ public class Stage {
 		else if (sprt.getType() == 500 || sprt.getType() == 501) {
 			sprt.setDepth(depth_bubble);
 			depth_bubble++;
+		}
+		else if (sprt.isPotion()) {
+			sprt.setDepth(depth_potion);
+			depth_potion++;
 		}
 		else if (sprt.isAssertsAvatar()) {
 			sprt.setDepth(depth_asserts_avater);
@@ -265,15 +270,15 @@ public class Stage {
 			Potion potion = potion_list.get(i);
 			Sprite sprt = getLogic(potion.id);
 			if(sprt == null){
-				//sprt = new Potion(Sprite.getNextClientSpriteId(), );
-				//sprt.setLogicId(potion.id);
-				//Stage.add(sprt);
+				sprt = new com.hatrick.graphic.Potion(Sprite.getNextClientSpriteId(),com.hatrick.graphic.Potion.POTION_1);
+				sprt.setLogicId(potion.id);
+				Stage.add(sprt);
 			}
-			//sprt.moveTo((float)potion.p_x*70+35, (float)potion.p_y*70+25);
+			sprt.moveTo((float)potion.p_x*70+35, (float)potion.p_y*70+35);
 		}
 		
 		
-		//Clean Heros & Finished Effects
+		//Clean Heros & Potions & Finished Effects
 		Sprite sprt = null;
 		Iterator iter = elements.entrySet().iterator();
 		while (iter.hasNext()) {

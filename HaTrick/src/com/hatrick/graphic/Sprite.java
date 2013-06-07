@@ -58,6 +58,8 @@ public abstract class Sprite {
 	/* Explosions */
 	public static final int EXPLOSION_1 = 200;
 	
+	public static final int POTION_1 = 300;
+	
 	/* Bubbles */
 	public static final int BUBBLE_1 = 500;
 	public static final int BUBBLE_2 = 501;
@@ -518,6 +520,13 @@ public abstract class Sprite {
 	
 	public boolean isBubble() {
 		if (this._type == 500 || this._type == 501)
+			return true;
+		else
+			return false;
+	}
+	
+	public boolean isPotion() {
+		if (this._type == 300)
 			return true;
 		else
 			return false;
