@@ -49,7 +49,7 @@ public class Map {
 	}
 	public boolean reachable(int x,int y){
 		if(x < 0 || y < 0) return false;
-		if(x > width || y > height) return false;
+		if(x >= width || y >= height) return false;
 		return (assets[y][x] == 0);
 	}
 }

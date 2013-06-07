@@ -95,10 +95,11 @@ public class LogicMap {
                 objMap[y][x] = obj.mapNext;
             }
             else {
-                while (iter.mapNext != obj) {
+                while (iter != null && iter.mapNext != obj) {
                     iter = iter.mapNext;
                 }
-                iter.mapNext = iter.mapNext.mapNext;
+                if (iter != null)
+                	iter.mapNext = iter.mapNext.mapNext;
             }
         }
     }
