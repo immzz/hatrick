@@ -10,6 +10,7 @@ import com.hatrick.server.Server;
 public class ServerLogic implements Runnable{
     static ArrayList<Hero> hero_list = new ArrayList<Hero>();
     static ArrayList<Bomb> bomb_list;
+    static ArrayList<Potion> potion_list;
     static LogicMap logicMap;
     ArrayList<Operation> op_list = new ArrayList<Operation>();
     
@@ -40,7 +41,7 @@ public class ServerLogic implements Runnable{
             }
 
             // set potion
-            if (r.nextInt(10000) > 9990) {
+            if (r.nextInt(1000) > 990) {
                 new Potion(0, 0, 0, 10000);
             }
 
@@ -76,10 +77,14 @@ public class ServerLogic implements Runnable{
             synchronized (logicMap.objList) {
                 iter = logicMap.objList.iterator();
                 bomb_list = new ArrayList<Bomb>();
+                potion_list = new ArrayList<Potion>();
                 while (iter.hasNext()) {
                     LogicObject lo = iter.next();
                     if (lo instanceof Bomb) {
                         bomb_list.add((Bomb)lo);
+                    }
+                    if (lo instanceof Potion) {
+                        potion_list.add((Potion)lo);
                     }
                 }
             }
@@ -87,6 +92,8 @@ public class ServerLogic implements Runnable{
             Message m = new Message(Message.TYPE_HERO, null, hero_list);
             Server.broadcast(m);
             m = new Message(Message.TYPE_BOMB, null, bomb_list);
+            Server.broadcast(m);
+            m = new Message(Message.TYPE_POTION, null, potion_list);
             Server.broadcast(m);
             //if(hero_list.size() > 0)
                 //System.out.println("pos_x" + hero_list.get(0).pos_x);

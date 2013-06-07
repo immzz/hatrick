@@ -12,6 +12,7 @@ public class ClientLogic implements Runnable {
     public static int myhero_index;
     static ArrayList<Hero> hero_list = new ArrayList<Hero>();
     static ArrayList<Bomb> bomb_list = new ArrayList<Bomb>();
+    static ArrayList<Potion> potion_list = new ArrayList<Potion>();
     
     public static long[] direction = new long[] { 0, 0, 0, 0 };
     
@@ -27,6 +28,10 @@ public class ClientLogic implements Runnable {
         return bomb_list;
     }
     
+    synchronized static public ArrayList<Potion> get_potions () {
+        return potion_list;
+    }
+
     /**
      * send message.INIT for hero name
      * lock until get herolist, init myhero_index, myhero
@@ -86,6 +91,9 @@ public class ClientLogic implements Runnable {
         }
         if (message.type == Message.TYPE_BOMB) {
             bomb_list = (ArrayList<Bomb>)message.get_obj();
+        }
+        if (message.type == Message.TYPE_POTION) {
+            potion_list = (ArrayList<Potion>)message.get_obj();
         }
     }
 }
