@@ -1,10 +1,12 @@
 package com.hatrick.logic;
 
 import java.io.Serializable;
+import java.util.Random;
 
 public abstract class LogicObject implements Serializable{
 	private static final long serialVersionUID = -1693769809101702805L;
 	static LogicMap mapInstance;
+	static ServerLogic serverLogicInstance;
     static int globalId = 0;
 
     public int id;
@@ -38,8 +40,8 @@ public abstract class LogicObject implements Serializable{
     		this.pos_x = (p_x + (double)offset / 4) * 70;
         	this.pos_y = p_y * 70;
     	}
-    	this.pos_x += 35;
-    	this.pos_y += 55;
+    	//this.pos_x += 35;
+    	//this.pos_y += 55;
     }
 
     protected LogicObject(int p_x, int p_y, int direction, double speed, int actionTime, int deleteTime) {
@@ -57,6 +59,20 @@ public abstract class LogicObject implements Serializable{
     }
 
     public abstract void doAction();
+
+    public void randomPos() {
+        Random rand = new Random();
+        int x = rand.nextInt(mapInstance.width);
+        int y = rand.nextInt(mapInstance.height);
+        while (!mapInstance.reachable(x, y)) {
+            x = rand.nextInt(mapInstance.width);
+            y = rand.nextInt(mapInstance.height);
+        }
+        p_x = x;
+        p_y = y;
+        pos_x = p_x * 70;
+        pos_y = p_y * 70;
+    }
 
     public void doDelete() {
         deleteTime --;
