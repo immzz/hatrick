@@ -5,7 +5,7 @@ import java.io.Serializable;
 public class Hero extends LogicObject implements Serializable{
 	private static final long serialVersionUID = 1L;
 	
-    private static final int RECOVERY_INTERVAL = 10000;
+    private static final int RECOVERY_INTERVAL = 5000;
 	/* moving */
 	//double pos_x, pos_y;
 	//double width;
@@ -13,16 +13,16 @@ public class Hero extends LogicObject implements Serializable{
 	//double speed;
 	String name;
     public int occupation;
+    public int team;
 	int hp;
 	
 
 	double change;
 	/* using items */
 	//Item[] bag = new Item[10];
-	int strength = 10;
+	int strength = 30;
 	private int powerGauge = 3;
     
-
 	boolean justShot;
 
     class RecoveryPower implements Runnable {
@@ -39,9 +39,11 @@ public class Hero extends LogicObject implements Serializable{
         }
     }
 	
-    public Hero(String name, int p_x, int p_y, int direction, double speed) {
+    public Hero(String name, int p_x, int p_y, int direction, double speed, int team, int occupation) {
         super(p_x, p_y, direction, speed);
         this.name = name;
+        this.team = team;
+        this.occupation = occupation;
         LogicObject.mapInstance.addNewObj(this);
         hp = 100;
     }
@@ -119,8 +121,14 @@ public class Hero extends LogicObject implements Serializable{
     }
 
     private void dead(){
-        deleteTime = 0;
-        LogicObject.mapInstance.addDeleteList(this);
+        //LogicObject.mapInstance.addDeleteList(this);
+        serverLogicInstance.teamMemberDead(team);
+        mapInstance.deleteObj(this);
+        id = LogicObject.globalId ++;
+        randomPos();
+        hp = 100;
+        powerGauge = 3;
+        mapInstance.insertObj(this);
     }
     
     boolean is_free() {

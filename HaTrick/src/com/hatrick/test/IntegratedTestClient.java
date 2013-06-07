@@ -51,9 +51,8 @@ public class IntegratedTestClient extends BasicGame {
 		GUI.init(arg0);
 		Stage.loadMap(Map.SNOW);
 		Client client=new Client();
-
-		new Thread(new ClientLogic("fuck")).start();}
-
+		new Thread(new ClientLogic("fuck", 1, Avatar.ASSASSIN1A)).start();
+	}
 
 	@Override
 	public void update(GameContainer c, int delta) throws SlickException {
