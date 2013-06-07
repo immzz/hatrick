@@ -63,7 +63,6 @@ public class GUI {
 		
 	}
 	public static void init(GameContainer gc){
-<<<<<<< HEAD
 		side_scores = new int[2];
 		for(int i=0;i<side_scores.length;i++){
 			side_scores[i] = 0;
@@ -79,30 +78,31 @@ public class GUI {
 		side_2_score_text.setPosition(485, 10);
 		hp_text.setPosition(150, 527);
 		mana_text.setPosition(150, 557);
-side_1_roleName = new HTextField(gc, "me", java.awt.Color.white,20,100,25);
-		side_2_roleName = new HTextField(gc, "parterner1", java.awt.Color.white,20,100,25);
-		side_3_roleName = new HTextField(gc, "parterner2", java.awt.Color.white,20,100,25);
+		
+		side_1_roleName = new HTextField("Arial",Font.BOLD, "me", org.newdawn.slick.Color.white,25);
+		side_2_roleName = new HTextField("Arial",Font.BOLD, "parterner1", org.newdawn.slick.Color.white,25);
+		side_3_roleName = new HTextField("Arial",Font.BOLD, "parterner2", org.newdawn.slick.Color.white,25);
 		side_1_roleName.setPosition(650, 50);
 		side_2_roleName.setPosition(650, 250);
 		side_3_roleName.setPosition(650, 450);
 
-		side_1_roleKill = new HTextField(gc, "Kill:", java.awt.Color.white,15,100,25);
-		side_2_roleKill = new HTextField(gc, "Kill:", java.awt.Color.white,15,100,25);
-		side_3_roleKill = new HTextField(gc, "Kill:", java.awt.Color.white,15,100,25);
+		side_1_roleKill = new HTextField("Arial",Font.BOLD, "Kill:", org.newdawn.slick.Color.white,25);
+		side_2_roleKill = new HTextField("Arial",Font.BOLD, "Kill:", org.newdawn.slick.Color.white,25);
+		side_3_roleKill = new HTextField("Arial",Font.BOLD, "Kill:", org.newdawn.slick.Color.white,25);
 		side_1_roleKill.setPosition(700, 80);
 		side_2_roleKill.setPosition(700, 280);
 		side_3_roleKill.setPosition(700, 480);
 
-		side_1_roleDeath = new HTextField(gc, "Death:", java.awt.Color.white,15,100,25);
-		side_2_roleDeath = new HTextField(gc, "Death:", java.awt.Color.white,15,100,25);
-		side_3_roleDeath = new HTextField(gc, "Death:", java.awt.Color.white,15,100,25);
+		side_1_roleDeath = new HTextField("Arial",Font.BOLD, "Death:", org.newdawn.slick.Color.white,25);
+		side_2_roleDeath = new HTextField("Arial",Font.BOLD, "Death:", org.newdawn.slick.Color.white,25);
+		side_3_roleDeath = new HTextField("Arial",Font.BOLD, "Death:", org.newdawn.slick.Color.white,25);
 		side_1_roleDeath.setPosition(700, 110);
 		side_2_roleDeath.setPosition(700, 310);
 		side_3_roleDeath.setPosition(700, 510);
 
-		side_1_roleStatus = new HTextField(gc, "Status:", java.awt.Color.white,15,100,25);
-		side_2_roleStatus = new HTextField(gc, "Status:", java.awt.Color.white,15,100,25);
-		side_3_roleStatus = new HTextField(gc, "Status:", java.awt.Color.white,15,100,25);
+		side_1_roleStatus = new HTextField("Arial",Font.BOLD, "Status:", org.newdawn.slick.Color.white,25);
+		side_2_roleStatus = new HTextField("Arial",Font.BOLD, "Status:", org.newdawn.slick.Color.white,25);
+		side_3_roleStatus = new HTextField("Arial",Font.BOLD, "Status:", org.newdawn.slick.Color.white,25);
 		side_1_roleStatus.setPosition(700, 140);
 		side_2_roleStatus.setPosition(700, 340);
 		side_3_roleStatus.setPosition(700, 540);
@@ -122,10 +122,8 @@ side_1_roleName = new HTextField(gc, "me", java.awt.Color.white,20,100,25);
 	public static void update(){
 		if(ClientLogic.myhero != null){
 			updateHealth(ClientLogic.myhero.getHp());
+			updateMana(ClientLogic.myhero.getPowerGauge()*33+1);
 		}
-		
-		
-		
 	}
 	public static void draw(GUIContext guic,Graphics g){
 		g.fill(time_board,time_fill);
@@ -143,8 +141,7 @@ side_1_roleName = new HTextField(gc, "me", java.awt.Color.white,20,100,25);
 		mana_color.r = 0.15f*(100-my_mana)/100f;
 		mana_color.g = 0.15f*(100-my_mana)/100f;
 		mana_color.b = 0.6f+0.4f*my_mana/(float)100;
-		
-<<<<<<< HEAD
+
 		healthFill = new GradientFill(0, 40,health_color , 0, 580, health_color);
 		manaFill = new GradientFill(0, 40,mana_color , 0, 580, mana_color);
 		healthBG.setWidth(my_health*3);
@@ -158,24 +155,24 @@ side_1_roleName = new HTextField(gc, "me", java.awt.Color.white,20,100,25);
 		g.fill(healthRM,rmFill);
 		g.fill(manaRM,rmFill);
 
-		side_1_roleName.render(guic, g);
-		side_2_roleName.render(guic, g);
-		side_3_roleName.render(guic, g);
+		side_1_roleName.render();
+		side_2_roleName.render();
+		side_3_roleName.render();
 		
 
-		side_1_roleKill.render(guic, g);
-		side_2_roleKill.render(guic, g);
-		side_3_roleKill.render(guic, g);
+		side_1_roleKill.render();
+		side_2_roleKill.render();
+		side_3_roleKill.render();
 
 		
-		side_1_roleDeath.render(guic, g);
-		side_2_roleDeath.render(guic, g);
-		side_3_roleDeath.render(guic, g);
+		side_1_roleDeath.render();
+		side_2_roleDeath.render();
+		side_3_roleDeath.render();
 
 		
-		side_1_roleStatus.render(guic, g);
-		side_2_roleStatus.render(guic, g);
-		side_3_roleStatus.render(guic, g);
+		side_1_roleStatus.render();
+		side_2_roleStatus.render();
+		side_3_roleStatus.render();
 		
 		
 			

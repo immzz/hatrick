@@ -21,7 +21,9 @@ public class Hero extends LogicObject implements Serializable{
 	//Item[] bag = new Item[10];
 	int strength = 10;
 	private int powerGauge = 3;
-    boolean justShot;
+    
+
+	boolean justShot;
 
     class RecoveryPower implements Runnable {
         public void run() {
@@ -176,5 +178,12 @@ public class Hero extends LogicObject implements Serializable{
 
 	public void setHp(int hp) {
 		this.hp = hp;
+	}
+	public int getPowerGauge() {
+		return powerGauge;
+	}
+
+	public void setPowerGauge(int powerGauge) {
+		this.powerGauge = powerGauge;
 	}
 }

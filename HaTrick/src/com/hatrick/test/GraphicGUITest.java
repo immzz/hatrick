@@ -37,9 +37,6 @@ public class GraphicGUITest extends BasicGame {
 
 	@Override
 	public void init(GameContainer arg0) throws SlickException {
-		
-
-		Stage.add(explosion_1);
 		Stage.loadMap(Map.SNOW);
 		GUI.init(arg0);
 	}

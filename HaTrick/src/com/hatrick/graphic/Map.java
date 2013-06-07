@@ -48,6 +48,6 @@ public class Map {
 		this.width = width;
 	}
 	public boolean reachable(int x,int y){
-		return (assets[x][y] == 0);
+		return (assets[y][x] == 0);
 	}
 }

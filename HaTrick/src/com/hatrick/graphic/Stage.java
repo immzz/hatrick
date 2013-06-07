@@ -41,6 +41,7 @@ public class Stage {
 
 	/*when create a sprite, init it's depth for display，print the deeper sprite*/
 	public static void initDepth(Sprite sprt) {
+		
 		if (sprt.getType() >= 10013 && sprt.getType() <= 10035) {
 			sprt.setDepth(depth_floor);
 			depth_floor++;
@@ -49,7 +50,7 @@ public class Stage {
 			sprt.setDepth(depth_bubble);
 			depth_bubble++;
 		}
-		else if (sprt.getType() != 200) {
+		else if (sprt.isAssertsAvatar()) {
 			sprt.setDepth(depth_asserts_avater);
 			depth_asserts_avater++;
 		}
@@ -57,6 +58,7 @@ public class Stage {
 			sprt.setDepth(depth_exposion);
 			depth_exposion++;
 		}
+		System.out.println("Type:"+sprt.getType()+" Depth:"+sprt.getDepth());
 	}
 
 	/*switch depth of two sprite when necessary*/
@@ -244,12 +246,14 @@ public class Stage {
 				sprt.moveTo((float)bomb.p_x*70+35, (float)bomb.p_y*70+25);
 			}else{
 				if(sprt == null) continue;
+				//Create Explosion Effects
 				for(int j=0;j<Bubble.DAMAGE_AREA.length;j++){
 					int damage_x = bomb.p_x+Bubble.DAMAGE_AREA[j][0];
 					int damage_y = bomb.p_y+Bubble.DAMAGE_AREA[j][1];
 					if(map.reachable(damage_x, damage_y)){
 						Effect explosion = new Effect(Sprite.getNextClientSpriteId(),Effect.EXPLOSION_1);
-						explosion.setPosition(damage_x*70, damage_y*70);
+						explosion.setPosition(damage_x*70+35, damage_y*70+35);
+						Stage.add(explosion);
 					}
 				}
 				remove(sprt.getId());
@@ -262,20 +266,25 @@ public class Stage {
 			Sprite sprt = getLogic(potion.id);
 			if(sprt == null){
 				//sprt = new Potion(Sprite.getNextClientSpriteId(), );
-				sprt.setLogicId(potion.id);
-				Stage.add(sprt);
+				//sprt.setLogicId(potion.id);
+				//Stage.add(sprt);
 			}
-			sprt.moveTo((float)potion.p_x*70+35, (float)potion.p_y*70+25);
+			//sprt.moveTo((float)potion.p_x*70+35, (float)potion.p_y*70+25);
 		}
-		//Create Explosion Effects
-		//Clean Heros & Bombs & Finished Effects
+		
+		
+		//Clean Heros & Finished Effects
 		Sprite sprt = null;
 		Iterator iter = elements.entrySet().iterator();
 		while (iter.hasNext()) {
 			Map.Entry<Integer,Sprite> entry = (Map.Entry) iter.next();
 			sprt = entry.getValue();
-			if(!hasHero(list,sprt.getLogicId()) && !hasBomb(bomb_list,sprt.getLogicId())){
-				//iter.remove();
+			if(sprt.isBubble() && !hasBomb(bomb_list,sprt.getLogicId())){
+				iter.remove();
+			}
+			if(sprt.isExposion() && !sprt.isActing()){
+				System.out.println("remove effects");
+				iter.remove();
 			}
 			//
 		}

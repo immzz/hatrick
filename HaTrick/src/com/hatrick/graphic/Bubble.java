@@ -19,6 +19,7 @@ public class Bubble extends Sprite{
 	};
 	public Bubble(int id,int type){
 		setId(id);
+		setType(type);
 		this.setDirectional(false);
 		this.setLoop(true);
 		this.setScale(1.0f);

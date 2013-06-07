@@ -10,6 +10,7 @@ public class Effect extends Sprite{
 	
 	public Effect(int id,int type){
 		setId(id);
+		setType(type);
 		this.setDirectional(false);
 		this.setScale(1.0f);
 		AnimationInfo [] ani_infos = null;
