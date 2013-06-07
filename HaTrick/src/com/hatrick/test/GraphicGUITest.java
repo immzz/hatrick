@@ -30,7 +30,7 @@ public class GraphicGUITest extends BasicGame {
 		
 	      // Login box
 	      
-	      
+	      Stage.display();
 	      GUI.draw(arg0, arg1);
 	}
 
@@ -40,7 +40,7 @@ public class GraphicGUITest extends BasicGame {
 		explosion_1.setPosition(200, 200);
 		
 		Stage.add(explosion_1);
-		
+		Stage.loadMap(Map.SNOW);
 		GUI.init(arg0);
 	}
 
