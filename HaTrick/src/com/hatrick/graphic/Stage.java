@@ -63,7 +63,7 @@ public class Stage {
 			sprt.setDepth(depth_exposion);
 			depth_exposion++;
 		}
-		System.out.println("Type:"+sprt.getType()+" Depth:"+sprt.getDepth());
+		//System.out.println("Type:"+sprt.getType()+" Depth:"+sprt.getDepth());
 	}
 
 	/*switch depth of two sprite when necessary*/
@@ -229,11 +229,11 @@ public class Stage {
 			//System.out.println("hero id:"+hero.id);
 			if(sprt == null){
 				//System.out.println("hero not found!");
-				sprt = new Avatar(Sprite.getNextClientSpriteId(),Avatar.ASSASSIN1B);
+				sprt = new Avatar(Sprite.getNextClientSpriteId(),hero.occupation);
 				sprt.setLogicId(hero.id);
 				Stage.add(sprt);
 			}
-			sprt.moveTo((float)hero.pos_x,(float)hero.pos_y);
+			sprt.moveTo((float)hero.pos_x + 35,(float)hero.pos_y + 55);
 			sprt.setLogicDirection(convertDirection(hero.direction));
 		}
 		//Scan Bomb List
@@ -241,7 +241,7 @@ public class Stage {
 		for(int i=0;i<bomb_list.size();i++){
 			Bomb bomb = bomb_list.get(i);
 			Sprite sprt = getLogic(bomb.id);
-			System.out.println("exploding:"+bomb.isExploring());
+			//System.out.println("exploding:"+bomb.isExploring());
 			if(!bomb.isExploring()){
 				if(sprt == null){
 					sprt = new Bubble(Sprite.getNextClientSpriteId(),Bubble.BUBBLE_1);
@@ -287,8 +287,11 @@ public class Stage {
 			if(sprt.isBubble() && !hasBomb(bomb_list,sprt.getLogicId())){
 				iter.remove();
 			}
+			if(sprt.isAvatar() && !hasHero(list,sprt.getLogicId())){
+				iter.remove();
+			}
 			if(sprt.isExposion() && !sprt.isActing()){
-				System.out.println("remove effects");
+				//System.out.println("remove effects");
 				iter.remove();
 			}
 			//

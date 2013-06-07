@@ -106,7 +106,7 @@ public class Client {
 			
 			Message msg = ( Message )obj;
 			int type=msg.get_type();
-			if(type!=1&&type!=2&&type!=3&&type!=4&&type!=5&&type!=6){
+			if(type!=1&&type!=2&&type!=3&&type!=4&&type!=5&&type!=6&&type!=7){
 				System.out.println("Sending message type error\n");
 				return ;
 			}

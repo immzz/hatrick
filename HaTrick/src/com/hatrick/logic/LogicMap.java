@@ -64,7 +64,7 @@ public class LogicMap {
         deleteList.remove(obj);
     }
 
-    private void insertObj(LogicObject obj) {
+    public void insertObj(LogicObject obj) {
         synchronized (objMap) {
             obj.mapNext = objMap[obj.p_y][obj.p_x];
             objMap[obj.p_y][obj.p_x] = obj;

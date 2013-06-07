@@ -9,16 +9,30 @@ import com.hatrick.server.Message;
 
 public class ClientLogic implements Runnable {
     static String name;
+    static int team;
+    static int occupation;
     public static Hero myhero;
     public static int myhero_index;
+    static int team1Score = 0;
+    static int team2Score = 0;
     static ArrayList<Hero> hero_list = new ArrayList<Hero>();
     static ArrayList<Bomb> bomb_list = new ArrayList<Bomb>();
     static ArrayList<Potion> potion_list = new ArrayList<Potion>();
     
     public static long[] direction = new long[] { 0, 0, 0, 0 };
     
-    public ClientLogic(String s) {
+    public ClientLogic(String s, int team, int occupation) {
         name = s;
+        ClientLogic.team = team;
+        ClientLogic.occupation = occupation;
+    }
+
+    public static int getScore1() {
+        return team1Score;
+    }
+
+    public static int getScore2() {
+        return team2Score;
     }
     
     synchronized static public ArrayList<Hero> get_heros () {
@@ -46,7 +60,7 @@ public class ClientLogic implements Runnable {
      * @throws Exception 
      */
     public void run() {
-        Message message = new Message(Message.TYPE_INIT, null, name);
+        Message message = new Message(Message.TYPE_INIT, null, name + "," + team + "," + occupation);
         try {
             Client.sendMessage(message);
             //this.wait();
@@ -102,6 +116,11 @@ public class ClientLogic implements Runnable {
         }
         if (message.type == Message.TYPE_POTION) {
             potion_list = (ArrayList<Potion>)message.get_obj();
+        }
+        if (message.type == Message.TYPE_SCORE) {
+            String[] score = ((String)message.get_obj()).split(",");
+            team1Score = Integer.parseInt(score[0]);
+            team2Score = Integer.parseInt(score[1]);
         }
     }
 }
