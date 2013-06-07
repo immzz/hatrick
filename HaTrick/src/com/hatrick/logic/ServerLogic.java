@@ -21,6 +21,7 @@ public class ServerLogic implements Runnable{
 
     public void teamMemberDead(int team) {
         score[2 - team] ++;
+        System.out.printf("change score\n");
     }
 
     public static void initMap(int height, int width, short[][] groundMap) {
@@ -105,6 +106,7 @@ public class ServerLogic implements Runnable{
             m = new Message(Message.TYPE_POTION, null, potion_list);
             Server.broadcast(m);
             m = new Message(Message.TYPE_SCORE, null, "" + score[0] + "," + score[1]);
+            Server.broadcast(m);
             //if(hero_list.size() > 0)
                 //System.out.println("pos_x" + hero_list.get(0).pos_x);
         }

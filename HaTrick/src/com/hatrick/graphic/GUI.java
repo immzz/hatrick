@@ -124,9 +124,12 @@ public class GUI {
 			updateHealth(ClientLogic.myhero.getHp());
 			updateMana(ClientLogic.myhero.getPowerGauge()*33+1);
 		}
+		//System.out.printf("%d, %d\n", ClientLogic.getScore1(), ClientLogic.getScore2());
+		updateScore(1, ClientLogic.getScore1());
+		updateScore(2, ClientLogic.getScore2());
 	}
 	public static void draw(GUIContext guic,Graphics g){
-		g.fill(time_board,time_fill);
+		//g.fill(time_board,time_fill);
 		g.fill(score_board,score_fill);
 		side_1_score_text.setText(String.valueOf(side_scores[0]));
 		side_2_score_text.setText(String.valueOf(side_scores[1]));

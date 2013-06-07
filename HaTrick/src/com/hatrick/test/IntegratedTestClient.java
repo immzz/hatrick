@@ -51,7 +51,7 @@ public class IntegratedTestClient extends BasicGame {
 		GUI.init(arg0);
 		Stage.loadMap(Map.SNOW);
 		Client client=new Client();
-		new Thread(new ClientLogic("fuck", 1, 1)).start();
+		new Thread(new ClientLogic("fuck", 1, Avatar.ASSASSIN1A)).start();
 	}
 
 	@Override

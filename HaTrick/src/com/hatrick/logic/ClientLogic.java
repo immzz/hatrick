@@ -27,11 +27,11 @@ public class ClientLogic implements Runnable {
         ClientLogic.occupation = occupation;
     }
 
-    public int getScore1() {
+    public static int getScore1() {
         return team1Score;
     }
 
-    public int getScore2() {
+    public static int getScore2() {
         return team2Score;
     }
     

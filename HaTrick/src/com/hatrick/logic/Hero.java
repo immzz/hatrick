@@ -20,10 +20,9 @@ public class Hero extends LogicObject implements Serializable{
 	double change;
 	/* using items */
 	//Item[] bag = new Item[10];
-	int strength = 10;
+	int strength = 30;
 	private int powerGauge = 3;
     
-
 	boolean justShot;
 
     class RecoveryPower implements Runnable {
@@ -127,6 +126,8 @@ public class Hero extends LogicObject implements Serializable{
         mapInstance.deleteObj(this);
         id = LogicObject.globalId ++;
         randomPos();
+        hp = 100;
+        powerGauge = 3;
         mapInstance.insertObj(this);
     }
     

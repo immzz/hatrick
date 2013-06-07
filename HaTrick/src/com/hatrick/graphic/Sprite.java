@@ -523,6 +523,13 @@ public abstract class Sprite {
 			return false;
 	}
 	
+	public boolean isAvatar() {
+		if ((this._type >= 6 && this._type <= 49))
+			return true;
+		else
+			return false;
+	}	
+	
 	public boolean isAssertsAvatar() {
 		if ((this._type >= 6 && this._type <= 49) || (this._type >= 10000 && this._type <= 10012))
 			return true;
