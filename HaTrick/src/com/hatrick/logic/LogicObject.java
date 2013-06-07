@@ -3,9 +3,6 @@ package com.hatrick.logic;
 import java.io.Serializable;
 
 public abstract class LogicObject implements Serializable{
-    /**
-	 * 
-	 */
 	private static final long serialVersionUID = -1693769809101702805L;
 	static LogicMap mapInstance;
     static int globalId = 0;
@@ -64,16 +61,15 @@ public abstract class LogicObject implements Serializable{
     public void doDelete() {
         deleteTime --;
         if (actionTime <= 0) {
-            LogicObject.mapInstance.delDelList(this);
+            LogicObject.mapInstance.deleteListDel.add(this);
             LogicObject.mapInstance.delObjList(this);
         }
     }
     
-    // NOTICE!!!!!!!!!!!!!!!!!!!!!!!!!
-    // we may assume dis < width
     public void moveUp() {
-    	if(!mapInstance.objMove(this, 0, -1))
+    	if(!mapInstance.objMove(this, 0, -1)) {
     		actionTime = 0;
+        }
     }
 
     public void moveDown() {
