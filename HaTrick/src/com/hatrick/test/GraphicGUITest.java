@@ -40,19 +40,19 @@ public class GraphicGUITest extends BasicGame {
 		
 
 		
-		Avatar avt_0 = new Avatar(0,Avatar.DAEMON2A);
-		Avatar avt_1 = new Avatar(1,Avatar.COLLABO1A);
-		Avatar avt_2 = new Avatar(2,Avatar.MUMMY4A);
+		Avatar avt_0 = new Avatar(Sprite.getNextClientSpriteId(),Avatar.DAEMON2A);
+		Avatar avt_1 = new Avatar(Sprite.getNextClientSpriteId(),Avatar.COLLABO1A);
+		Avatar avt_2 = new Avatar(Sprite.getNextClientSpriteId(),Avatar.MUMMY4A);
 		
-		avt_0.setPosition(596, 200);
+		avt_0.setPosition(670, 140);
 		avt_0.setScale(1.5f);
-		//avt_0.set;
-		avt_1.setPosition(596, 200);
+		avt_0.setLogicDirection(Sprite.DIRECTION_DOWN);
+		avt_1.setPosition(670, 340);
 		avt_1.setScale(1.5f);
-		avt_1.setRotation(2);
-		avt_2.setPosition(596, 400);
+		avt_1.setLogicDirection(Sprite.DIRECTION_DOWN);
+		avt_2.setPosition(670, 540);
 		avt_2.setScale(1.5f);
-		avt_2.setRotation(3);
+		avt_2.setLogicDirection(Sprite.DIRECTION_DOWN);
 		
 		Stage.add(avt_0);
 		Stage.add(avt_1);

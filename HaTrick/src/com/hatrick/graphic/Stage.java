@@ -22,7 +22,10 @@ public class Stage {
 	private static final int FPS_MAX = 30;
 	private static com.hatrick.graphic.Map map;
 	private static Camera camera = new Camera(800,600);
-	public static int depth = 0;
+	public static int depth_floor = 0;
+	public static int depth_bubble = 1000;
+	public static int depth_asserts_avater = 2000;
+	public static int depth_exposion = 4000;
 
 	public Stage(AppGameContainer container){
 		setContainer(container);
@@ -34,10 +37,24 @@ public class Stage {
 		container = agc;
 	}
 
-	/*when create a sprite, init it's depth for display*/
+	/*when create a sprite, init it's depth for display，print the deeper sprite*/
 	public static void initDepth(Sprite sprt) {
-		sprt.setDepth(depth);
-		depth++;
+		if (sprt.getType() >= 10013 && sprt.getType() <= 10035) {
+			sprt.setDepth(depth_floor);
+			depth_floor++;
+		}
+		else if (sprt.getType() == 500 || sprt.getType() == 501) {
+			sprt.setDepth(depth_bubble);
+			depth_bubble++;
+		}
+		else if (sprt.getType() != 200) {
+			sprt.setDepth(depth_asserts_avater);
+			depth_asserts_avater++;
+		}
+		else if (sprt.getType() == 200) {
+			sprt.setDepth(depth_exposion);
+			depth_exposion++;
+		}
 	}
 
 	/*switch depth of two sprite when necessary*/
@@ -49,6 +66,25 @@ public class Stage {
 		sprt2.setDepth(depth1);
 	}
 
+	/*public static void resortDepth() {
+		boolean found = false;
+		Sprite sprt = null;
+		Iterator iter = elements.entrySet().iterator();
+		while (iter.hasNext()) {
+			Map.Entry<Integer,Sprite> entry = (Map.Entry) iter.next();
+			sprt = entry.getValue();
+			if(sprt.getLogicId() == hero.id){
+				found = true;
+				break;
+			}
+		}
+		if(!found) {
+			sprt = new Avatar(Sprite.getNextClientSpriteId(),Avatar.ASSASSIN1B);
+			sprt.setLogicId(hero.id);
+			Stage.add(sprt);
+		}
+	}*/
+	
 	//鎶婄墿浣撳姞鍏ュ埌鑸炲彴
 	public static void add(Sprite sprt){
 		elements.put(sprt.getId(), sprt);
@@ -126,6 +162,7 @@ public class Stage {
 	}
 	public static void display(){
 		//Display the elements in order of their depth.
+		
 		List<Map.Entry<Integer, Sprite>> sprites =
 				new ArrayList<Map.Entry<Integer, Sprite>>(elements.entrySet());
 
@@ -163,7 +200,7 @@ public class Stage {
 			}
 			sprt.moveTo((float)hero.pos_x,(float)hero.pos_y);
 			sprt.setLogicDirection(convertDirection(hero.direction));
-			camera.caculateCameraXY(map.getWidth()*70,map.getHeight()*70,(float)ClientLogic.myhero.pos_x,(float)ClientLogic.myhero.pos_y-35);
+			camera.caculateCameraXY(map.getWidth()*70,map.getHeight()*70,(float)ClientLogic.myhero.pos_x,(float)ClientLogic.myhero.pos_y-35);	
 		}
 	}
 	private static int convertDirection(int logic_direction){

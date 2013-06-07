@@ -30,6 +30,7 @@ public class GraphicBasicTest2 extends BasicGame {
 		// TODO Auto-generated method stub
 		Stage.update();
 		Stage.display();
+	    GUI.draw(arg0, arg1);
 	}
 
 	@Override
@@ -52,6 +53,30 @@ public class GraphicBasicTest2 extends BasicGame {
 		Stage.loadMap(Map.SNOW);
 		Client client=new Client();
 		new Thread(new ClientLogic("fuck")).start();
+		
+		Avatar avt_1 = new Avatar(Sprite.getNextClientSpriteId(),Avatar.DAEMON2A);
+		Avatar avt_2 = new Avatar(Sprite.getNextClientSpriteId(),Avatar.COLLABO1A);
+		Avatar avt_3 = new Avatar(Sprite.getNextClientSpriteId(),Avatar.MUMMY4A);
+		
+		avt_1.setPosition(670, 140);
+		avt_1.setScale(1.5f);
+		avt_1.setLogicDirection(Sprite.DIRECTION_DOWN);
+		avt_1.setMoveCamera(1);
+		avt_2.setPosition(670, 340);
+		avt_2.setScale(1.5f);
+		avt_2.setLogicDirection(Sprite.DIRECTION_DOWN);
+		avt_2.setMoveCamera(1);
+		avt_3.setPosition(670, 540);
+		avt_3.setScale(1.5f);
+		avt_3.setLogicDirection(Sprite.DIRECTION_DOWN);
+		avt_3.setMoveCamera(1);
+		
+		Stage.add(avt_1);
+		Stage.add(avt_2);
+		Stage.add(avt_3);
+		
+		GUI.init(arg0);
+		
 	}
 
 	@Override

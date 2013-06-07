@@ -62,43 +62,43 @@ public abstract class Sprite {
 	public static final int BUBBLE_1 = 500;
 	public static final int BUBBLE_2 = 501;
 	/* Elements */
-	public static final int SNOW_DUCK_1 = 10000;/* 2��1 */
-	public static final int SNOW_DUCK_2 = 10001;/* 2��1 */
-	public static final int SNOW_DUCK_3 = 10002;/* 2��1 */
-	public static final int SNOW_ICEBLOCK_1 = 10003;/* 1��1 */
-	public static final int SNOW_ICEBLOCK_2 = 10004;/* 1��1 */
-	public static final int SNOW_ICEBLOCK_3 = 10005;/* 1��1 */
-	public static final int SNOW_ICEBLOCK_4 = 10006;/* 1��1 */
-	public static final int SNOW_CAGE = 10007;/* 1��1 */
-	//public static final int SNOW_STATUE_1 = 10008;/* 2��4 */
-	public static final int SNOW_STATUE_2 = 10009;/* 2��4 */
-	public static final int SNOW_PLANT = 10010;/* 2��1 */
-	public static final int SNOW_GRASS_1 = 10011;/* 1��1 */
-	public static final int SNOW_GRASS_2 = 10012;/* 1��1 */
-	public static final int SNOW_FLOOR_1 = 10013;/* 1��1 */
-	public static final int SNOW_FLOOR_2 = 10014;/* 1��1 */
-	public static final int SNOW_FLOOR_3 = 10015;/* 1��1 */
-	public static final int SNOW_FLOOR_4 = 10016;/* 1��1 */
-	public static final int SNOW_FLOOR_5 = 10017;/* 1��1 */
-	public static final int SNOW_FLOOR_6 = 10018;/* 1��1 */
-	public static final int SNOW_FLOOR_7 = 10019;/* 1��1 */
-	public static final int SNOW_FLOOR_8 = 10020;/* 1��1 */
-	public static final int SNOW_ROAD_CURVE_1 = 10021;/* 2��2 */
-	public static final int SNOW_ROAD_CURVE_2 = 10022;/* 2��2 */
-	public static final int SNOW_ROAD_CURVE_3 = 10023;/* 2��2 */
-	public static final int SNOW_ROAD_CURVE_4 = 10024;/* 2��2 */
-	public static final int SNOW_ROAD_CURVE_5 = 10025;/* 2��2 */
-	public static final int SNOW_ROAD_CURVE_6 = 10026;/* 2��2 */
-	public static final int SNOW_ROAD_CURVE_7 = 10027;/* 2��2 */
-	public static final int SNOW_ROAD_CURVE_8 = 10028;/* 2��2 */
+	public static final int SNOW_DUCK_1 = 10000;/* 2������1 */
+	public static final int SNOW_DUCK_2 = 10001;/* 2������1 */
+	public static final int SNOW_DUCK_3 = 10002;/* 2������1 */
+	public static final int SNOW_ICEBLOCK_1 = 10003;/* 1������1 */
+	public static final int SNOW_ICEBLOCK_2 = 10004;/* 1������1 */
+	public static final int SNOW_ICEBLOCK_3 = 10005;/* 1������1 */
+	public static final int SNOW_ICEBLOCK_4 = 10006;/* 1������1 */
+	public static final int SNOW_CAGE = 10007;/* 1������1 */
+	//public static final int SNOW_STATUE_1 = 10008;/* 2������4 */
+	public static final int SNOW_STATUE_2 = 10009;/* 2������4 */
+	public static final int SNOW_PLANT = 10010;/* 2������1 */
+	public static final int SNOW_GRASS_1 = 10011;/* 1������1 */
+	public static final int SNOW_GRASS_2 = 10012;/* 1������1 */
+	public static final int SNOW_FLOOR_1 = 10013;/* 1������1 */
+	public static final int SNOW_FLOOR_2 = 10014;/* 1������1 */
+	public static final int SNOW_FLOOR_3 = 10015;/* 1������1 */
+	public static final int SNOW_FLOOR_4 = 10016;/* 1������1 */
+	public static final int SNOW_FLOOR_5 = 10017;/* 1������1 */
+	public static final int SNOW_FLOOR_6 = 10018;/* 1������1 */
+	public static final int SNOW_FLOOR_7 = 10019;/* 1������1 */
+	public static final int SNOW_FLOOR_8 = 10020;/* 1������1 */
+	public static final int SNOW_ROAD_CURVE_1 = 10021;/* 2������2 */
+	public static final int SNOW_ROAD_CURVE_2 = 10022;/* 2������2 */
+	public static final int SNOW_ROAD_CURVE_3 = 10023;/* 2������2 */
+	public static final int SNOW_ROAD_CURVE_4 = 10024;/* 2������2 */
+	public static final int SNOW_ROAD_CURVE_5 = 10025;/* 2������2 */
+	public static final int SNOW_ROAD_CURVE_6 = 10026;/* 2������2 */
+	public static final int SNOW_ROAD_CURVE_7 = 10027;/* 2������2 */
+	public static final int SNOW_ROAD_CURVE_8 = 10028;/* 2������2 */
 	//public static final int SNOW_ROAD_HOR_1 = 10029;
-	public static final int SNOW_ROAD_HOR_2 = 10030;/* 1��1 */
+	public static final int SNOW_ROAD_HOR_2 = 10030;/* 1������1 */
 	//public static final int SNOW_ROAD_HOR_3 = 10031;
-	public static final int SNOW_ROAD_HOR_4 = 10032;/* 1��1 */
+	public static final int SNOW_ROAD_HOR_4 = 10032;/* 1������1 */
 	//public static final int SNOW_ROAD_VER_1 = 10032;
-	public static final int SNOW_ROAD_VER_2 = 10033;/* 1��1 */
+	public static final int SNOW_ROAD_VER_2 = 10033;/* 1������1 */
 	//public static final int SNOW_ROAD_VER_3 = 10034;
-	public static final int SNOW_ROAD_VER_4 = 10035;/* 1��1 */
+	public static final int SNOW_ROAD_VER_4 = 10035;/* 1������1 */
 	
 	
 	public static final int DIRECTION_NONE = 100;
@@ -130,6 +130,8 @@ public abstract class Sprite {
 	private int _depth; //sprite's depth to control display, less deeper,later display  
 	private int m_width;
 	private int m_height;
+	private int _type;
+	private int _moveCamera; //default 0:move , 1:not move
 	
 	private HashMap<Integer,Image> _imgs;//arrange by direction
 	private HashMap<Integer,Animation> _actions;//arrange by key
@@ -155,6 +157,8 @@ public abstract class Sprite {
 		_actions = new HashMap<Integer,Animation>();
 		_currentImg = null;
 		_currentAnimation = null;
+		_type = 0;
+		_moveCamera = 0;
 	}
 	
 	public Sprite(Sprite sprt){
@@ -176,6 +180,8 @@ public abstract class Sprite {
 		this._actions.putAll(sprt._actions);
 		_currentImg = sprt._currentImg;
 		_currentAnimation = sprt._currentAnimation;
+		this._type = sprt._type;
+		this._moveCamera = sprt._moveCamera;
 	}
 	
 	public void addImage(ImageInfo img_info){
@@ -242,8 +248,11 @@ public abstract class Sprite {
 			current_frame.setAlpha(_alpha);
 			current_frame.setRotation(_graphicRotation);
 			
-			/*draw参数是相对于舞台左上角，x，y是相对与地图左上角，换成camera视角*/
-			_currentAnimation.draw((int)((_x-current_frame.getCenterOfRotationX()*_scale)-Stage.getCamera().getCameraX()),(int)((_y-current_frame.getCenterOfRotationY()*_scale)-Stage.getCamera().getCameraY()), current_frame.getWidth()*_scale, current_frame.getHeight()*_scale);
+			/*draw������������������������������������x���y������������������������������������camera������*/
+			if (_moveCamera == 1)
+				_currentAnimation.draw((int)((_x-current_frame.getCenterOfRotationX()*_scale)),(int)((_y-current_frame.getCenterOfRotationY()*_scale)), current_frame.getWidth()*_scale, current_frame.getHeight()*_scale);
+			else
+				_currentAnimation.draw((int)((_x-current_frame.getCenterOfRotationX()*_scale)-Stage.getCamera().getCameraX()),(int)((_y-current_frame.getCenterOfRotationY()*_scale)-Stage.getCamera().getCameraY()), current_frame.getWidth()*_scale, current_frame.getHeight()*_scale);
 
 			
 			//Check if this animation is finished and if so switch to the next animation
@@ -264,7 +273,10 @@ public abstract class Sprite {
 			}
 			_currentImg.setAlpha(_alpha);
 			_currentImg.setRotation(_graphicRotation);
-			_currentImg.draw((int)((_x-_currentImg.getCenterOfRotationX()*_scale)-Stage.getCamera().getCameraX()),(int)((_y-_currentImg.getCenterOfRotationY()*_scale)-Stage.getCamera().getCameraY()), _currentImg.getWidth()*_scale, _currentImg.getHeight()*_scale);
+			if (_moveCamera == 1)
+				_currentImg.draw((int)((_x-_currentImg.getCenterOfRotationX()*_scale)),(int)((_y-_currentImg.getCenterOfRotationY()*_scale)), _currentImg.getWidth()*_scale, _currentImg.getHeight()*_scale);
+			else
+				_currentImg.draw((int)((_x-_currentImg.getCenterOfRotationX()*_scale)-Stage.getCamera().getCameraX()),(int)((_y-_currentImg.getCenterOfRotationY()*_scale)-Stage.getCamera().getCameraY()), _currentImg.getWidth()*_scale, _currentImg.getHeight()*_scale);
 		}
 	}
 
@@ -477,8 +489,53 @@ public abstract class Sprite {
 		return _loop;
 	}
 
+	public void setType(int type) {
+		this._type = type;
+	}
+	
+	public int getType() {
+		return _type;
+	}	
+	
+	public void setMoveCamera(int moveCamera) {
+		this._moveCamera = moveCamera;
+	}
+	
+	public int getMoveCamera() {
+		return this._moveCamera;
+	}
+	
 	public void setLoop(boolean _loop) {
 		this._loop = _loop;
 	}
+	
+	public boolean isFloor() {
+		if (this._type >= 10013 && this._type <= 10035)
+			return true;
+		else
+			return false;
+	}
+	
+	public boolean isBubble() {
+		if (this._type == 500 || this._type == 501)
+			return true;
+		else
+			return false;
+	}
+	
+	public boolean isAssertsAvatar() {
+		if ((this._type >= 6 && this._type <= 49) || (this._type >= 10000 && this._type <= 10012))
+			return true;
+		else
+			return false;
+	}	
+	
+	public boolean isExposion() {
+		if (this._type == 200)
+			return true;
+		else
+			return false;
+	}
+	
 }
 

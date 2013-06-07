@@ -45,30 +45,30 @@ public class GUI {
 		side_1_score.setPosition(200, 0);
 		side_2_score.setPosition(400, 0);
 		
-		side_1_roleName = new HTextField(gc, "me", java.awt.Color.blue,15,100,25);
-		side_2_roleName = new HTextField(gc, "parterner1", java.awt.Color.blue,15,100,25);
-		side_3_roleName = new HTextField(gc, "parterner2", java.awt.Color.blue,15,100,25);
-		side_1_roleName.setPosition(700, 50);
-		side_2_roleName.setPosition(700, 250);
-		side_3_roleName.setPosition(700, 450);
+		side_1_roleName = new HTextField(gc, "me", java.awt.Color.white,20,100,25);
+		side_2_roleName = new HTextField(gc, "parterner1", java.awt.Color.white,20,100,25);
+		side_3_roleName = new HTextField(gc, "parterner2", java.awt.Color.white,20,100,25);
+		side_1_roleName.setPosition(650, 50);
+		side_2_roleName.setPosition(650, 250);
+		side_3_roleName.setPosition(650, 450);
 
-		side_1_roleKill = new HTextField(gc, "Kill:", java.awt.Color.blue,15,100,25);
-		side_2_roleKill = new HTextField(gc, "Kill:", java.awt.Color.blue,15,100,25);
-		side_3_roleKill = new HTextField(gc, "Kill:", java.awt.Color.blue,15,100,25);
+		side_1_roleKill = new HTextField(gc, "Kill:", java.awt.Color.white,15,100,25);
+		side_2_roleKill = new HTextField(gc, "Kill:", java.awt.Color.white,15,100,25);
+		side_3_roleKill = new HTextField(gc, "Kill:", java.awt.Color.white,15,100,25);
 		side_1_roleKill.setPosition(700, 80);
 		side_2_roleKill.setPosition(700, 280);
 		side_3_roleKill.setPosition(700, 480);
 
-		side_1_roleDeath = new HTextField(gc, "Death:", java.awt.Color.blue,15,100,25);
-		side_2_roleDeath = new HTextField(gc, "Death:", java.awt.Color.blue,15,100,25);
-		side_3_roleDeath = new HTextField(gc, "Death:", java.awt.Color.blue,15,100,25);
+		side_1_roleDeath = new HTextField(gc, "Death:", java.awt.Color.white,15,100,25);
+		side_2_roleDeath = new HTextField(gc, "Death:", java.awt.Color.white,15,100,25);
+		side_3_roleDeath = new HTextField(gc, "Death:", java.awt.Color.white,15,100,25);
 		side_1_roleDeath.setPosition(700, 110);
 		side_2_roleDeath.setPosition(700, 310);
 		side_3_roleDeath.setPosition(700, 510);
 
-		side_1_roleStatus = new HTextField(gc, "Status:", java.awt.Color.blue,15,100,25);
-		side_2_roleStatus = new HTextField(gc, "Status:", java.awt.Color.blue,15,100,25);
-		side_3_roleStatus = new HTextField(gc, "Status:", java.awt.Color.blue,15,100,25);
+		side_1_roleStatus = new HTextField(gc, "Status:", java.awt.Color.white,15,100,25);
+		side_2_roleStatus = new HTextField(gc, "Status:", java.awt.Color.white,15,100,25);
+		side_3_roleStatus = new HTextField(gc, "Status:", java.awt.Color.white,15,100,25);
 		side_1_roleStatus.setPosition(700, 140);
 		side_2_roleStatus.setPosition(700, 340);
 		side_3_roleStatus.setPosition(700, 540);
@@ -101,11 +101,11 @@ public class GUI {
 		
 		//draw blood bar
 		//g.setColor(Color.red);
-		g.drawRect(300,300,200,20);
+		//g.drawRect(300,300,200,20);
 	
 		//draw magic bar
 		//g.setColor(Color.blue);
-		g.drawRect(300,400,200,20);
+		//g.drawRect(300,400,200,20);
 		
 		//draw role info1
 		//g.drawRect(600, 0, 200, 200);
