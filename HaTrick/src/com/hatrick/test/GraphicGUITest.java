@@ -30,12 +30,17 @@ public class GraphicGUITest extends BasicGame {
 		
 	      // Login box
 	      
-	      
+	      Stage.display();
 	      GUI.draw(arg0, arg1);
 	}
 
 	@Override
 	public void init(GameContainer arg0) throws SlickException {
+		Effect explosion_1 = new Effect(1,Effect.EXPLOSION_1);
+		explosion_1.setPosition(200, 200);
+		
+		Stage.add(explosion_1);
+		Stage.loadMap(Map.SNOW);
 		GUI.init(arg0);
 	}
 
