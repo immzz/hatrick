@@ -7,7 +7,16 @@ import com.hatrick.graphic.AnimationInfo;
 public class Bubble extends Sprite{
 	
 	public static final int [] BUBBLES = new int[]{BUBBLE_1};
-	
+	public static final int [][] DAMAGE_AREA = new int[][]{
+		new int[]{-1,-1},
+		new int[]{-1,0},
+		new int[]{-1,1},
+		new int[]{0,-1},
+		new int[]{0,1},
+		new int[]{1,-1},
+		new int[]{1,0},
+		new int[]{1,1},
+	};
 	public Bubble(int id,int type){
 		setId(id);
 		this.setDirectional(false);

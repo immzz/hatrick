@@ -79,7 +79,7 @@ public class Client {
 		try {
 
 			// create a socket to connect to the server
-			Socket socket = new Socket("172.26.88.40",8000);
+			Socket socket = new Socket("localhost",8000);
 			// create an output stream to send data to the server
 			toServer = socket.getOutputStream();
 			// create an input stream to receive data from the server

@@ -47,4 +47,7 @@ public class Map {
 	public void setWidth(int width) {
 		this.width = width;
 	}
+	public boolean reachable(int x,int y){
+		return (assets[x][y] == 0);
+	}
 }

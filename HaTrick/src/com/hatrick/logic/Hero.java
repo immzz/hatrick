@@ -13,6 +13,8 @@ public class Hero extends LogicObject implements Serializable{
 	//double speed;
 	String name;
 	int hp;
+	
+
 	double change;
 	/* using items */
 	//Item[] bag = new Item[10];
@@ -162,5 +164,12 @@ public class Hero extends LogicObject implements Serializable{
 	
 	void use_item(int n) {
 		if(n == 0) return;
+	}
+	public int getHp() {
+		return hp;
+	}
+
+	public void setHp(int hp) {
+		this.hp = hp;
 	}
 }

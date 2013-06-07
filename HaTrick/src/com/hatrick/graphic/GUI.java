@@ -17,6 +17,8 @@ import org.newdawn.slick.geom.Rectangle;
 import org.newdawn.slick.gui.GUIContext;
 import org.newdawn.slick.gui.TextField;
 
+import com.hatrick.logic.ClientLogic;
+
 public class GUI {
 	private static int side_scores[];
 	private static int side_2_score;
@@ -41,8 +43,8 @@ public class GUI {
 	private static ShapeFill manaFill = new GradientFill(0, 40,health_color , 0, 580, health_color);
     private static ShapeFill rmFill = new GradientFill(0, 40,Color.black , 0, 580, Color.black);
    // private static 
-    private static int my_health = 80;
-    private static int my_mana = 20;
+    private static int my_health = 0;
+    private static int my_mana = 0;
 	public GUI(){
 		
 	}
@@ -74,6 +76,11 @@ public class GUI {
 	}
 	public static void updateTime(String time){
 		current_time = time;
+	}
+	public static void update(){
+		if(ClientLogic.myhero != null){
+			updateHealth(ClientLogic.myhero.getHp());
+		}
 	}
 	public static void draw(GUIContext guic,Graphics g){
 		g.fill(time_board,time_fill);

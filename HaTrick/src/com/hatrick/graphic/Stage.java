@@ -13,8 +13,10 @@ import org.newdawn.slick.AppGameContainer;
 import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
 
+import com.hatrick.logic.Bomb;
 import com.hatrick.logic.ClientLogic;
 import com.hatrick.logic.Hero;
+import com.hatrick.logic.Potion;
 
 public class Stage {
 	private static HashMap<Integer,Sprite> elements = new HashMap<Integer,Sprite>();
@@ -61,6 +63,21 @@ public class Stage {
 	public static Sprite get(int id){
 		return elements.get(id);
 	}
+	public static Sprite getLogic(int logic_id){
+		boolean found = false;
+		Sprite sprt = null;
+		Iterator iter = elements.entrySet().iterator();
+		while (iter.hasNext()) {
+			Map.Entry<Integer,Sprite> entry = (Map.Entry) iter.next();
+			sprt = entry.getValue();
+			if(sprt.getLogicId() == logic_id){
+				found = true;
+				break;
+			}
+		}
+		if(!found) return null;
+		return sprt;
+	}
 
 	public static void loadMap(int id){
 		map = new com.hatrick.graphic.Map(id);
@@ -83,10 +100,10 @@ public class Stage {
 				Element ele = new Element(Sprite.getNextClientSpriteId(),floor[i][j]);
 				ele.setGraphicPosition((j+ele.getMWidth())*70 - ele.getWidth(), (i+ele.getMHeight())*70 - ele.getHeight());
 				add(ele);
-				System.out.println("DepthFloor:"+ele.getDepth());
-				System.out.println(ele.getX()+","+ele.getY());
-				System.out.println(ele.getWidth()+","+ele.getHeight());
-				System.out.println(ele.getMWidth()+","+ele.getMHeight());
+				//System.out.println("DepthFloor:"+ele.getDepth());
+				//System.out.println(ele.getX()+","+ele.getY());
+				//System.out.println(ele.getWidth()+","+ele.getHeight());
+				//System.out.println(ele.getMWidth()+","+ele.getMHeight());
 				for(int l=i;l<i+ele.getMHeight();l++){
 					for(int m=j;m<j+ele.getMWidth();m++){
 						flags[l][m] = true;
@@ -109,10 +126,10 @@ public class Stage {
 				Element ele = new Element(Sprite.getNextClientSpriteId(),assets[i][j]);
 				ele.setGraphicPosition((j+ele.getMWidth())*70 - ele.getWidth(), (i+ele.getMHeight())*70 - ele.getHeight());
 				add(ele);
-				System.out.println("DepthAssets:"+ele.getDepth());
-				System.out.println(ele.getX()+","+ele.getY());
-				System.out.println(ele.getWidth()+","+ele.getHeight());
-				System.out.println(ele.getMWidth()+","+ele.getMHeight());
+				//System.out.println("DepthAssets:"+ele.getDepth());
+				//System.out.println(ele.getX()+","+ele.getY());
+				//System.out.println(ele.getWidth()+","+ele.getHeight());
+				//System.out.println(ele.getMWidth()+","+ele.getMHeight());
 				for(int l=i;l<i+ele.getMHeight();l++){
 					for(int m=j;m<j+ele.getMWidth();m++){
 						flags[l][m] = true;
@@ -141,28 +158,92 @@ public class Stage {
 		}
 	}
 	
+	private static boolean hasHero(ArrayList<Hero> list,int logic_id){
+		for(int i=0;i<list.size();i++){
+			if(list.get(i).id == logic_id){
+				return true;
+			}
+		}
+		return false;
+	}
+	
+	private static boolean hasBomb(ArrayList<Bomb> list,int logic_id){
+		for(int i=0;i<list.size();i++){
+			if(list.get(i).id == logic_id){
+				return true;
+			}
+		}
+		return false;
+	}
+	
 	public static void update(){
+		//Scan Hero List
 		ArrayList<Hero> list = ClientLogic.get_heros();
 		for(int i=0;i<list.size();i++){
-			boolean found = false;
 			Hero hero = list.get(i);
-			Sprite sprt = null;
-			Iterator iter = elements.entrySet().iterator();
-			while (iter.hasNext()) {
-				Map.Entry<Integer,Sprite> entry = (Map.Entry) iter.next();
-				sprt = entry.getValue();
-				if(sprt.getLogicId() == hero.id){
-					found = true;
-					break;
-				}
-			}
-			if(!found){
+			Sprite sprt = getLogic(hero.id);
+			//System.out.println("hero id:"+hero.id);
+			if(sprt == null){
+				//System.out.println("hero not found!");
 				sprt = new Avatar(Sprite.getNextClientSpriteId(),Avatar.ASSASSIN1B);
 				sprt.setLogicId(hero.id);
 				Stage.add(sprt);
 			}
 			sprt.moveTo((float)hero.pos_x,(float)hero.pos_y);
 			sprt.setLogicDirection(convertDirection(hero.direction));
+		}
+		//Scan Bomb List
+		ArrayList<Bomb> bomb_list = ClientLogic.get_bombs();
+		for(int i=0;i<bomb_list.size();i++){
+			Bomb bomb = bomb_list.get(i);
+			Sprite sprt = getLogic(bomb.id);
+			System.out.println("exploding:"+bomb.isExploring());
+			if(!bomb.isExploring()){
+				if(sprt == null){
+					sprt = new Bubble(Sprite.getNextClientSpriteId(),Bubble.BUBBLE_1);
+					sprt.setLogicId(bomb.id);
+					Stage.add(sprt);
+				}
+				sprt.moveTo((float)bomb.p_x*70+35, (float)bomb.p_y*70+25);
+			}else{
+				if(sprt == null) continue;
+				for(int j=0;j<Bubble.DAMAGE_AREA.length;j++){
+					int damage_x = bomb.p_x+Bubble.DAMAGE_AREA[j][0];
+					int damage_y = bomb.p_y+Bubble.DAMAGE_AREA[j][1];
+					if(map.reachable(damage_x, damage_y)){
+						Effect explosion = new Effect(Sprite.getNextClientSpriteId(),Effect.EXPLOSION_1);
+						explosion.setPosition(damage_x*70, damage_y*70);
+					}
+				}
+				remove(sprt.getId());
+			}
+		}
+		//Scan Potion List
+		ArrayList<Potion> potion_list = ClientLogic.get_potions();
+		for(int i=0;i<potion_list.size();i++){
+			Potion potion = potion_list.get(i);
+			Sprite sprt = getLogic(potion.id);
+			if(sprt == null){
+				//sprt = new Potion(Sprite.getNextClientSpriteId(), );
+				sprt.setLogicId(potion.id);
+				Stage.add(sprt);
+			}
+			sprt.moveTo((float)potion.p_x*70+35, (float)potion.p_y*70+25);
+		}
+		//Create Explosion Effects
+		//Clean Heros & Bombs & Finished Effects
+		Sprite sprt = null;
+		Iterator iter = elements.entrySet().iterator();
+		while (iter.hasNext()) {
+			Map.Entry<Integer,Sprite> entry = (Map.Entry) iter.next();
+			sprt = entry.getValue();
+			if(!hasHero(list,sprt.getLogicId()) && !hasBomb(bomb_list,sprt.getLogicId())){
+				//iter.remove();
+			}
+			//
+		}
+		//Adjust Camera
+		if(ClientLogic.myhero != null){
 			camera.caculateCameraXY(map.getWidth()*70,map.getHeight()*70,(float)ClientLogic.myhero.pos_x,(float)ClientLogic.myhero.pos_y-35);
 		}
 	}
