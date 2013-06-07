@@ -51,7 +51,7 @@ public class ServerLogic implements Runnable{
             }
 
             // set potion
-            if (r.nextInt(1000) > 990) {
+            if (r.nextInt(10000) > 9970) {
                 new Potion(0, 10000);
             }
 

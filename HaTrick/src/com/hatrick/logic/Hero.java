@@ -5,7 +5,7 @@ import java.io.Serializable;
 public class Hero extends LogicObject implements Serializable{
 	private static final long serialVersionUID = 1L;
 	
-    private static final int RECOVERY_INTERVAL = 5000;
+    private static final int RECOVERY_INTERVAL = 1000;
 	/* moving */
 	//double pos_x, pos_y;
 	//double width;
@@ -20,8 +20,8 @@ public class Hero extends LogicObject implements Serializable{
 	double change;
 	/* using items */
 	//Item[] bag = new Item[10];
-	int strength = 30;
-	private int powerGauge = 3;
+	int strength = 40;
+	private int powerGauge = 5;
     
 	boolean justShot;
 
@@ -127,7 +127,7 @@ public class Hero extends LogicObject implements Serializable{
         id = LogicObject.globalId ++;
         randomPos();
         hp = 100;
-        powerGauge = 3;
+        powerGauge = 5;
         mapInstance.insertObj(this);
     }
     
@@ -161,8 +161,8 @@ public class Hero extends LogicObject implements Serializable{
         if (op.shooting) {
             if (!justShot) {
                 justShot = true;
-                System.out.printf("place bomb\n");
-                placeBomb(5);
+                //System.out.printf("place bomb\n");
+                placeBomb(1);
             }
         }
         else {

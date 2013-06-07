@@ -122,7 +122,7 @@ public class GUI {
 	public static void update(){
 		if(ClientLogic.myhero != null){
 			updateHealth(ClientLogic.myhero.getHp());
-			updateMana(ClientLogic.myhero.getPowerGauge()*33+1);
+			updateMana(ClientLogic.myhero.getPowerGauge()*20);
 		}
 		//System.out.printf("%d, %d\n", ClientLogic.getScore1(), ClientLogic.getScore2());
 		updateScore(1, ClientLogic.getScore1());
