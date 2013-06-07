@@ -227,7 +227,7 @@ public class AnimationResource {
 		public static HashMap<Integer,AnimationInfo[]> explosions = new HashMap<Integer,AnimationInfo[]>(){
 			{
 				put(Sprite.EXPLOSION_1,new AnimationInfo[]{
-						new AnimationInfo("res/game/graphic/explosion/explosion_1.png",4,3,0,3,0,2,35,35)
+						new AnimationInfo("res/game/graphic/explosion/explosion_1_big.png",4,3,0,3,0,2,42,42)
 				});
 			};
 		};

@@ -47,11 +47,11 @@ public class IntegratedTestClient extends BasicGame {
 		//Stage.add(ele_0);
 		//Avatar avt_0 = new Avatar(0, Avatar.DAEMON2A);
 		//avt_0.setPosition(0,0);
-		//Stage.add(avt_0);
+		//Stage.add(avt_0);wa
 		GUI.init(arg0);
 		Stage.loadMap(Map.SNOW);
 		Client client=new Client();
-		new Thread(new ClientLogic("fuck", 1, Avatar.ASSASSIN1A)).start();
+		new Thread(new ClientLogic("zmz", 1, Avatar.DANCER1A)).start();
 	}
 
 	@Override
