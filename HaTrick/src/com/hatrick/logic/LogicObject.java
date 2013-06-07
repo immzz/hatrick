@@ -60,7 +60,7 @@ public abstract class LogicObject implements Serializable{
 
     public void doDelete() {
         deleteTime --;
-        if (actionTime <= 0) {
+        if (deleteTime <= 0) {
             LogicObject.mapInstance.deleteListDel.add(this);
             LogicObject.mapInstance.delObjList(this);
         }
