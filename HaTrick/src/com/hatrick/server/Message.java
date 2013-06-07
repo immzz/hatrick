@@ -15,6 +15,7 @@ import java.io.Serializable;
 	public static final int TYPE_INIT = 4;
 	public static final int TYPE_BOMB = 5;
 	public static final int TYPE_POTION = 6;
+	public static final int TYPE_SCORE = 7;
 
 	public int type;
 	private Long time;
