@@ -10,9 +10,10 @@ public class Potion extends LogicObject implements Serializable{
     public void doAction() {
     }
 
-    public Potion(int p_x, int p_y, int amount, int deleteDely) {
-        super(p_x, p_y, 0, 0, 0, deleteDely);
+    public Potion(int amount, int deleteDely) {
+        super(0, 0, 0, 0, 0, deleteDely);
         this.amount = amount;
+        randomPos();
         if (mapInstance.emptyPlace(p_x, p_y)) {
             mapInstance.addNewObj(this);
             System.out.printf("New at %d, %d\n", p_x, p_y);
