@@ -244,5 +244,14 @@ public class AnimationResource {
 			};
 		};
 	}
+	public static class potions{
+		public static HashMap<Integer,AnimationInfo[]> still = new HashMap<Integer,AnimationInfo[]>(){
+			{
+				put(Sprite.POTION_1,new AnimationInfo[]{
+						new AnimationInfo("res/game/graphic/potion/potion_1.png",3,3,0,2,0,2,35,35)
+				});
+			};
+		};
+	}
 }
 

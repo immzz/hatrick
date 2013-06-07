@@ -13,7 +13,7 @@ public class Potion extends Sprite{
 		this.setDirectional(false);
 		this.setLoop(true);
 		this.setScale(1.0f);
-		AnimationInfo [] ani_infos = AnimationResource.bubbles.still.get(type);
+		AnimationInfo [] ani_infos = AnimationResource.potions.still.get(type);
 		AnimationInfo info = ani_infos[0];
 		addAnimation(0,info);
 		//Adjust the duration

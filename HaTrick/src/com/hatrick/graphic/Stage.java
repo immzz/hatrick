@@ -211,6 +211,15 @@ public class Stage {
 		return false;
 	}
 	
+	private static boolean hasPotion(ArrayList<Potion> list,int logic_id){
+		for(int i=0;i<list.size();i++){
+			if(list.get(i).id == logic_id){
+				return true;
+			}
+		}
+		return false;
+	}
+	
 	private static boolean hasBomb(ArrayList<Bomb> list,int logic_id){
 		for(int i=0;i<list.size();i++){
 			if(list.get(i).id == logic_id){
@@ -288,6 +297,9 @@ public class Stage {
 				iter.remove();
 			}
 			if(sprt.isAvatar() && !hasHero(list,sprt.getLogicId())){
+				iter.remove();
+			}
+			if(sprt.isPotion() && !hasPotion(potion_list,sprt.getLogicId())){
 				iter.remove();
 			}
 			if(sprt.isExposion() && !sprt.isActing()){
