@@ -1,0 +1,25 @@
+<<<<<<< HEAD
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<launchConfiguration type="org.eclipse.jdt.launching.localJavaApplication">
+<listAttribute key="org.eclipse.debug.core.MAPPED_RESOURCE_PATHS">
+<listEntry value="/HaTrick/src/com/hatrick/test/GraphicBasicTest.java"/>
+</listAttribute>
+<listAttribute key="org.eclipse.debug.core.MAPPED_RESOURCE_TYPES">
+<listEntry value="1"/>
+</listAttribute>
+<stringAttribute key="org.eclipse.jdt.launching.MAIN_TYPE" value="com.hatrick.test.GraphicBasicTest"/>
+<stringAttribute key="org.eclipse.jdt.launching.PROJECT_ATTR" value="HaTrick"/>
+</launchConfiguration>
+=======
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<launchConfiguration type="org.eclipse.jdt.launching.localJavaApplication">
+<listAttribute key="org.eclipse.debug.core.MAPPED_RESOURCE_PATHS">
+<listEntry value="/HaTrick/src/com/hatrick/test/GraphicBasicTest.java"/>
+</listAttribute>
+<listAttribute key="org.eclipse.debug.core.MAPPED_RESOURCE_TYPES">
+<listEntry value="1"/>
+</listAttribute>
+<stringAttribute key="org.eclipse.jdt.launching.MAIN_TYPE" value="com.hatrick.test.GraphicBasicTest"/>
+<stringAttribute key="org.eclipse.jdt.launching.PROJECT_ATTR" value="HaTrick"/>
+</launchConfiguration>
+>>>>>>> f2ae285249b2639b2b6f0ee528fba96bc33d40f2

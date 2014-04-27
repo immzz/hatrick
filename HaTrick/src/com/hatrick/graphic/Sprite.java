@@ -11,6 +11,98 @@ import org.newdawn.slick.SpriteSheet;
 
 public abstract class Sprite {
 	
+	/* Avatars */
+	public static final int CRUSADER1A = 6;
+	public static final int CRUSADER1B = 7;
+	public static final int DAEMON2A = 8;
+	public static final int WITCH3A = 9;
+	public static final int MUMMY4A = 10;
+	public static final int COLLABO1A = 11;
+	public static final int COLLABO1B = 12;
+	public static final int DANCER1A = 13;
+	public static final int DANCER1B = 14;
+	public static final int GUNSLINGER1A = 17;
+	public static final int GUNSLINGER1B = 18;
+	public static final int KNIGHT1A = 19;
+	public static final int KNIGHT1B = 20;
+	public static final int KNIGHT2A = 21;
+	public static final int KNIGHT2B = 22;
+	public static final int KNIGHT3A = 23;
+	public static final int KNIGHT3B = 24;
+	public static final int KNIGHT4A = 25;
+	public static final int KNIGHT5A = 26;
+	public static final int MAGICIAN1A = 27;
+	public static final int MAGICIAN2A = 28;
+	public static final int MAGICIAN3A = 29;
+	public static final int MAGICIAN3B = 30;
+	public static final int MAGICIAN4A = 31;
+	public static final int MAGICIAN4B = 32;
+	public static final int MAGICIAN5A = 33;
+	public static final int MAGICIAN5B = 34;
+	public static final int MAGICIAN6A = 35;
+	public static final int MAGICIAN6B = 36;
+	public static final int MONK1A = 37;
+	public static final int MONK1B = 38;
+	public static final int PRIEST1A = 39;
+	public static final int PRIEST1B = 40;
+	public static final int PRIEST2A = 41;
+	public static final int PRIEST2B = 42;
+	public static final int PRIEST3A = 43;
+	public static final int ASSASSIN1A = 44;
+	public static final int ASSASSIN1B = 45;
+	public static final int ASSASSIN2A = 46;
+	public static final int ASSASSIN3A = 47;
+	public static final int ASSASSIN3B = 48;
+	public static final int ASSASSIN4A = 49;
+	
+	/* Explosions */
+	public static final int EXPLOSION_1 = 200;
+	
+	public static final int POTION_1 = 300;
+	
+	/* Bubbles */
+	public static final int BUBBLE_1 = 500;
+	public static final int BUBBLE_2 = 501;
+	/* Elements */
+	public static final int SNOW_DUCK_1 = 10000;/* 2������1 */
+	public static final int SNOW_DUCK_2 = 10001;/* 2������1 */
+	public static final int SNOW_DUCK_3 = 10002;/* 2������1 */
+	public static final int SNOW_ICEBLOCK_1 = 10003;/* 1������1 */
+	public static final int SNOW_ICEBLOCK_2 = 10004;/* 1������1 */
+	public static final int SNOW_ICEBLOCK_3 = 10005;/* 1������1 */
+	public static final int SNOW_ICEBLOCK_4 = 10006;/* 1������1 */
+	public static final int SNOW_CAGE = 10007;/* 1������1 */
+	//public static final int SNOW_STATUE_1 = 10008;/* 2������4 */
+	public static final int SNOW_STATUE_2 = 10009;/* 2������4 */
+	public static final int SNOW_PLANT = 10010;/* 2������1 */
+	public static final int SNOW_GRASS_1 = 10011;/* 1������1 */
+	public static final int SNOW_GRASS_2 = 10012;/* 1������1 */
+	public static final int SNOW_FLOOR_1 = 10013;/* 1������1 */
+	public static final int SNOW_FLOOR_2 = 10014;/* 1������1 */
+	public static final int SNOW_FLOOR_3 = 10015;/* 1������1 */
+	public static final int SNOW_FLOOR_4 = 10016;/* 1������1 */
+	public static final int SNOW_FLOOR_5 = 10017;/* 1������1 */
+	public static final int SNOW_FLOOR_6 = 10018;/* 1������1 */
+	public static final int SNOW_FLOOR_7 = 10019;/* 1������1 */
+	public static final int SNOW_FLOOR_8 = 10020;/* 1������1 */
+	public static final int SNOW_ROAD_CURVE_1 = 10021;/* 2������2 */
+	public static final int SNOW_ROAD_CURVE_2 = 10022;/* 2������2 */
+	public static final int SNOW_ROAD_CURVE_3 = 10023;/* 2������2 */
+	public static final int SNOW_ROAD_CURVE_4 = 10024;/* 2������2 */
+	public static final int SNOW_ROAD_CURVE_5 = 10025;/* 2������2 */
+	public static final int SNOW_ROAD_CURVE_6 = 10026;/* 2������2 */
+	public static final int SNOW_ROAD_CURVE_7 = 10027;/* 2������2 */
+	public static final int SNOW_ROAD_CURVE_8 = 10028;/* 2������2 */
+	//public static final int SNOW_ROAD_HOR_1 = 10029;
+	public static final int SNOW_ROAD_HOR_2 = 10030;/* 1������1 */
+	//public static final int SNOW_ROAD_HOR_3 = 10031;
+	public static final int SNOW_ROAD_HOR_4 = 10032;/* 1������1 */
+	//public static final int SNOW_ROAD_VER_1 = 10032;
+	public static final int SNOW_ROAD_VER_2 = 10033;/* 1������1 */
+	//public static final int SNOW_ROAD_VER_3 = 10034;
+	public static final int SNOW_ROAD_VER_4 = 10035;/* 1������1 */
+	
+	
 	public static final int DIRECTION_NONE = 100;
 	public static final int DIRECTION_UP = 3;
 	public static final int DIRECTION_DOWN = 0;
@@ -23,17 +115,25 @@ public abstract class Sprite {
 	private static final int ACTION_NONE = 1000000;
 	
 	private int _id;
+	private int _logic_id;
 	private float _x;
 	private float _y;
 	private float _rotation;//This is the rotation of movement.
 	private float _graphicRotation;//This is the rotation of graphic.
 	private float _scale;
 	private float _alpha;
+	private int _logic_direction;
 	private boolean _directional;
 	private boolean _visible;
 	private boolean _acting;
 	private int _action;//Action that the sprite is performing
 	private int _nextAction;
+	private boolean _loop;
+	private int _depth; //sprite's depth to control display, less deeper,later display  
+	private int m_width;
+	private int m_height;
+	private int _type;
+	private int _moveCamera; //default 0:move , 1:not move
 	
 	private HashMap<Integer,Image> _imgs;//arrange by direction
 	private HashMap<Integer,Animation> _actions;//arrange by key
@@ -44,6 +144,7 @@ public abstract class Sprite {
 		_id = 0;
 		_x = 0;
 		_y = 0;
+		_logic_id = -1;
 		_rotation = 0;
 		_graphicRotation = 0;
 		_scale = 1.0f;
@@ -53,10 +154,13 @@ public abstract class Sprite {
 		_acting = false;
 		_action = ACTION_NONE;
 		_nextAction = ACTION_NONE;
+		_loop = false;
 		_imgs = new HashMap<Integer,Image>();
 		_actions = new HashMap<Integer,Animation>();
 		_currentImg = null;
 		_currentAnimation = null;
+		_type = 0;
+		_moveCamera = 0;
 	}
 	
 	public Sprite(Sprite sprt){
@@ -78,6 +182,8 @@ public abstract class Sprite {
 		this._actions.putAll(sprt._actions);
 		_currentImg = sprt._currentImg;
 		_currentAnimation = sprt._currentAnimation;
+		this._type = sprt._type;
+		this._moveCamera = sprt._moveCamera;
 	}
 	
 	public void addImage(ImageInfo img_info){
@@ -90,6 +196,9 @@ public abstract class Sprite {
 		}
 		img.setCenterOfRotation(img_info.getCenterOffsetX(), img_info.getCenterOffsetY());
 		_imgs.put(img_info.getDirection(), img);
+		if(_currentImg == null) _currentImg = img;
+		m_width = img_info.getMWidth();
+		m_height = img_info.getMHeight();
 	}
 	
 	public void addAnimation(int action_type,AnimationInfo ani_info){
@@ -121,7 +230,7 @@ public abstract class Sprite {
 		if(_acting){
 			Animation _prevAnimation = _currentAnimation;
 			if(isActDirectional(_action)){
-				_currentAnimation = _actions.get(_action+getDirection());
+				_currentAnimation = _actions.get(_action+getLogicDirection());
 			}else{
 				_currentAnimation = _actions.get(_action);
 			}
@@ -141,24 +250,35 @@ public abstract class Sprite {
 			current_frame.setAlpha(_alpha);
 			current_frame.setRotation(_graphicRotation);
 			
-			_currentAnimation.draw((int)(_x-current_frame.getCenterOfRotationX()*_scale),(int)(_y-current_frame.getCenterOfRotationY()*_scale), current_frame.getWidth()*_scale, current_frame.getHeight()*_scale);
+			/*draw������������������������������������x���y������������������������������������camera������*/
+			if (_moveCamera == 1)
+				_currentAnimation.draw((int)((_x-current_frame.getCenterOfRotationX()*_scale)),(int)((_y-current_frame.getCenterOfRotationY()*_scale)), current_frame.getWidth()*_scale, current_frame.getHeight()*_scale);
+			else
+				_currentAnimation.draw((int)((_x-current_frame.getCenterOfRotationX()*_scale)-Stage.getCamera().getCameraX()),(int)((_y-current_frame.getCenterOfRotationY()*_scale)-Stage.getCamera().getCameraY()), current_frame.getWidth()*_scale, current_frame.getHeight()*_scale);
+
 			
 			//Check if this animation is finished and if so switch to the next animation
 			if(_currentAnimation.getFrame() == _currentAnimation.getFrameCount()-1){
-				_currentAnimation.stop();
-				_acting = false;
-				_action = _nextAction;
-				_nextAction = ACTION_NONE;
+				if(!_loop){
+					_currentAnimation.stop();
+					_acting = false;
+					_action = _nextAction;
+					_nextAction = ACTION_NONE;
+				}
 			}
 		}else{
+			if(_currentImg == null) return;
 			if(_directional){
-				_currentImg = _imgs.get(getDirection());
+				_currentImg = _imgs.get(getLogicDirection());
 			}else{
 				_currentImg = _imgs.get(DIRECTION_NONE);
 			}
 			_currentImg.setAlpha(_alpha);
 			_currentImg.setRotation(_graphicRotation);
-			_currentImg.draw((int)(_x-_currentImg.getCenterOfRotationX()*_scale),(int)(_y-_currentImg.getCenterOfRotationY()*_scale), _currentImg.getWidth()*_scale, _currentImg.getHeight()*_scale);
+			if (_moveCamera == 1)
+				_currentImg.draw((int)((_x-_currentImg.getCenterOfRotationX()*_scale)),(int)((_y-_currentImg.getCenterOfRotationY()*_scale)), _currentImg.getWidth()*_scale, _currentImg.getHeight()*_scale);
+			else
+				_currentImg.draw((int)((_x-_currentImg.getCenterOfRotationX()*_scale)-Stage.getCamera().getCameraX()),(int)((_y-_currentImg.getCenterOfRotationY()*_scale)-Stage.getCamera().getCameraY()), _currentImg.getWidth()*_scale, _currentImg.getHeight()*_scale);
 		}
 	}
 
@@ -176,6 +296,12 @@ public abstract class Sprite {
 	}
 	private void setCurrentAnimation(Animation anmi){
 		
+	}
+	public int getLogicDirection(){
+		return _logic_direction;
+	}
+	public void setLogicDirection(int _direction){
+		_logic_direction = _direction;
 	}
 	protected int getDirection(){
 		float real_deg =  ( 360 + (_rotation % 360 )) % 360;
@@ -209,6 +335,22 @@ public abstract class Sprite {
 	public void setPosition(float _x,float _y){
 		this._x = _x;
 		this._y = _y;
+	}
+	/** Set the topleft corner to the given position
+	 * @param _x
+	 * @param _y
+	 */
+	public void setGraphicPosition(float _x,float _y){
+		if(_acting){
+			Image current_frame = _currentAnimation.getCurrentFrame();
+			this._x = _x + current_frame.getCenterOfRotationX()*_scale;
+			this._y = _y + current_frame.getCenterOfRotationY()*_scale;
+		}else{
+			System.out.println(_currentImg.getCenterOfRotationX()*_scale);
+			this._x = _x + _currentImg.getCenterOfRotationX()*_scale;
+			this._y = _y + _currentImg.getCenterOfRotationY()*_scale;
+		}
+		
 	}
 	/** Get the rotation of movement.
 	 * @return
@@ -285,6 +427,14 @@ public abstract class Sprite {
 	public void setId(int _id) {
 		this._id = _id;
 	}
+	
+	public int getLogicId() {
+		return _logic_id;
+	}
+
+	public void setLogicId(int _id) {
+		this._logic_id = _id;
+	}
 
 	public int getAction() {
 		return _action;
@@ -312,5 +462,98 @@ public abstract class Sprite {
 	 * @param g
 	 */
 	public abstract void moveTo(float f,float g);
+
+	public void setMWidth(int m_width) {
+		this.m_width = m_width;
+	}
+
+	public int getMHeight() {
+		return m_height;
+	}
+
+	public void setMHeight(int m_height) {
+		this.m_height = m_height;
+	}
+
+	public int getMWidth() {
+		return m_width;
+	}
+	
+	public void setDepth(int depth) {
+		this._depth = depth;
+	}
+	
+	public int getDepth() {
+		return this._depth;
+	}
+
+	public boolean isLoop() {
+		return _loop;
+	}
+
+	public void setType(int type) {
+		this._type = type;
+	}
+	
+	public int getType() {
+		return _type;
+	}	
+	
+	public void setMoveCamera(int moveCamera) {
+		this._moveCamera = moveCamera;
+	}
+	
+	public int getMoveCamera() {
+		return this._moveCamera;
+	}
+	
+	public void setLoop(boolean _loop) {
+		this._loop = _loop;
+	}
+	
+	public boolean isFloor() {
+		if (this._type >= 10013 && this._type <= 10035)
+			return true;
+		else
+			return false;
+	}
+	
+	public boolean isBubble() {
+		if (this._type == 500 || this._type == 501)
+			return true;
+		else
+			return false;
+	}
+	
+
+	public boolean isPotion() {
+		if (this._type == 300)
+			return true;
+		else
+			return false;
+	}
+
+	public boolean isAvatar() {
+		if ((this._type >= 6 && this._type <= 49))
+			return true;
+		else
+			return false;
+	}	
+
+	
+	public boolean isAssertsAvatar() {
+		if ((this._type >= 6 && this._type <= 49) || (this._type >= 10000 && this._type <= 10012))
+			return true;
+		else
+			return false;
+	}	
+	
+	public boolean isExposion() {
+		if (this._type == 200)
+			return true;
+		else
+			return false;
+	}
 	
 }
+

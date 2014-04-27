@@ -1,6 +1,5 @@
 package com.hatrick.test;
 
-
 import org.newdawn.slick.AppGameContainer;
 import org.newdawn.slick.BasicGame;
 import org.newdawn.slick.GameContainer;
@@ -10,6 +9,7 @@ import org.newdawn.slick.Input;
 import org.newdawn.slick.SlickException;
 
 import com.hatrick.graphic.*;
+import com.hatrick.logic.Operation;
 
 public class GraphicBasicTest extends BasicGame {
 
@@ -27,16 +27,16 @@ public class GraphicBasicTest extends BasicGame {
 	@Override
 	public void init(GameContainer arg0) throws SlickException {
 		// TODO Auto-generated method stub
-		Avatar avt_0 = new Avatar(0,Avatar.DAEMON2A);
-		Avatar avt_1 = new Avatar(1,Avatar.ASSASSIN1B);
-		Avatar avt_2 = new Avatar(2,Avatar.COLLABO1A);
-		Avatar avt_3 = new Avatar(3,Avatar.CRUSADER1A);
-		Avatar avt_4 = new Avatar(4,Avatar.DANCER1A);
-		Avatar avt_5 = new Avatar(5,Avatar.GUNSLINGER1A);
-		Avatar avt_6 = new Avatar(6,Avatar.KNIGHT1A);
-		Avatar avt_7 = new Avatar(7,Avatar.MAGICIAN2A);
-		Avatar avt_8 = new Avatar(8,Avatar.MONK1B);
-		Avatar avt_9 = new Avatar(9,Avatar.MUMMY4A);
+		Avatar avt_0 = new Avatar(0, Avatar.DAEMON2A);
+		Avatar avt_1 = new Avatar(1, Avatar.ASSASSIN1B);
+		Avatar avt_2 = new Avatar(2, Avatar.COLLABO1A);
+		Avatar avt_3 = new Avatar(3, Avatar.CRUSADER1A);
+		Avatar avt_4 = new Avatar(4, Avatar.DANCER1A);
+		Avatar avt_5 = new Avatar(5, Avatar.GUNSLINGER1A);
+		Avatar avt_6 = new Avatar(6, Avatar.KNIGHT1A);
+		Avatar avt_7 = new Avatar(7, Avatar.MAGICIAN2A);
+		Avatar avt_8 = new Avatar(8, Avatar.MONK1B);
+		Avatar avt_9 = new Avatar(9, Avatar.MUMMY4A);
 		avt_0.setPosition(16, 32);
 		avt_1.setPosition(160, 320);
 		avt_2.setPosition(50, 32);
@@ -62,44 +62,33 @@ public class GraphicBasicTest extends BasicGame {
 	@Override
 	public void update(GameContainer c, int delta) throws SlickException {
 		// TODO Auto-generated method stub
+		int sid = 4;
+		Sprite sprt = Stage.get(sid);
+
+		Operation op = new Operation();
 		Input input = c.getInput();
-		Sprite sprt = Stage.get(0);
-		//System.out.println("delta:"+delta);
-		//System.out.println("FPS:"+Stage.getFPS());
-		if (input.isKeyDown(Input.KEY_UP)) {
-			sprt.moveTo(sprt.getX(),sprt.getY()-delta/2f);
-		}else
-		if (input.isKeyDown(Input.KEY_DOWN)) {
-			sprt.moveTo(sprt.getX(),sprt.getY()+delta/2f);
-		}else
-		if (input.isKeyDown(Input.KEY_LEFT)) {
-			sprt.moveTo(sprt.getX()-delta/2f,sprt.getY());
-		}else
-		if (input.isKeyDown(Input.KEY_RIGHT)) {
-			sprt.moveTo(sprt.getX()+delta/2f,sprt.getY());
-		}
-		if (input.isKeyDown(Input.KEY_R)) {
-			if(input.isKeyDown(Input.KEY_EQUALS))
-				sprt.rotateGraph(delta/50.0f);
-			else if(input.isKeyDown(Input.KEY_MINUS))
-				sprt.rotateGraph(-1*delta/50.0f);
-		}
-		
-		if (input.isKeyDown(Input.KEY_S)) {
-			if(input.isKeyDown(Input.KEY_EQUALS))
-				sprt.setScale(sprt.getScale()+delta/5000f);
-			else if(input.isKeyDown(Input.KEY_MINUS))
-				sprt.setScale(sprt.getScale()-delta/5000f);
-		}
-		if (input.isKeyDown(Input.KEY_A)) {
-			if(input.isKeyDown(Input.KEY_EQUALS))
-				sprt.setAlpha(sprt.getAlpha()+delta/5000f);
-			else if(input.isKeyDown(Input.KEY_MINUS))
-				sprt.setAlpha(sprt.getAlpha()-delta/5000f);
-		}
+
+		/*
+		 * if (input.isKeyDown(Input.KEY_R)) {
+		 * if(input.isKeyDown(Input.KEY_EQUALS)) sprt.rotateGraph(delta/50.0f);
+		 * else if(input.isKeyDown(Input.KEY_MINUS))
+		 * sprt.rotateGraph(-1*delta/50.0f); }
+		 * 
+		 * if (input.isKeyDown(Input.KEY_S)) {
+		 * if(input.isKeyDown(Input.KEY_EQUALS))
+		 * sprt.setScale(sprt.getScale()+delta/5000f); else
+		 * if(input.isKeyDown(Input.KEY_MINUS))
+		 * sprt.setScale(sprt.getScale()-delta/5000f); } if
+		 * (input.isKeyDown(Input.KEY_A)) {
+		 * if(input.isKeyDown(Input.KEY_EQUALS))
+		 * sprt.setAlpha(sprt.getAlpha()+delta/5000f); else
+		 * if(input.isKeyDown(Input.KEY_MINUS))
+		 * sprt.setAlpha(sprt.getAlpha()-delta/5000f); }
+		 */
+
 	}
 
-	public static void main(String [] args){
+	public static void main(String[] args) {
 		try {
 			AppGameContainer g = new AppGameContainer(new GraphicBasicTest(
 					"Graphic basic test."), 800, 600, false);

@@ -9,8 +9,10 @@ public class ImageInfo {
 	private int centerOffsetY;
 	private int width;
 	private int height;
+	private int m_width;
+	private int m_height;
 
-	public ImageInfo(String src,int direction,int sofx,int sofy,int centerOffsetX,int centerOffsetY,int width,int height){
+	public ImageInfo(String src,int direction,int sofx,int sofy,int centerOffsetX,int centerOffsetY,int width,int height,int m_height,int m_width){
 		this.setSrc(src);
 		this.setDirection(direction);
 		this.setSrcOffsetX(sofx);
@@ -19,6 +21,8 @@ public class ImageInfo {
 		this.setCenterOffsetY(centerOffsetY);
 		this.setWidth(width);
 		this.setHeight(height);
+		this.setMWidth(m_width);
+		this.setMHeight(m_height);
 	}
 	public String getSrc() {
 		return src;
@@ -67,5 +71,17 @@ public class ImageInfo {
 	}
 	public void setDirection(int direction) {
 		this.direction = direction;
+	}
+	public int getMWidth() {
+		return m_width;
+	}
+	public void setMWidth(int m_width) {
+		this.m_width = m_width;
+	}
+	public int getMHeight() {
+		return m_height;
+	}
+	public void setMHeight(int m_height) {
+		this.m_height = m_height;
 	}
 }
